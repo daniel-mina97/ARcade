@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ARGame
+//  ARcade
 //
 //  Created by Daniel Mina on 9/19/18.
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
