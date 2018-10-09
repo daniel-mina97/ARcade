@@ -13,7 +13,7 @@
         <!--Join Session View Controller-->
         <scene sceneID="Zqb-iD-7Qk">
             <objects>
-                <viewController id="Wge-jS-KmD" customClass="joinSessionViewController" customModule="ARGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wge-jS-KmD" customClass="joinSessionViewController" customModule="ARcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bg0-an-iuF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,7 +78,7 @@
         <!--Host Session View Controller-->
         <scene sceneID="djI-la-cWk">
             <objects>
-                <viewController id="Cu6-G7-HC3" customClass="hostSessionViewController" customModule="ARGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cu6-G7-HC3" customClass="hostSessionViewController" customModule="ARcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hTd-1c-157">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,7 +110,7 @@
         <!--Settings View Controller-->
         <scene sceneID="8mo-Uw-Utm">
             <objects>
-                <viewController id="WR8-Vq-LVS" customClass="settingsViewController" customModule="ARGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WR8-Vq-LVS" customClass="settingsViewController" customModule="ARcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XmX-33-yAH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +134,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARcade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -1,6 +1,6 @@
 //
-//  joinSessionViewController.swift
-//  ARGame
+//  settingsViewController.swift
+//  ARcade
 //
 //  Created by Webb, Christopher Jacob on 10/4/18.
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class joinSessionViewController: UIViewController {
+class settingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
