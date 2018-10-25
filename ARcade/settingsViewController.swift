@@ -8,28 +8,35 @@
 
 import UIKit
 
-class settingsViewController: UIViewController {
+class settingsViewController: UIViewController, UITextFieldDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var colorSelect: UISegmentedControl!
+    @IBOutlet weak var shipSelect: UISegmentedControl!
+    
+    let defaults = UserDefaults.standard
+    
+    @IBAction func saveSettings(_ sender: Any) {
+        defaults.set(nameField.text!, forKey: "name")
+        defaults.set(colorSelect.selectedSegmentIndex, forKey: "color")
+        defaults.set(shipSelect.selectedSegmentIndex, forKey: "ship")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameField.resignFirstResponder()
+        return true
     }
-    */
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameField.delegate = self
+        nameField.text = (defaults.object(forKey: "name") as! String)
+        colorSelect.selectedSegmentIndex = defaults.integer(forKey: "color")
+        shipSelect.selectedSegmentIndex = defaults.integer(forKey: "ship")
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
