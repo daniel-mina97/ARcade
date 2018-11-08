@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65B838A92194898100F5FD91 /* PGameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838A82194898100F5FD91 /* PGameAction.swift */; };
+		65B838AB219489AE00F5FD91 /* ShootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AA219489AE00F5FD91 /* ShootAction.swift */; };
+		65B838AD219489E800F5FD91 /* PickupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AC219489E800F5FD91 /* PickupAction.swift */; };
+		65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AE21948A0400F5FD91 /* SpawnAlienAction.swift */; };
+		65B838B121948A4E00F5FD91 /* SpawnCityAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838B021948A4E00F5FD91 /* SpawnCityAction.swift */; };
+		65B838B321948A7E00F5FD91 /* SpawnPlayerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838B221948A7E00F5FD91 /* SpawnPlayerAction.swift */; };
+		65B838B521948AE800F5FD91 /* SpawnPickupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838B421948AE800F5FD91 /* SpawnPickupAction.swift */; };
+		65B838B721948B8C00F5FD91 /* CItyDestroyedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838B621948B8C00F5FD91 /* CItyDestroyedAction.swift */; };
 		65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C131112153254C00A79DE6 /* AppDelegate.swift */; };
 		65C131142153254C00A79DE6 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C131132153254C00A79DE6 /* art.scnassets */; };
 		65C131162153254C00A79DE6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C131152153254C00A79DE6 /* GameViewController.swift */; };
@@ -20,6 +28,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65B838A82194898100F5FD91 /* PGameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGameAction.swift; sourceTree = "<group>"; };
+		65B838AA219489AE00F5FD91 /* ShootAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootAction.swift; sourceTree = "<group>"; };
+		65B838AC219489E800F5FD91 /* PickupAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupAction.swift; sourceTree = "<group>"; };
+		65B838AE21948A0400F5FD91 /* SpawnAlienAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnAlienAction.swift; sourceTree = "<group>"; };
+		65B838B021948A4E00F5FD91 /* SpawnCityAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnCityAction.swift; sourceTree = "<group>"; };
+		65B838B221948A7E00F5FD91 /* SpawnPlayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnPlayerAction.swift; sourceTree = "<group>"; };
+		65B838B421948AE800F5FD91 /* SpawnPickupAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnPickupAction.swift; sourceTree = "<group>"; };
+		65B838B621948B8C00F5FD91 /* CItyDestroyedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CItyDestroyedAction.swift; sourceTree = "<group>"; };
 		65C1310E2153254C00A79DE6 /* ARcade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARcade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C131112153254C00A79DE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65C131132153254C00A79DE6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -45,6 +61,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65B838A72194891500F5FD91 /* GameActions */ = {
+			isa = PBXGroup;
+			children = (
+				65B838A82194898100F5FD91 /* PGameAction.swift */,
+				65B838AA219489AE00F5FD91 /* ShootAction.swift */,
+				65B838AC219489E800F5FD91 /* PickupAction.swift */,
+				65B838AE21948A0400F5FD91 /* SpawnAlienAction.swift */,
+				65B838B021948A4E00F5FD91 /* SpawnCityAction.swift */,
+				65B838B221948A7E00F5FD91 /* SpawnPlayerAction.swift */,
+				65B838B421948AE800F5FD91 /* SpawnPickupAction.swift */,
+				65B838B621948B8C00F5FD91 /* CItyDestroyedAction.swift */,
+			);
+			path = GameActions;
+			sourceTree = "<group>";
+		};
 		65C131052153254C00A79DE6 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +95,7 @@
 		65C131102153254C00A79DE6 /* ARcade */ = {
 			isa = PBXGroup;
 			children = (
+				65B838A72194891500F5FD91 /* GameActions */,
 				A99E49B921755B2E006858D0 /* MainMenuViewController.swift */,
 				65C131112153254C00A79DE6 /* AppDelegate.swift */,
 				65C131132153254C00A79DE6 /* art.scnassets */,
@@ -152,11 +184,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */,
+				65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
+				65B838A92194898100F5FD91 /* PGameAction.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
 				A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */,
+				65B838B321948A7E00F5FD91 /* SpawnPlayerAction.swift in Sources */,
 				65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */,
+				65B838B521948AE800F5FD91 /* SpawnPickupAction.swift in Sources */,
+				65B838B121948A4E00F5FD91 /* SpawnCityAction.swift in Sources */,
+				65B838AD219489E800F5FD91 /* PickupAction.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
+				65B838B721948B8C00F5FD91 /* CItyDestroyedAction.swift in Sources */,
+				65B838AB219489AE00F5FD91 /* ShootAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
