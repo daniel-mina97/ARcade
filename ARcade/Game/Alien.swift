@@ -1,11 +1,11 @@
 //
-//  PGameAction.swift
+//  Alien.swift
 //  ARcade
 //
-//  Created by Daniel Mina on 11/8/18.
+//  Created by Webb, Christopher Jacob on 11/14/18.
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
 //
 
 import Foundation
 
-protocol GameAction {}
+class Alien{}

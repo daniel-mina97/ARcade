@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+
+class GameManager{
+    var players: [Player]!
+    var city: City!
+    var aliens: [Alien]!
+    
+    init() {
+        
+    }
+    
+    
+}

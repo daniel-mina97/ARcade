@@ -23,6 +23,9 @@
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
 		A95DFCDC219D087B0069549D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDB219D087B0069549D /* GameManager.swift */; };
 		A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDF219D09390069549D /* GameActionQueue.swift */; };
+		A95DFCE4219D0E880069549D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE3219D0E880069549D /* Player.swift */; };
+		A95DFCE6219D0E940069549D /* Alien.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE5219D0E940069549D /* Alien.swift */; };
+		A95DFCE8219D0EA00069549D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE7219D0EA00069549D /* City.swift */; };
 		A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99E49B921755B2E006858D0 /* MainMenuViewController.swift */; };
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
 		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
@@ -48,6 +51,9 @@
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95DFCDB219D087B0069549D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		A95DFCDF219D09390069549D /* GameActionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionQueue.swift; sourceTree = "<group>"; };
+		A95DFCE3219D0E880069549D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A95DFCE5219D0E940069549D /* Alien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alien.swift; sourceTree = "<group>"; };
+		A95DFCE7219D0EA00069549D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		A99E49B921755B2E006858D0 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				65B838A72194891500F5FD91 /* GameActionHandling */,
+				A95DFCE3219D0E880069549D /* Player.swift */,
+				A95DFCE5219D0E940069549D /* Alien.swift */,
+				A95DFCE7219D0EA00069549D /* City.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -236,6 +245,9 @@
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
 				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				65B838B721948B8C00F5FD91 /* CItyDestroyedAction.swift in Sources */,
+				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
+				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
+				A95DFCE8219D0EA00069549D /* City.swift in Sources */,
 				65B838AB219489AE00F5FD91 /* ShootAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
