@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65B838A92194898100F5FD91 /* PGameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838A82194898100F5FD91 /* PGameAction.swift */; };
+		65B838A92194898100F5FD91 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838A82194898100F5FD91 /* GameAction.swift */; };
 		65B838AB219489AE00F5FD91 /* ShootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AA219489AE00F5FD91 /* ShootAction.swift */; };
 		65B838AD219489E800F5FD91 /* PickupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AC219489E800F5FD91 /* PickupAction.swift */; };
 		65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AE21948A0400F5FD91 /* SpawnAlienAction.swift */; };
@@ -28,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		65B838A82194898100F5FD91 /* PGameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGameAction.swift; sourceTree = "<group>"; };
+		65B838A82194898100F5FD91 /* GameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAction.swift; sourceTree = "<group>"; };
 		65B838AA219489AE00F5FD91 /* ShootAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootAction.swift; sourceTree = "<group>"; };
 		65B838AC219489E800F5FD91 /* PickupAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupAction.swift; sourceTree = "<group>"; };
 		65B838AE21948A0400F5FD91 /* SpawnAlienAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnAlienAction.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		65B838A72194891500F5FD91 /* GameActions */ = {
 			isa = PBXGroup;
 			children = (
-				65B838A82194898100F5FD91 /* PGameAction.swift */,
+				65B838A82194898100F5FD91 /* GameAction.swift */,
 				65B838AA219489AE00F5FD91 /* ShootAction.swift */,
 				65B838AC219489E800F5FD91 /* PickupAction.swift */,
 				65B838AE21948A0400F5FD91 /* SpawnAlienAction.swift */,
@@ -186,7 +186,7 @@
 				A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */,
 				65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
-				65B838A92194898100F5FD91 /* PGameAction.swift in Sources */,
+				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
 				A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */,
 				65B838B321948A7E00F5FD91 /* SpawnPlayerAction.swift in Sources */,
