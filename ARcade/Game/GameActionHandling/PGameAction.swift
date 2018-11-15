@@ -8,4 +8,15 @@
 
 import Foundation
 
-protocol GameAction {}
+protocol PGameAction {}
+
+class GameAction {
+    static var overallGameActionID : Int = 0
+    
+    var gameActionID : Int = getGameActionID()
+    
+    static func getGameActionID() -> Int {
+        overallGameActionID += 1
+        return overallGameActionID
+    }
+}
