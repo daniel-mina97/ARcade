@@ -8,7 +8,9 @@
 
 import Foundation
 
-protocol PGameAction {}
+protocol PGameAction {
+    func execute()
+}
 
 class GameAction {
     static var overallGameActionID : Int = 0

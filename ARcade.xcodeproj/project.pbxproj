@@ -21,6 +21,7 @@
 		65C131192153254C00A79DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C131172153254C00A79DE6 /* Main.storyboard */; };
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
+		A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9239174219DBA9B00D73541 /* NetworkManager.swift */; };
 		A95DFCDC219D087B0069549D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDB219D087B0069549D /* GameManager.swift */; };
 		A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDF219D09390069549D /* GameActionQueue.swift */; };
 		A95DFCE4219D0E880069549D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE3219D0E880069549D /* Player.swift */; };
@@ -49,6 +50,7 @@
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C1311D2153254F00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9239174219DBA9B00D73541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ARcade/Game/GameActionHandling/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		A95DFCDB219D087B0069549D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		A95DFCDF219D09390069549D /* GameActionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionQueue.swift; sourceTree = "<group>"; };
 		A95DFCE3219D0E880069549D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		A95DFCDA219D08450069549D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				65B838B521948AE800F5FD91 /* SpawnPickupAction.swift in Sources */,
 				65B838B121948A4E00F5FD91 /* SpawnCityAction.swift in Sources */,
 				65B838AD219489E800F5FD91 /* PickupAction.swift in Sources */,
+				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
 				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				65B838B721948B8C00F5FD91 /* CItyDestroyedAction.swift in Sources */,
