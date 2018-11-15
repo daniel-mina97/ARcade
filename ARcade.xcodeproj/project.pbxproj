@@ -21,6 +21,8 @@
 		65C131192153254C00A79DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C131172153254C00A79DE6 /* Main.storyboard */; };
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
+		A95DFCDC219D087B0069549D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDB219D087B0069549D /* GameManager.swift */; };
+		A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDF219D09390069549D /* GameActionQueue.swift */; };
 		A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99E49B921755B2E006858D0 /* MainMenuViewController.swift */; };
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
 		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
@@ -44,6 +46,8 @@
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C1311D2153254F00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A95DFCDB219D087B0069549D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		A95DFCDF219D09390069549D /* GameActionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionQueue.swift; sourceTree = "<group>"; };
 		A99E49B921755B2E006858D0 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
@@ -61,9 +65,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		65B838A72194891500F5FD91 /* GameActions */ = {
+		65B838A72194891500F5FD91 /* GameActionHandling */ = {
 			isa = PBXGroup;
 			children = (
+				A95DFCDB219D087B0069549D /* GameManager.swift */,
+				A95DFCDF219D09390069549D /* GameActionQueue.swift */,
 				65B838A82194898100F5FD91 /* PGameAction.swift */,
 				65B838AA219489AE00F5FD91 /* ShootAction.swift */,
 				65B838AC219489E800F5FD91 /* PickupAction.swift */,
@@ -73,7 +79,7 @@
 				65B838B421948AE800F5FD91 /* SpawnPickupAction.swift */,
 				65B838B621948B8C00F5FD91 /* CItyDestroyedAction.swift */,
 			);
-			path = GameActions;
+			path = GameActionHandling;
 			sourceTree = "<group>";
 		};
 		65C131052153254C00A79DE6 = {
@@ -95,20 +101,52 @@
 		65C131102153254C00A79DE6 /* ARcade */ = {
 			isa = PBXGroup;
 			children = (
-				65B838A72194891500F5FD91 /* GameActions */,
-				A99E49B921755B2E006858D0 /* MainMenuViewController.swift */,
 				65C131112153254C00A79DE6 /* AppDelegate.swift */,
-				65C131132153254C00A79DE6 /* art.scnassets */,
 				65C131152153254C00A79DE6 /* GameViewController.swift */,
+				A95DFCDA219D08450069549D /* Networking */,
+				A95DFCD9219D07FF0069549D /* ScenekitHandling */,
+				A95DFCD8219D07F60069549D /* Game */,
+				A95DFCD7219D07900069549D /* ViewControllers */,
+				65C131132153254C00A79DE6 /* art.scnassets */,
 				65C131172153254C00A79DE6 /* Main.storyboard */,
-				A9C1672C21669D13006C5A7F /* settingsViewController.swift */,
-				A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */,
-				A9C1672821669C82006C5A7F /* hostSessionViewController.swift */,
 				65C1311A2153254F00A79DE6 /* Assets.xcassets */,
 				65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */,
 				65C1311F2153254F00A79DE6 /* Info.plist */,
 			);
 			path = ARcade;
+			sourceTree = "<group>";
+		};
+		A95DFCD7219D07900069549D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9C1672821669C82006C5A7F /* hostSessionViewController.swift */,
+				A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */,
+				A9C1672C21669D13006C5A7F /* settingsViewController.swift */,
+				A99E49B921755B2E006858D0 /* MainMenuViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A95DFCD8219D07F60069549D /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				65B838A72194891500F5FD91 /* GameActionHandling */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		A95DFCD9219D07FF0069549D /* ScenekitHandling */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ScenekitHandling;
+			sourceTree = "<group>";
+		};
+		A95DFCDA219D08450069549D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +225,7 @@
 				65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
 				65B838A92194898100F5FD91 /* PGameAction.swift in Sources */,
+				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
 				A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */,
 				65B838B321948A7E00F5FD91 /* SpawnPlayerAction.swift in Sources */,
@@ -195,6 +234,7 @@
 				65B838B121948A4E00F5FD91 /* SpawnCityAction.swift in Sources */,
 				65B838AD219489E800F5FD91 /* PickupAction.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
+				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				65B838B721948B8C00F5FD91 /* CItyDestroyedAction.swift in Sources */,
 				65B838AB219489AE00F5FD91 /* ShootAction.swift in Sources */,
 			);
