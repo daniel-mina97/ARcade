@@ -8,4 +8,4 @@
 
 import Foundation
 
-class SpawnPlayerAction : PGameAction {}
+class SpawnPlayerAction : GameAction {}

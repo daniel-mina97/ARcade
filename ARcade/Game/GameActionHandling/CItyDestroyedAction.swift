@@ -8,4 +8,4 @@
 
 import Foundation
 
-class CityDestroyedAction : PGameAction {}
+class CityDestroyedAction : GameAction {}
