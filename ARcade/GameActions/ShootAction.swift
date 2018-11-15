@@ -8,4 +8,5 @@
 
 import Foundation
 
-class ShootAction : PGameAction {}
+class ShootAction : GameAction {
+}
