@@ -8,4 +8,8 @@
 
 import Foundation
 
-class CityDestroyedAction : PGameAction {}
+class CityDestroyedAction : GameAction, PGameAction {
+    func execute() {
+        
+    }
+}

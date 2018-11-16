@@ -8,4 +8,8 @@
 
 import Foundation
 
-class SpawnPlayerAction : PGameAction {}
+class SpawnPlayerAction : GameAction, PGameAction {
+    func execute() {
+        
+    }
+}
