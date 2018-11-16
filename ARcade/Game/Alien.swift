@@ -8,4 +8,6 @@
 
 import Foundation
 
-class Alien{}
+class Alien: GameActor {
+    
+}
