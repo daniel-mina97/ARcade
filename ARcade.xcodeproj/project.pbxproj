@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		659F6598219E61B000F5593D /* GameActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F6597219E61B000F5593D /* GameActor.swift */; };
 		65B838A92194898100F5FD91 /* PGameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838A82194898100F5FD91 /* PGameAction.swift */; };
 		65B838AB219489AE00F5FD91 /* ShootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AA219489AE00F5FD91 /* ShootAction.swift */; };
 		65B838AD219489E800F5FD91 /* PickupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838AC219489E800F5FD91 /* PickupAction.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		659F6597219E61B000F5593D /* GameActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActor.swift; sourceTree = "<group>"; };
 		65B838A82194898100F5FD91 /* PGameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGameAction.swift; sourceTree = "<group>"; };
 		65B838AA219489AE00F5FD91 /* ShootAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootAction.swift; sourceTree = "<group>"; };
 		65B838AC219489E800F5FD91 /* PickupAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupAction.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				65B838A72194891500F5FD91 /* GameActionHandling */,
+				659F6597219E61B000F5593D /* GameActor.swift */,
 				A95DFCE3219D0E880069549D /* Player.swift */,
 				A95DFCE5219D0E940069549D /* Alien.swift */,
 				A95DFCE7219D0EA00069549D /* City.swift */,
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */,
+				659F6598219E61B000F5593D /* GameActor.swift in Sources */,
 				65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
 				65B838A92194898100F5FD91 /* PGameAction.swift in Sources */,
