@@ -8,4 +8,16 @@
 
 import Foundation
 
-class ShootAction : PGameAction {}
+class ShootAction : GameAction, PGameAction {
+    var source : GameActor
+    var destination : GameActor
+    
+    init(source: GameActor, destination: GameActor) {
+        self.source = source
+        self.destination = destination
+    }
+    
+    func execute() {
+        destination.takeDamage(damage: source.damage)
+    }
+}
