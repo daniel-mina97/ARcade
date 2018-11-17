@@ -1,13 +1,9 @@
 //
-//  City.swift
+//  ShootingAlien.swift
 //  ARcade
 //
-//  Created by Webb, Christopher Jacob on 11/14/18.
+//  Created by Warren, Troy Wayne on 11/17/18.
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
 //
 
 import Foundation
-
-class City: GameActor {
-    
-}
