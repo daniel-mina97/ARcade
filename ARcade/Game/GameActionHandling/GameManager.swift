@@ -20,7 +20,6 @@ class GameManager{
         queue = GameActionQueue()
         players = []
         aliens = []
-        city = City()
         isHost = host
     }
     

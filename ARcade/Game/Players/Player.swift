@@ -12,7 +12,5 @@ import SceneKit
 
 class Player: GameActor {
     
-    init(){
-        super.init(health: <#T##Int#>, maxHealth: <#T##Int#>, damage: <#T##Int#>, canShoot: <#T##Bool#>, moveSpeed: <#T##Int#>, canMove: <#T##Bool#>, location: <#T##Coordinate3D#>, anchor: <#T##ARAnchor#>, node: <#T##SCNNode#>)
-    }
 }
+
