@@ -21,9 +21,9 @@ enum GameState{
 }
 
 class GameManager{
-    var players: [Int: Player?]!
+    var players: [Int: Player]
+    var aliens: [Int: Alien]
     var city: City!
-    var aliens: [Int: Alien?]!
     var queue: GameActionQueue!
     var isHost: Bool
     var sessionState: GameState
@@ -33,6 +33,8 @@ class GameManager{
         //city = City()
         isHost = host
         sessionState = .startup
+        players = [:]
+        aliens = [:]
     }
     
     func addPlayer(player: Player){
@@ -48,23 +50,34 @@ class GameManager{
     }
     
     func executeNextAction(){
-        guard let action = queue.dequeue() as? PGameAction else {return}
-        action.execute()
+        
+        guard let action = queue.dequeue() else {return}
+        
+        switch action.type {
+        case .playerShootAlien:
+            if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                aliens[action.targetID] = nil
+            }
+            break
+        case .alienShootPlayer:
+            if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                // players[action.targetID] = nil
+                // We don't want to just kick the player out...
+            }
+            break
+        case .alienShootCity:
+            if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                // Game over!!
+            }
+            break
+        case .pickup:
+            // Pick it up
+            break
+        }
+        
     }
     
     func removePlayer(at: Int){
         players[at] = nil
-    }
-    
-    func removeAlien(at: Int){
-        aliens[at] = nil
-    }
-    
-    func getActionQueue() -> GameActionQueue {
-        return queue
-    }
-    
-    func updateQueue(aq: GameActionQueue){
-        //scary
     }
 }
