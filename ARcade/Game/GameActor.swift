@@ -66,13 +66,14 @@ class GameActor: GameObject {
     
     
     
-    func takeDamage(damageTaken: Int) {
+    func takeDamage(from damageTaken: Int) -> lifeState {
         health -= damageTaken
         
         //check if object died
         if health <= 0 {
-            death()
+            return .dead
         }
+        return .alive
     }
     
     func heal(healAmount: Int){
