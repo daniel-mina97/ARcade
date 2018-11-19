@@ -2,7 +2,9 @@
 //  GameObject.swift
 //  ARcade
 //
-//  Created by Daniel Mina on 11/18/18.
+
+//  Created by Webb, Christopher Jacob on 11/17/18.
+
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
 //
 

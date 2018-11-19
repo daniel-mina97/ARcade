@@ -2,7 +2,9 @@
 //  Coordinate3D.swift
 //  ARcade
 //
-//  Created by Warren, Troy Wayne on 11/17/18.
+
+//  Created by Webb, Christopher Jacob on 11/17/18.
+
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
 //
 
@@ -22,8 +24,8 @@ class Coordinate3D {
     
     func changeValues(xDiff: Float, yDiff: Float, zDiff: Float){
         x += xDiff
-        y += xDiff
-        z += xDiff
+        y += yDiff
+        z += zDiff
     }
     
     func getVector() -> SCNVector3{
