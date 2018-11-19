@@ -54,6 +54,27 @@ class GameManager{
         
         guard let action = queue.dequeue() else {return}
         
+        switch action.type {
+        case .playerShootAlien:
+            if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                aliens[action.targetID] = nil
+            }
+            break
+        case .alienShootPlayer:
+            if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                // players[action.targetID] = nil
+                // We don't want to just kick the player out...
+            }
+            break
+        case .alienShootCity:
+            if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                // Game over!!
+            }
+            break
+        case .pickup:
+            // Pick it up
+            break
+        }
         
     }
     
