@@ -29,9 +29,4 @@ class GameAction {
 enum ActionTypes {
     case shoot
     case pickup
-    case spawnAlien
-    case spawnPickup
-    case spawnPlayer
-    case spawCity
-    case cityDestroyed
 }
