@@ -12,6 +12,7 @@ import ARKit
 
 class GameActor: GameObject {
     
+    
     //class variables
     var health: Int
     var maxHealth: Int

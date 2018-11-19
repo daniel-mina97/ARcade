@@ -16,6 +16,7 @@ class GameAction {
         case alienShootCity
         case pickup
     }
+    
     static var overallActionID: Int = 0
     
     let type: ActionTypes
@@ -31,4 +32,5 @@ class GameAction {
         self.targetID = targetID
     }
 }
+
 
