@@ -12,6 +12,10 @@ import ARKit
 
 class GameActor: GameObject {
     
+    enum lifeState {
+        case dead
+        case alive
+    }
     
     //class variables
     var health: Int
