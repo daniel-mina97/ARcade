@@ -117,7 +117,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func getNewShipNode(position: SCNVector3) -> SCNNode{
-        let alienScene = SCNScene(named: "art.scnassets/ship.dae")!
+        let alienScene = SCNScene(named: "art.scnassets/alien_normal.dae")!
         print(position.x, position.y, position.z)
         let node = SCNNode()
         let sceneNodes = alienScene.rootNode.childNodes
