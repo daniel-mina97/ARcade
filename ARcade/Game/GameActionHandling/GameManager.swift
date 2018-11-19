@@ -22,9 +22,9 @@ enum GameState{
 
 class GameManager{
     var sceneManager: SKSceneManager!
-    var players: [Int: Player?]!
+    var players: [Int: Player]
+    var aliens: [Int: Alien]
     var city: City!
-    var aliens: [Int: Alien?]!
     var queue: GameActionQueue!
     var isHost: Bool
     var sessionState: GameState
@@ -34,6 +34,8 @@ class GameManager{
         //city = City()
         isHost = host
         sessionState = .startup
+        players = [:]
+        aliens = [:]
     }
     
     func addPlayer(player: Player){
