@@ -7,29 +7,41 @@
 //
 
 import Foundation
+import ARKit
+import SceneKit
 
+enum GameState{
+    case startup
+    case lookingForPlane
+    case planeFound
+    case PlacingCity
+    case CityPlaced
+    case ongoing
+    case ending
+}
 
 class GameManager{
-    var players: [Player?]!
+    var sceneManager: SKSceneManager!
+    var players: [Int: Player?]!
     var city: City!
-    var aliens: [Alien?]!
+    var aliens: [Int: Alien?]!
     var queue: GameActionQueue!
     var isHost: Bool
+    var sessionState: GameState
     
-    init(host: Bool) {
+    init(host: Bool, scene: SCNScene) {
         queue = GameActionQueue()
-        players = []
-        aliens = []
-        city = City()
+        //city = City()
         isHost = host
+        sessionState = .startup
     }
     
     func addPlayer(player: Player){
-        players.append(player)
+        
     }
     
     func addAlien(alien: Alien){
-        aliens.append(alien)
+        
     }
     
     func receiveAction(action: GameAction){

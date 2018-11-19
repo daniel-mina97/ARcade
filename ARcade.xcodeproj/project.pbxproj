@@ -23,6 +23,9 @@
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
 		A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9239174219DBA9B00D73541 /* NetworkManager.swift */; };
+		A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083721A0A3D30078E5C8 /* SceneManager.swift */; };
+		A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */; };
+		A94A083C21A0AA1C0078E5C8 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083B21A0AA1C0078E5C8 /* GameObject.swift */; };
 		A95DFCDC219D087B0069549D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDB219D087B0069549D /* GameManager.swift */; };
 		A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDF219D09390069549D /* GameActionQueue.swift */; };
 		A95DFCE4219D0E880069549D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE3219D0E880069549D /* Player.swift */; };
@@ -52,7 +55,10 @@
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C1311D2153254F00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9239174219DBA9B00D73541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ARcade/Game/GameActionHandling/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		A9239174219DBA9B00D73541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ARcade/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		A94A083721A0A3D30078E5C8 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate3D.swift; sourceTree = "<group>"; };
+		A94A083B21A0AA1C0078E5C8 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		A95DFCDB219D087B0069549D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		A95DFCDF219D09390069549D /* GameActionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionQueue.swift; sourceTree = "<group>"; };
 		A95DFCE3219D0E880069549D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -113,8 +119,8 @@
 			children = (
 				65C131112153254C00A79DE6 /* AppDelegate.swift */,
 				65C131152153254C00A79DE6 /* GameViewController.swift */,
-				A95DFCDA219D08450069549D /* Networking */,
-				A95DFCD9219D07FF0069549D /* ScenekitHandling */,
+				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
+				A94A083421A0A3960078E5C8 /* SceneHandling */,
 				A95DFCD8219D07F60069549D /* Game */,
 				A95DFCD7219D07900069549D /* ViewControllers */,
 				65C131132153254C00A79DE6 /* art.scnassets */,
@@ -124,6 +130,15 @@
 				65C1311F2153254F00A79DE6 /* Info.plist */,
 			);
 			path = ARcade;
+			sourceTree = "<group>";
+		};
+		A94A083421A0A3960078E5C8 /* SceneHandling */ = {
+			isa = PBXGroup;
+			children = (
+				A94A083721A0A3D30078E5C8 /* SceneManager.swift */,
+				A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */,
+			);
+			path = SceneHandling;
 			sourceTree = "<group>";
 		};
 		A95DFCD7219D07900069549D /* ViewControllers */ = {
@@ -145,23 +160,9 @@
 				A95DFCE3219D0E880069549D /* Player.swift */,
 				A95DFCE5219D0E940069549D /* Alien.swift */,
 				A95DFCE7219D0EA00069549D /* City.swift */,
+				A94A083B21A0AA1C0078E5C8 /* GameObject.swift */,
 			);
 			path = Game;
-			sourceTree = "<group>";
-		};
-		A95DFCD9219D07FF0069549D /* ScenekitHandling */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ScenekitHandling;
-			sourceTree = "<group>";
-		};
-		A95DFCDA219D08450069549D /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +241,8 @@
 				659F6598219E61B000F5593D /* GameActor.swift in Sources */,
 				65B838AF21948A0400F5FD91 /* SpawnAlienAction.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
+				A94A083C21A0AA1C0078E5C8 /* GameObject.swift in Sources */,
+				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
 				65B838A92194898100F5FD91 /* PGameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
@@ -252,6 +255,7 @@
 				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
 				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
+				A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */,
 				65B838B721948B8C00F5FD91 /* CItyDestroyedAction.swift in Sources */,
 				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
