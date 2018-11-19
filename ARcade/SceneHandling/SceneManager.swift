@@ -11,7 +11,7 @@ import SceneKit
 
 
 
-class SKSceneManager {
+class SceneManager {
     
     var scene: SCNScene
     var cityPlaced: Bool = false
@@ -20,41 +20,41 @@ class SKSceneManager {
         self.scene = scene
     }
     
-    func addShips(){
-        scene.rootNode.addChildNode(addShip(x: 0.0, y: 0.0, z: -0.5))
-        
-        scene.rootNode.addChildNode(addShip(x: 0.0, y: 0.0, z: -0.1))
-        
-        scene.rootNode.addChildNode(addShip(x: 0.2, y: 0.0, z: -0.5))
-        
-        scene.rootNode.addChildNode(addShip(x: -0.2, y: 0.0, z: -0.1))
-        
-        scene.rootNode.addChildNode(addShip(x: -0.2, y: 0.0, z: -0.5))
-        
-        scene.rootNode.addChildNode(addShip(x: 0.2, y: 0.0, z: -0.1))
-    }
-    
-    func addShip(x: Float, y: Float ,z: Float) -> SCNNode{
-        let scene = SCNScene(named: "art.scnassets/alien ship.dae")!
-        let shipNode = SCNNode()
+    func spawnObject(asset: String, scale: Float, id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        let scene = SCNScene(named: asset)!
+        let node = SCNNode()
         let sceneChildNodes = scene.rootNode.childNodes
         for childNode in sceneChildNodes{
-            shipNode.addChildNode(childNode)
+            node.addChildNode(childNode)
         }
-        shipNode.position = SCNVector3(x: x, y: y, z: z)
-        shipNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
-        return shipNode
+        node.position = SCNVector3(x: x, y: y, z: z)
+        node.scale = SCNVector3(x: scale, y: scale, z: scale)
+        node.name = String(id)
+        return node
     }
     
-    func addAlien(at coord: Coordinate3D) -> SCNNode{
-        let scene = SCNScene(named: "art.scnassets/alien ship.dae")!
-        let shipNode = SCNNode()
-        let sceneChildNodes = scene.rootNode.childNodes
-        for childNode in sceneChildNodes{
-            shipNode.addChildNode(childNode)
-        }
-        shipNode.position = coord.getVector()
-        shipNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
-        return shipNode
+    func spawnAlienDiver(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/alien_diver.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
+    
+    func spawnAlienShooter(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/alien_normal.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+    }
+    
+    func spawnAlienMultiTakedown(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/alien_multitakedown.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+    }
+    
+    func spawnAlienBoss(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/alien_boss.dae", scale: 0.2, id: id, x: x, y: y, z: z)
+    }
+    
+    func spawnCity(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/alien_diver.dae", scale: 0.1, id: 0, x: x, y: y, z: z)
+    }
+    
+    func moveObject(node: SCNNode){
+        
+    }
+    
 }

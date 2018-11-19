@@ -21,7 +21,6 @@ enum GameState{
 }
 
 class GameManager{
-    var sceneManager: SKSceneManager!
     var players: [Int: Player]
     var aliens: [Int: Alien]
     var city: City!

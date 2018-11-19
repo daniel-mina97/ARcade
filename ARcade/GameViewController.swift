@@ -22,12 +22,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
     //var manager: GameManager!
+    var sceneManager: SceneManager!
     //var networkManager: NetworkManager!
     var cityPlaneNode: SCNNode?
     var cityAnchor: ARAnchor?
     var alienCount = 0
     var state: SessionState = .lookingForPlane
+    var dummies: [Int: dummy] = [:]
     
     func configureSession(){
         let configuration = ARWorldTrackingConfiguration()
@@ -44,10 +49,14 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             oldPlaneNode.removeFromParentNode()
         }
         //sessionstate is to look for plane
+        state = .lookingForPlane
     }
     
     @IBAction func saveCityPlane(_ sender: UIButton) {
         //sessionstate is startup game
+        state = .citySaved
+        cancelButton.isHidden = true
+        saveButton.isHidden = true
     }
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer){
@@ -56,17 +65,32 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         let ARresult = sceneView.hitTest(location, types: .featurePoint)
 
         if ((result.first?.node.name) != nil){
-            print("MADE IT HERE3")
             var node = result.first?.node
             while(node?.parent?.parent != nil){
                 node = node?.parent
             }
-            node?.removeFromParentNode()
+            if let dummyID = Int((node?.name!)!){
+                if let myDummy = dummies[dummyID]{
+                    if myDummy.state == .spawned{
+                        let action = SCNAction.move(to: SCNVector3(x: 0, y: 0, z: 0), duration: 20)
+                        myDummy.node.runAction(action)
+                        myDummy.state = .moving
+                    }
+                    else{
+                        myDummy.node.removeFromParentNode()
+                    }
+                }
+            }
+            else{
+                node?.removeFromParentNode()
+            }
         }else{
             print("MADE IT HERE2")
             if let transform = ARresult.first?.worldTransform.columns.3{
-                let node = getNewShipNode(position: SCNVector3(transform.x, transform.y, transform.z))
+                let node = sceneManager.spawnAlienShooter(id: alienCount, x: transform.x, y: transform.y, z: transform.z)
                 sceneView.scene.rootNode.addChildNode(node)
+                dummies[alienCount] = dummy(s: .spawned, n: node)
+                alienCount += 1
             }
         }
     }
@@ -74,6 +98,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Create classes
+        dummies = [:]
         state = .lookingForPlane
         let scene = SCNScene()
         // Set the view's delegate
@@ -85,6 +110,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         //networkManager = NetworkManager(host: true)
         // Set the scene to the view
         sceneView.scene = scene
+        sceneManager = SceneManager(scene: scene)
         configureSession()
        // manager = GameManager(host: networkManager.isHost, scene: scene)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
@@ -108,28 +134,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             plane.materials = [gridMaterial]
             planeNode.geometry = plane
             node.addChildNode(planeNode)
-            let cNode = getNewShipNode(position: planeNode.position)
-            node.addChildNode(cNode)
+            let cNode = sceneManager?.spawnCity(id: 0, x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
+            node.addChildNode(cNode!)
             cityPlaneNode = node
         }else{
             return
         }
-    }
-    
-    func getNewShipNode(position: SCNVector3) -> SCNNode{
-        let alienScene = SCNScene(named: "art.scnassets/alien_normal.dae")!
-        print(position.x, position.y, position.z)
-        let node = SCNNode()
-        let sceneNodes = alienScene.rootNode.childNodes
-        for childNode in sceneNodes{
-            node.addChildNode(childNode)
-        }
-        node.position = position
-        node.scale = SCNVector3(0.1, 0.1, 0.1)
-        node.name = String(alienCount)
-        alienCount += 1
-        print("NODE RETURNED")
-        return node
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,4 +176,20 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+}
+
+class dummy{
+    enum dummyState {
+        case spawned
+        case moving
+        case done
+    }
+    public var node: SCNNode
+    public var state: dummyState
+    
+    init(s: dummyState, n: SCNNode){
+        node = n
+        state = s
+    }
+    
 }
