@@ -226,6 +226,8 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="COf-U5-1kM" id="9Dw-UJ-Y0f"/>
+                        <outlet property="saveButton" destination="K7W-cz-U1x" id="xKL-q8-enm"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="tapGestureRecognizer" destination="LL6-Sh-pla" id="ld4-lC-ieW"/>
                     </connections>
