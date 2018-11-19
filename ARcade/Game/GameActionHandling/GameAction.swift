@@ -14,15 +14,15 @@ class GameAction {
     
     let type: ActionTypes
     let actionID: Int
-    let sourceID: Int?
-    let targetID: Int?
+    let sourceID: Int
+    let targetID: Int
     
-    init(type: ActionTypes) {
+    init(type: ActionTypes, sourceID: Int, targetID: Int) {
         self.type = type
         self.actionID = GameAction.overallActionID
         GameAction.overallActionID += 1
-        self.sourceID = nil
-        self.targetID = nil
+        self.sourceID = sourceID
+        self.targetID = targetID
     }
 }
 
