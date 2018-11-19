@@ -49,8 +49,8 @@ class GameManager{
     }
     
     func executeNextAction(){
-        guard let action = queue.dequeue() as? PGameAction else {return}
-        action.execute()
+        //guard let action = queue.dequeue() as? GameAction else {return}
+        //action.execute()
     }
     
     func removePlayer(at: Int){
