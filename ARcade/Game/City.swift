@@ -8,6 +8,7 @@
 
 import Foundation
 
-class City : GameObject {
-    var health: Int = 10000
+
+class City: GameActor {
+    
 }

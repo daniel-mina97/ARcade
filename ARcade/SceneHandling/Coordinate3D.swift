@@ -2,7 +2,9 @@
 //  Coordinate3D.swift
 //  ARcade
 //
+
 //  Created by Webb, Christopher Jacob on 11/17/18.
+
 //  Copyright © 2018 University of Houston-Clear lake (ARGuys). All rights reserved.
 //
 
@@ -13,7 +15,7 @@ class Coordinate3D {
     var x: Float
     var y: Float
     var z: Float
-
+    
     init(x: Float, y: Float, z: Float){
         self.x = x
         self.y = y

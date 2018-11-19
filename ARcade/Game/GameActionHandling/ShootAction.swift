@@ -18,6 +18,5 @@ class ShootAction : GameAction, PGameAction {
     }
     
     func execute() {
-        destination.takeDamage(damage: source.damage)
     }
 }
