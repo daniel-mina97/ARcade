@@ -81,16 +81,4 @@ class GameManager{
     func removePlayer(at: Int){
         players[at] = nil
     }
-    
-    func removeAlien(at: Int){
-        aliens[at] = nil
-    }
-    
-    func getActionQueue() -> GameActionQueue {
-        return queue
-    }
-    
-    func updateQueue(aq: GameActionQueue){
-        //scary
-    }
 }
