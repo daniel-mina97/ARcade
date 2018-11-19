@@ -10,9 +10,12 @@ import Foundation
 
 class GameAction {
     
+    enum ActionTypes {
         case playerShootAlien
         case alienShootPlayer
         case alienShootCity
+        case pickup
+    }
     static var overallActionID: Int = 0
     
     let type: ActionTypes
@@ -29,6 +32,3 @@ class GameAction {
     }
 }
 
-enum ActionTypes {
-    case pickup
-}
