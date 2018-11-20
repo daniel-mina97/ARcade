@@ -54,9 +54,6 @@ class GameActor: GameObject {
         return canShoot;
     }
     
-    func getmoveSpeed() -> Int{
-        return moveSpeed;
-    }
     
     func getCanMove() -> Bool{
         return canMove;

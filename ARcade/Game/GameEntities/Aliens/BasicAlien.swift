@@ -8,5 +8,5 @@
 
 import Foundation
 class BasicAlien: Alien {
-    <#code#>
+   // <#code#>
 }

@@ -10,10 +10,10 @@ import Foundation
 
 
 class City: GameActor {
-    var health: Int // health of city
+    //var health: Int // health of city
     
-    init(health h:Int) {
+    /*init(health h:Int) {
         health = h
         
-    }
+    }*/
 }

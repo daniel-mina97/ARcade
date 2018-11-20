@@ -16,13 +16,13 @@ class MultiTakedownAlien: Alien {
     //    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
     //    var model:SCNNode? //Model/Sprite: points to physical model
     
-    init(){
+    /*init(){
         maxHealth = 4
         
     }
     func TakeDamage(<#parameters#>) -> <#return type#> {
         <#function body#>
-    }
+    }*/
     
 }
 
