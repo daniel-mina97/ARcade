@@ -7,3 +7,6 @@
 //
 
 import Foundation
+class DivingAlien: Alien {
+   // <#code#>
+}
