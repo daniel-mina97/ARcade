@@ -22,17 +22,15 @@ class GameActor: GameObject {
     var maxHealth: Int
     var damage: Int
     var canShoot: Bool
-    var moveSpeed: Int
     var canMove: Bool
     
     //initializer
-    init(health h: Int, maxHealth mh: Int, damage d: Int, canShoot cs: Bool, moveSpeed m: Int, canMove cm: Bool,
+    init(health h: Int, maxHealth mh: Int, damage d: Int, canShoot cs: Bool, canMove cm: Bool,
         location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode){
         health = h
         maxHealth = mh
         damage = d
         canShoot = cs
-        moveSpeed = m
         canMove = cm
         
         //call super

@@ -7,48 +7,28 @@
 //
 
 import Foundation
+import SceneKit
+import ARKit
 
 class Alien: GameActor {
     //declare variables
 //    var maxHealth: Int // int: maximum health of vessel
 //    var health: Int // int: remaining health of vessel
-//    var speed: Int // int: speed of vessel
+    var moveSpeed: Int // int: speed of vessel
 //    var damage: Int //Invasion Damage: amount of damage to deal to City upon arrival
-//    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
+    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
 //    var model:SCNNode? //Model/Sprite: points to physical model
     
     // initialize variable values
-    init() {
-        maxHealth = 10
-        health = 10
-        speed = 1
-        damage = 1
-        difficulty = 1
-        model = nil
-    }
-    init(theModel:SCNNode) {
-        maxHealth = 10
-        health = 10
-        speed = 1
-        damage = 1
-        difficulty = 1
-        model = theModel
-    }
-    init(setDifficulty:Int, theModel:SCNNode) {
-        difficulty = setDifficulty
-        maxHealth = 10
-        health = 10
-        speed = 1
-        damage = 1
-        model = theModel
+    init(difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int,
+         canShoot cs: Bool, canMove cm: Bool, location loc: Coordinate3D,
+         anchor a: ARAnchor, node n: SCNNode) {
+        moveSpeed = m
+        difficulty = dif
+        super.init(health: h, maxHealth: mh, damage: d, canShoot: cs, canMove: cm, location: loc, anchor: a, node: n)
     }
     
     //Methods
-    //todo: implement get-set for health?
-    func Move(/*unknown*/) -> Bool {
-        //todo:implement method
-        return true;
-    }
     func ReachCity(/*city:City! */) -> Bool {
         
         //todo:implement method
@@ -56,6 +36,6 @@ class Alien: GameActor {
     }
     deinit {
         //If necessary, implement destruction logic here.
-        model?.removeFromParentNode()
+        
     }
 }

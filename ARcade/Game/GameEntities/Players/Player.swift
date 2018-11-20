@@ -11,7 +11,14 @@ import ARKit
 import SceneKit
 
 class Player: GameActor {
+    var health: Int
+    var damage: Int
+    
     var playerNumber: Int // gives player a number to calculate how many unique players have shot MultiTakedownAlien
     
+    
+    func DamageAlien() -> <#return type#> {
+        <#function body#>
+    }
 }
 

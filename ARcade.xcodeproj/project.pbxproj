@@ -36,7 +36,6 @@
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
 		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
-		D5263AA121A45A0D0056E766 /* MultiTakedownAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5263AA021A45A0D0056E766 /* MultiTakedownAlien.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +70,6 @@
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
-		D5263AA021A45A0D0056E766 /* MultiTakedownAlien.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiTakedownAlien.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +196,6 @@
 		D5263A9D21A458B00056E766 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D5263AA021A45A0D0056E766 /* MultiTakedownAlien.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,7 +294,6 @@
 				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */,
 				9175998C21A0C846008A657C /* ShootingAlien.swift in Sources */,
-				D5263AA121A45A0D0056E766 /* MultiTakedownAlien.swift in Sources */,
 				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
 				A95DFCE8219D0EA00069549D /* City.swift in Sources */,
