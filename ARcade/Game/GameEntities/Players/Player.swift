@@ -18,7 +18,7 @@ class Player: GameActor {
     
     init(playerNumber pn: Int, health h: Int, maxHealth mh: Int, damage d: Int, canShoot cs: Bool, canMove cm: Bool, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
         playerNumber = 0
-        super.init(health: h, maxHealth: mh, damage: d, canShoot: cs, canMove: cm, location: loc, anchor: a, node: n)
+        super.init(health: h, maxHealth: mh, damage: d,  location: loc, anchor: a, node: n)
     }
 }
 
