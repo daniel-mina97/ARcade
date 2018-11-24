@@ -20,8 +20,5 @@ class Player: GameActor {
         playerNumber = 0
         super.init(health: h, maxHealth: mh, damage: d, canShoot: cs, canMove: cm, location: loc, anchor: a, node: n)
     }
-    func DamageAlien() -> <#return type#> {
-        <#function body#>
-    }
 }
 
