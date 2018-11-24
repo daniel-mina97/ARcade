@@ -15,14 +15,16 @@ class MultiTakedownAlien: Alien {
     //    var damage: Int //Invasion Damage: amount of damage to deal to City upon arrival
     //    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
     //    var model:SCNNode? //Model/Sprite: points to physical model
+    var listOfIdentifiers: [Int] = [Int]()
     
-    /*init(){
-        maxHealth = 4
-        
+    func TakeDamage(sourceId s: Int) -> lifeState {
+        listOfIdentifiers.append(s)
+        health -= 1
+        if (health == 0){
+            return lifeState.dead
+        }
+        return lifeState.alive
     }
-    func TakeDamage(<#parameters#>) -> <#return type#> {
-        <#function body#>
-    }*/
     
 }
 
