@@ -16,11 +16,11 @@ class Player: GameActor {
     
     var playerNumber: Int // gives player a number to calculate how many unique players have shot MultiTakedownAlien
     
-    init(playerNumber pn: Int, health h: Int, maxHealth mh: Int, damage d: Int, canShoot cs: Bool, canMove cm: Bool, anchor a: ARAnchor, node n: SCNNode) {
+    init(playerNumber pn: Int, health h: Int, maxHealth mh: Int, damage d: Int, canShoot cs: Bool, canMove cm: Bool, anchor a: ARAnchor, location loc: Coordinate3D, node n: SCNNode) {
         playerNumber = pn
-        var loc = 
+        //var loc = self
         
-        super.init(health: h, maxHealth: mh, damage: d, location: loc, anchor: a, node: n)
+        super.init(health: h, maxHealth: mh, damage: d, location: loc, node: n)
     }
 }
 
