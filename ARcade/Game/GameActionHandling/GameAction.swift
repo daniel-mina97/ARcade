@@ -12,6 +12,7 @@ class GameAction {
     
     enum ActionTypes {
         case playerShootAlien
+        case playerShootMultiTakedown
         case alienShootPlayer
         case alienShootCity
         case pickup

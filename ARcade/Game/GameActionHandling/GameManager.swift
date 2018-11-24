@@ -27,29 +27,19 @@ class GameManager{
     var queue: GameActionQueue!
     var isHost: Bool
     var sessionState: GameState
+    let localID: Int
     
-    init(host: Bool, scene: SCNScene) {
+    init(host: Bool, scene: SCNScene, id: Int) {
         queue = GameActionQueue()
         //city = City()
         isHost = host
         sessionState = .startup
         players = [:]
         aliens = [:]
+        localID = id
     }
     
-    func addPlayer(player: Player){
-        
-    }
-    
-    func addAlien(alien: Alien){
-        
-    }
-    
-    func receiveAction(action: GameAction){
-        queue.enqueue(act: action)
-    }
-    
-    func executeNextAction(){
+    func executeNextAction() {
         
         guard let action = queue.dequeue() else {return}
         
@@ -59,6 +49,10 @@ class GameManager{
                 aliens[action.targetID] = nil
             }
             break
+        case .playerShootMultiTakedown:
+            if aliens[action.targetID]!.takeDamage(from: action.sourceID) == GameActor.lifeState.dead {
+                aliens[action.targetID] = nil
+            }
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 // players[action.targetID] = nil
@@ -77,7 +71,22 @@ class GameManager{
         
     }
     
-    func removePlayer(at: Int){
-        players[at] = nil
+    func nodeTapped(node: SCNNode) {
+        let typeOfNode: Character = node.name!.removeFirst()
+        let nodeID: Int = Int(node.name!)!
+        var gameAction: GameAction?
+        if typeOfNode == "A" {
+            gameAction = GameAction(type: GameAction.ActionTypes.playerShootAlien, sourceID: localID,
+                                                    targetID: nodeID)
+        } else if typeOfNode == "P" {
+            gameAction = GameAction(type: GameAction.ActionTypes.pickup, sourceID: localID, targetID: nodeID)
+        }
+        if let gameAction = gameAction {
+            if isHost {
+                queue.enqueue(act: gameAction)
+            } else {
+                // send gameAction to host
+            }
+        }
     }
 }
