@@ -39,7 +39,7 @@ class GameManager{
         localID = id
     }
     
-    func executeNextAction(){
+    func executeNextAction() {
         
         guard let action = queue.dequeue() else {return}
         
@@ -49,6 +49,10 @@ class GameManager{
                 aliens[action.targetID] = nil
             }
             break
+        case .playerShootMultiTakedown:
+            if aliens[action.targetID]!.takeDamage(from: action.sourceID) == GameActor.lifeState.dead {
+                aliens[action.targetID] = nil
+            }
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 // players[action.targetID] = nil
