@@ -10,17 +10,14 @@
 
 import Foundation
 import SceneKit
-import ARKit
 
 class GameObject {
     
     var location: Coordinate3D
-    var anchor: ARAnchor
     var node: SCNNode
 
-    init(location l: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
+    init(location l: Coordinate3D, node n: SCNNode) {
         location = l
-        anchor = a
         node = n
     }
 }
