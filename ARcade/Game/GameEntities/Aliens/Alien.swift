@@ -29,6 +29,8 @@ class Alien: GameActor {
     var identifier: Int
     static var numOfAliens = 0
     var type: AlienType
+    static var numOfPlayers = 0
+    var listOfIdentifiers: [Int] = [Int]()
     
     // initialize variable values
     init(type t: AlienType, /*difficulty dif: Int,*/ moveSpeed m: Int, health h: Int,
@@ -39,10 +41,7 @@ class Alien: GameActor {
         Alien.numOfAliens += 1
         type = t
         
-        identifier = Alien.numOfAliens
-        Alien.numOfAliens += 1
-        
-        
+        super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
         
         
     }
@@ -57,6 +56,17 @@ class Alien: GameActor {
             return true;
         }
         return false
+    }
+    
+    //for multitakedown
+    func takeDamage(fromPlayerNumber playerNumber: Int) -> GameActor.lifeState {
+        if (!listOfIdentifiers.contains(playerNumber)){
+            listOfIdentifiers.append(playerNumber)
+        }
+        if (listOfIdentifiers.count == Alien.numOfPlayers){
+            return lifeState.dead
+        }
+        return lifeState.alive
     }
     
     func getmoveSpeed() -> Int{
