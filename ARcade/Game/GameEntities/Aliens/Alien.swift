@@ -29,11 +29,21 @@ class Alien: GameActor {
     }
     
     //Methods
-    func ReachCity(/*city:City! */) -> Bool {
+    func ReachCity(city:City) -> Bool {
+        /*returns true if city destroyed, false if city alive*/
         
-        //todo:implement method
-        return true;
+        if (city.takeDamage(from: damage) == lifeState.dead){
+            city.death()
+            return true;
+        }
+        return false
     }
+    
+    func getmoveSpeed() -> Int{
+        return moveSpeed;
+        
+    }
+    
     deinit {
         //If necessary, implement destruction logic here.
         
