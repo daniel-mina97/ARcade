@@ -24,21 +24,26 @@ class Alien: GameActor {
 //    var health: Int // int: remaining health of vessel
     var moveSpeed: Int // int: speed of vessel
 //    var damage: Int //Invasion Damage: amount of damage to deal to City upon arrival
-    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
+    //var difficulty: Int // Variable that changes depending on room creator's difficulty setting
 //    var model:SCNNode? //Model/Sprite: points to physical model
     var identifier: Int
     static var numOfAliens = 0
+    var type: AlienType
+    static var numOfPlayers = 0
+    var listOfIdentifiers: [Int] = [Int]()
     
     // initialize variable values
-    init(difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int,
-         canShoot cs: Bool, canMove cm: Bool, location loc: Coordinate3D,
-         anchor a: ARAnchor, node n: SCNNode) {
+    init(type t: AlienType, /*difficulty dif: Int,*/ moveSpeed m: Int, health h: Int,
+         damage d: Int, location loc: Coordinate3D, node n: SCNNode) {
         moveSpeed = m
-        difficulty = dif
+        //difficulty = dif
         identifier = Alien.numOfAliens
         Alien.numOfAliens += 1
+        type = t
         
-        super.init(health: h, maxHealth: mh, damage: d, canShoot: cs, canMove: cm, location: loc, anchor: a, node: n)
+        super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
+        
+        
     }
     
     //Methods
@@ -51,6 +56,17 @@ class Alien: GameActor {
             return true;
         }
         return false
+    }
+    
+    //for multitakedown
+    func takeDamage(fromPlayerNumber playerNumber: Int) -> GameActor.lifeState {
+        if (!listOfIdentifiers.contains(playerNumber)){
+            listOfIdentifiers.append(playerNumber)
+        }
+        if (listOfIdentifiers.count == Alien.numOfPlayers){
+            return lifeState.dead
+        }
+        return lifeState.alive
     }
     
     func getmoveSpeed() -> Int{

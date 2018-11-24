@@ -14,8 +14,7 @@ class City: GameActor {
     //var health: Int // health of city
     
     init(health h:Int, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
-        super.init(health: h, maxHealth: h, damage: 0, canShoot: false,
-                   canMove: false, location: loc, anchor: a, node: n)
+        super.init(health: h, maxHealth: h, damage: 0, location: loc, node: n)
         
         
         
