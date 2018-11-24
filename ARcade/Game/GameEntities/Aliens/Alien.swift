@@ -28,9 +28,10 @@ class Alien: GameActor {
 //    var model:SCNNode? //Model/Sprite: points to physical model
     var identifier: Int
     static var numOfAliens = 0
+    var type: AlienType
     
     // initialize variable values
-    init(difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int,
+    init(type t: AlienType, difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int,
          canShoot cs: Bool, canMove cm: Bool, location loc: Coordinate3D,
          anchor a: ARAnchor, node n: SCNNode) {
         moveSpeed = m
