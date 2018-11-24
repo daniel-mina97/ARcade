@@ -147,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				A95DFCE5219D0E940069549D /* Alien.swift */,
-				9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */,
 				D528531321A9F4280040E871 /* AlienFactory.swift */,
 			);
 			path = Aliens;
@@ -276,7 +275,6 @@
 				65BE41AA21A1EF8500500A17 /* GameObject.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
-				9175999021A0C85D008A657C /* MultiTakedownAlien.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
