@@ -8,5 +8,9 @@
 
 import Foundation
 class ShootingAlien: Alien {
-    //<#code#>
+    
+    
+    
+    
+    
 }
