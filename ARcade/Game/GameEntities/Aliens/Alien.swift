@@ -31,13 +31,12 @@ class Alien: GameActor {
     var type: AlienType
     
     // initialize variable values
-    init(type t: AlienType, difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int,
-         canShoot cs: Bool, canMove cm: Bool, location loc: Coordinate3D,
-         anchor a: ARAnchor, node n: SCNNode) {
+    init(type t: AlienType, difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
         moveSpeed = m
         difficulty = dif
         identifier = Alien.numOfAliens
         Alien.numOfAliens += 1
+        type = t
         
         super.init(health: h, maxHealth: mh, damage: d, location: loc, anchor: a, node: n)
     }
