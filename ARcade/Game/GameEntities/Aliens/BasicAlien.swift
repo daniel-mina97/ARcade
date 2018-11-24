@@ -8,7 +8,5 @@
 
 import Foundation
 class BasicAlien: Alien {
-    func <#name#>(<#parameters#>) ->  {
-        <#function body#>
-    }
+    
 }
