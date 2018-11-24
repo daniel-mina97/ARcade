@@ -45,15 +45,6 @@ class GameActor: GameObject {
         return damage;
     }
     
-    func getCanShoot() -> Bool{
-        return canShoot;
-    }
-    
-    
-    func getCanMove() -> Bool{
-        return canMove;
-    }
-    
     
     
     func takeDamage(from damageTaken: Int) -> lifeState {
@@ -81,15 +72,11 @@ class GameActor: GameObject {
     }
     
     func move(){
-        if canMove {
             //code later
-            
-        }
+        
     }
     
     func shoot(){
-        if canShoot {
             //code later
-        }
     }
 }
