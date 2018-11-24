@@ -71,5 +71,22 @@ class GameManager{
         
     }
     
+    func nodeTapped(node: SCNNode) {
+        let typeOfNode: Character = node.name!.removeFirst()
+        let nodeID: Int = Int(node.name!)!
+        var gameAction: GameAction?
+        if typeOfNode == "A" {
+            gameAction = GameAction(type: GameAction.ActionTypes.playerShootAlien, sourceID: localID,
+                                                    targetID: nodeID)
+        } else if typeOfNode == "P" {
+            gameAction = GameAction(type: GameAction.ActionTypes.pickup, sourceID: localID, targetID: nodeID)
+        }
+        if let gameAction = gameAction {
+            if isHost {
+                queue.enqueue(act: gameAction)
+            } else {
+                // send gameAction to host
+            }
+        }
     }
 }
