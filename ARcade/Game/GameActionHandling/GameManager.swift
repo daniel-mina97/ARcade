@@ -27,14 +27,16 @@ class GameManager{
     var queue: GameActionQueue!
     var isHost: Bool
     var sessionState: GameState
+    let localID: Int
     
-    init(host: Bool, scene: SCNScene) {
+    init(host: Bool, scene: SCNScene, id: Int) {
         queue = GameActionQueue()
         //city = City()
         isHost = host
         sessionState = .startup
         players = [:]
         aliens = [:]
+        localID = id
     }
     
     func addPlayer(player: Player){
