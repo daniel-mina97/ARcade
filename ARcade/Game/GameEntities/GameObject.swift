@@ -18,9 +18,9 @@ class GameObject {
     var anchor: ARAnchor
     var node: SCNNode
 
-    init(location: Coordinate3D, anchor: ARAnchor, node: SCNNode) {
-        self.location = location
-        self.anchor = anchor
-        self.node = node
+    init(location l: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
+        location = l
+        anchor = a
+        node = n
     }
 }
