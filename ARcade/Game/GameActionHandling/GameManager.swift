@@ -39,18 +39,6 @@ class GameManager{
         localID = id
     }
     
-    func addPlayer(player: Player){
-        
-    }
-    
-    func addAlien(alien: Alien){
-        
-    }
-    
-    func receiveAction(action: GameAction){
-        queue.enqueue(act: action)
-    }
-    
     func executeNextAction(){
         
         guard let action = queue.dequeue() else {return}
@@ -79,7 +67,5 @@ class GameManager{
         
     }
     
-    func removePlayer(at: Int){
-        players[at] = nil
     }
 }
