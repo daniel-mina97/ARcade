@@ -97,12 +97,10 @@ class SceneManager {
     }
     
     func spawnCity(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_diver.dae", scale: 0.1, id: 0, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/ship.scn", scale: 0.1, id: 0, x: x, y: y, z: z)
     }
     
     func spawnPickup(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
         return spawnObject(asset: "art.scnassets/pickup.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
-    
-    
 }

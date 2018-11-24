@@ -10,8 +10,10 @@ import Foundation
 
 class NetworkManager {
     var isHost: Bool
+    var playerID: Int
     
     init(host: Bool){
         isHost = host
+        playerID = 1
     }
 }
