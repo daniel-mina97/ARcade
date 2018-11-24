@@ -126,7 +126,6 @@
 		65C131102153254C00A79DE6 /* ARcade */ = {
 			isa = PBXGroup;
 			children = (
-				D5263A9D21A458B00056E766 /* Models */,
 				65C131112153254C00A79DE6 /* AppDelegate.swift */,
 				65C131152153254C00A79DE6 /* GameViewController.swift */,
 				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
@@ -194,13 +193,6 @@
 				65B838A72194891500F5FD91 /* GameActionHandling */,
 			);
 			path = Game;
-			sourceTree = "<group>";
-		};
-		D5263A9D21A458B00056E766 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

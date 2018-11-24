@@ -82,11 +82,13 @@ class GameActor: GameObject {
     
     func death(){
         //code later
+        
     }
     
     func move(){
         if canMove {
             //code later
+            
         }
     }
     
