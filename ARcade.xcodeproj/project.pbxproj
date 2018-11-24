@@ -37,6 +37,7 @@
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
 		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
+		D528531421A9F4280040E871 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D528531321A9F4280040E871 /* AlienFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
+		D528531321A9F4280040E871 /* AlienFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				A95DFCE5219D0E940069549D /* Alien.swift */,
 				9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */,
+				D528531321A9F4280040E871 /* AlienFactory.swift */,
 			);
 			path = Aliens;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D528531421A9F4280040E871 /* AlienFactory.swift in Sources */,
 				9175999521A0C8B2008A657C /* PlayerBalanced.swift in Sources */,
 				A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */,
 				9175999921A0C8D2008A657C /* PlayerDamage.swift in Sources */,

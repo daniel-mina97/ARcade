@@ -24,44 +24,25 @@ class Alien: GameActor {
 //    var health: Int // int: remaining health of vessel
     var moveSpeed: Int // int: speed of vessel
 //    var damage: Int //Invasion Damage: amount of damage to deal to City upon arrival
-    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
+    //var difficulty: Int // Variable that changes depending on room creator's difficulty setting
 //    var model:SCNNode? //Model/Sprite: points to physical model
     var identifier: Int
     static var numOfAliens = 0
     var type: AlienType
     
     // initialize variable values
-    init(type t: AlienType, difficulty dif: Int, health h: Int, damage d: Int, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
-        
-        difficulty = dif
+    init(type t: AlienType, /*difficulty dif: Int,*/ moveSpeed m: Int, health h: Int,
+         damage d: Int, location loc: Coordinate3D, node n: SCNNode) {
+        moveSpeed = m
+        //difficulty = dif
         identifier = Alien.numOfAliens
         Alien.numOfAliens += 1
         type = t
         
-        switch t {
-        //todo: implement case specific things
+        identifier = Alien.numOfAliens
+        Alien.numOfAliens += 1
         
-        case .boss:
-            moveSpeed = 1
-            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
-            break
-        case .diving:
-            moveSpeed = 2
-            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
-            break
-        case .shooting:
-            moveSpeed = 1
-            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
-            break
-        case .multiTakedown:
-            moveSpeed = 1
-            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
-            break
-        default: //case .basic:
-            moveSpeed = 1
-            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
-            break
-        }
+        
         
         
     }

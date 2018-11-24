@@ -26,15 +26,7 @@ class MultiTakedownAlien: Alien {
     }
     
     func TakeDamage(sourceId s: Int) -> lifeState {
-        if (listOfIdentifiers.contains(s)){
-            if let loc = listOfIdentifiers.firstIndex(of: s){
-                listOfIdentifiers.remove(at: loc)
-            }
-        }
-        if (listOfIdentifiers.isEmpty){
-            return lifeState.dead
-        }
-        return lifeState.alive
+        
     }
     
 }
