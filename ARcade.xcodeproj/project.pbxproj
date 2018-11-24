@@ -16,7 +16,6 @@
 		65C131192153254C00A79DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C131172153254C00A79DE6 /* Main.storyboard */; };
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
-		9175999021A0C85D008A657C /* MultiTakedownAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */; };
 		9175999521A0C8B2008A657C /* PlayerBalanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999421A0C8B2008A657C /* PlayerBalanced.swift */; };
 		9175999721A0C8C4008A657C /* PlayerTank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999621A0C8C4008A657C /* PlayerTank.swift */; };
 		9175999921A0C8D2008A657C /* PlayerDamage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999821A0C8D2008A657C /* PlayerDamage.swift */; };
@@ -47,7 +46,6 @@
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C1311D2153254F00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTakedownAlien.swift; sourceTree = "<group>"; };
 		9175999421A0C8B2008A657C /* PlayerBalanced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBalanced.swift; sourceTree = "<group>"; };
 		9175999621A0C8C4008A657C /* PlayerTank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTank.swift; sourceTree = "<group>"; };
 		9175999821A0C8D2008A657C /* PlayerDamage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDamage.swift; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				A95DFCE5219D0E940069549D /* Alien.swift */,
-				9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */,
 				D528531321A9F4280040E871 /* AlienFactory.swift */,
 			);
 			path = Aliens;
@@ -264,7 +261,6 @@
 				65BE41AA21A1EF8500500A17 /* GameObject.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
-				9175999021A0C85D008A657C /* MultiTakedownAlien.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
