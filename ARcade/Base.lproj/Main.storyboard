@@ -41,9 +41,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-hD-p2h">
-                                <rect key="frame" x="52" y="269" width="215" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-hD-p2h">
+                                <rect key="frame" x="53" y="281" width="214" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="214" id="5mf-as-qvq"/>
+                                    <constraint firstAttribute="height" constant="31" id="Gyc-As-tbT"/>
+                                </constraints>
                                 <state key="normal" title="Join a Session"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -52,9 +55,13 @@
                                     <segue destination="Wge-jS-KmD" kind="show" id="w0o-8i-Wa9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup">
                                 <rect key="frame" x="54" y="176" width="213" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="213" id="g9s-ab-ndK"/>
+                                    <constraint firstAttribute="height" constant="30" id="uOr-9z-VAw"/>
+                                </constraints>
                                 <state key="normal" title="Host a Session"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -63,9 +70,29 @@
                                     <segue destination="Cu6-G7-HC3" kind="show" id="YYn-jr-gcp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuN-KP-Ujj">
-                                <rect key="frame" x="92" y="361" width="137" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ0-SE-r6f">
+                                <rect key="frame" x="43" y="60" width="234" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="234" id="4Hf-te-5m3"/>
+                                    <constraint firstAttribute="height" constant="47" id="Ivh-zf-bVZ"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="ARcade  Game ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.14587568139882495" green="0.49607538027206655" blue="0.072640487539644749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="36" name="MarkerFelt-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuN-KP-Ujj">
+                                <rect key="frame" x="54" y="396" width="213" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="213" id="lcQ-O2-vD8"/>
+                                    <constraint firstAttribute="height" constant="30" id="puf-7y-ESe"/>
+                                </constraints>
                                 <state key="normal" title="Settings"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -74,22 +101,23 @@
                                     <segue destination="WR8-Vq-LVS" kind="show" identifier="Settings" id="yMX-FY-Qm1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ0-SE-r6f">
-                                <rect key="frame" x="29" y="60" width="262" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="ARcade  Game ">
-                                        <attributes>
-                                            <color key="NSColor" red="0.14587568139882495" green="0.49607538027206655" blue="0.072640487539644749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="36" name="MarkerFelt-Wide"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.071974597871303558" green="0.16241100430488586" blue="0.044513337314128876" alpha="0.59225171229999996" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="IVx-oG-3zQ" firstAttribute="trailing" secondItem="zJ0-SE-r6f" secondAttribute="trailing" constant="43" id="7dH-nJ-DOm"/>
+                            <constraint firstItem="HdV-of-dup" firstAttribute="leading" secondItem="IVx-oG-3zQ" secondAttribute="leading" constant="54" id="7zW-y5-ltZ"/>
+                            <constraint firstItem="zJ0-SE-r6f" firstAttribute="centerX" secondItem="9JL-Fq-Y8M" secondAttribute="centerX" id="9Dt-4L-538"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="top" secondItem="HdV-of-dup" secondAttribute="bottom" constant="75" id="BuH-jJ-4h1"/>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="top" secondItem="nPf-hD-p2h" secondAttribute="bottom" constant="84" id="Wxf-vA-cg6"/>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="leading" secondItem="IVx-oG-3zQ" secondAttribute="leading" constant="54" id="b2V-mg-lzT"/>
+                            <constraint firstItem="zJ0-SE-r6f" firstAttribute="leading" secondItem="IVx-oG-3zQ" secondAttribute="leading" constant="43" id="cCF-cM-6gx"/>
+                            <constraint firstItem="zJ0-SE-r6f" firstAttribute="top" secondItem="IVx-oG-3zQ" secondAttribute="top" constant="40" id="opy-R8-tFi"/>
+                            <constraint firstItem="HdV-of-dup" firstAttribute="top" secondItem="zJ0-SE-r6f" secondAttribute="bottom" constant="69" id="q02-tJ-r7N"/>
+                            <constraint firstItem="IVx-oG-3zQ" firstAttribute="trailing" secondItem="HdV-of-dup" secondAttribute="trailing" constant="53" id="rKk-MK-6FT"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="leading" secondItem="IVx-oG-3zQ" secondAttribute="leading" constant="53" id="tEQ-A2-QxT"/>
+                            <constraint firstItem="IVx-oG-3zQ" firstAttribute="trailing" secondItem="nPf-hD-p2h" secondAttribute="trailing" constant="53" id="unD-Ad-UFE"/>
+                            <constraint firstItem="IVx-oG-3zQ" firstAttribute="trailing" secondItem="KuN-KP-Ujj" secondAttribute="trailing" constant="53" id="wy2-58-tjg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IVx-oG-3zQ"/>
                     </view>
                 </viewController>
