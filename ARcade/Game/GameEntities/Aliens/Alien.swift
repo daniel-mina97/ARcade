@@ -39,7 +39,7 @@ class Alien: GameActor {
         identifier = Alien.numOfAliens
         Alien.numOfAliens += 1
         
-        super.init(health: h, maxHealth: mh, damage: d, canShoot: cs, canMove: cm, location: loc, anchor: a, node: n)
+        super.init(health: h, maxHealth: mh, damage: d, location: loc, anchor: a, node: n)
     }
     
     //Methods
