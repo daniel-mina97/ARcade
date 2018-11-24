@@ -21,20 +21,15 @@ class GameActor: GameObject {
     var health: Int
     var maxHealth: Int
     var damage: Int
-    var canShoot: Bool
-    var canMove: Bool
     
     //initializer
-    init(health h: Int, maxHealth mh: Int, damage d: Int, canShoot cs: Bool, canMove cm: Bool,
-        location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode){
+    init(health h: Int, maxHealth mh: Int, damage d: Int, location loc: Coordinate3D, node n: SCNNode){
         health = h
         maxHealth = mh
         damage = d
-        canShoot = cs
-        canMove = cm
         
         //call super
-        super.init(location: loc, anchor: a, node: n)
+        super.init(location: loc, node: n)
     }
     
     //class functions (all children will need these functions)
@@ -48,15 +43,6 @@ class GameActor: GameObject {
     
     func getDamage() -> Int{
         return damage;
-    }
-    
-    func getCanShoot() -> Bool{
-        return canShoot;
-    }
-    
-    
-    func getCanMove() -> Bool{
-        return canMove;
     }
     
     
@@ -86,15 +72,10 @@ class GameActor: GameObject {
     }
     
     func move(){
-        if canMove {
-            //code later
-            
-        }
+        
     }
     
     func shoot(){
-        if canShoot {
-            //code later
-        }
+        
     }
 }
