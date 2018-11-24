@@ -28,9 +28,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var startGameButton: UIButton!
     
     var manager: GameManager!
-    var sceneManager: SceneManager!
     var networkManager: NetworkManager!
     var cityPlaneNode: SCNNode?
+    var cityNode: SCNNode?
     var cityAnchor: ARAnchor?
     var state: SessionState = .lookingForPlane
     
@@ -48,7 +48,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if let oldPlaneNode = cityPlaneNode {
             oldPlaneNode.removeFromParentNode()
         }
-        //sessionstate is to look for plane
+        if let oldCityNode = cityPlaneNode {
+            oldCityNode.removeFromParentNode()
+        }
         state = .lookingForPlane
     }
     
@@ -59,9 +61,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func saveCityPlane(_ sender: UIButton) {
         //sessionstate is startup game
+        cityPlaneNode?.removeFromParentNode()
         state = .citySaved
         cancelButton.isHidden = true
         saveButton.isHidden = true
+        
         if networkManager.isHost{
             startGameButton.isHidden = false
         }
@@ -97,7 +101,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         networkManager = NetworkManager(host: true)
         // Set the scene to the view
         sceneView.scene = scene
-        sceneManager = SceneManager(scene: scene)
         configureSession()
         manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
@@ -107,10 +110,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         //if session state is looking for plane
         if state == .lookingForPlane{
             if let planeAnchor = anchor as? ARPlaneAnchor{
-                
+                state = .cityPlaced
+                cancelButton.isHidden = false
+                saveButton.isHidden = false
                 cityAnchor = anchor
-                let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                 
+                let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                 let planeNode = SCNNode()
                 planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
                 planeNode.transform = SCNMatrix4MakeRotation(-Float.pi/2, 1, 0, 0)
@@ -120,8 +125,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 plane.materials = [gridMaterial]
                 planeNode.geometry = plane
                 node.addChildNode(planeNode)
-                let cNode = sceneManager?.spawnCity(id: 0, x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
-                node.addChildNode(cNode!)
+                cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
                 cityPlaneNode = node
             }else{
                 return
