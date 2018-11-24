@@ -16,10 +16,6 @@
 		65C131192153254C00A79DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C131172153254C00A79DE6 /* Main.storyboard */; };
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
-		9175998821A0C830008A657C /* BasicAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998721A0C830008A657C /* BasicAlien.swift */; };
-		9175998A21A0C83B008A657C /* DivingAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998921A0C83B008A657C /* DivingAlien.swift */; };
-		9175998C21A0C846008A657C /* ShootingAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998B21A0C846008A657C /* ShootingAlien.swift */; };
-		9175998E21A0C852008A657C /* BossAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998D21A0C852008A657C /* BossAlien.swift */; };
 		9175999021A0C85D008A657C /* MultiTakedownAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */; };
 		9175999521A0C8B2008A657C /* PlayerBalanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999421A0C8B2008A657C /* PlayerBalanced.swift */; };
 		9175999721A0C8C4008A657C /* PlayerTank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999621A0C8C4008A657C /* PlayerTank.swift */; };
@@ -50,10 +46,6 @@
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C1311D2153254F00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9175998721A0C830008A657C /* BasicAlien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAlien.swift; sourceTree = "<group>"; };
-		9175998921A0C83B008A657C /* DivingAlien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivingAlien.swift; sourceTree = "<group>"; };
-		9175998B21A0C846008A657C /* ShootingAlien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootingAlien.swift; sourceTree = "<group>"; };
-		9175998D21A0C852008A657C /* BossAlien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossAlien.swift; sourceTree = "<group>"; };
 		9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTakedownAlien.swift; sourceTree = "<group>"; };
 		9175999421A0C8B2008A657C /* PlayerBalanced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBalanced.swift; sourceTree = "<group>"; };
 		9175999621A0C8C4008A657C /* PlayerTank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTank.swift; sourceTree = "<group>"; };
@@ -143,10 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				A95DFCE5219D0E940069549D /* Alien.swift */,
-				9175998721A0C830008A657C /* BasicAlien.swift */,
-				9175998921A0C83B008A657C /* DivingAlien.swift */,
-				9175998B21A0C846008A657C /* ShootingAlien.swift */,
-				9175998D21A0C852008A657C /* BossAlien.swift */,
 				9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */,
 			);
 			path = Aliens;
@@ -273,19 +261,15 @@
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
 				9175999021A0C85D008A657C /* MultiTakedownAlien.swift in Sources */,
-				9175998A21A0C83B008A657C /* DivingAlien.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
 				A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */,
-				9175998E21A0C852008A657C /* BossAlien.swift in Sources */,
 				65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */,
 				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
-				9175998821A0C830008A657C /* BasicAlien.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
 				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */,
-				9175998C21A0C846008A657C /* ShootingAlien.swift in Sources */,
 				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
 				A95DFCE8219D0EA00069549D /* City.swift in Sources */,
