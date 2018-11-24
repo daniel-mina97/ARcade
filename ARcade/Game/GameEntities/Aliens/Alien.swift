@@ -31,14 +31,39 @@ class Alien: GameActor {
     var type: AlienType
     
     // initialize variable values
-    init(type t: AlienType, difficulty dif: Int, moveSpeed m: Int, health h: Int, maxHealth mh: Int, damage d: Int, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
-        moveSpeed = m
+    init(type t: AlienType, difficulty dif: Int, health h: Int, damage d: Int, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
+        
         difficulty = dif
         identifier = Alien.numOfAliens
         Alien.numOfAliens += 1
         type = t
         
-        super.init(health: h, maxHealth: mh, damage: d, location: loc, anchor: a, node: n)
+        switch t {
+        //todo: implement case specific things
+        
+        case .boss:
+            moveSpeed = 1
+            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
+            break
+        case .diving:
+            moveSpeed = 2
+            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
+            break
+        case .shooting:
+            moveSpeed = 1
+            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
+            break
+        case .multiTakedown:
+            moveSpeed = 1
+            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
+            break
+        default: //case .basic:
+            moveSpeed = 1
+            super.init(health: h, maxHealth: h, damage: d, location: loc, anchor: a, node: n)
+            break
+        }
+        
+        
     }
     
     //Methods
