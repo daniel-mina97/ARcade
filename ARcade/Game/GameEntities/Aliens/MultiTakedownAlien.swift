@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ARKit
+
 class MultiTakedownAlien: Alien {
     //
     //    var maxHealth: Int // int: maximum health of vessel
@@ -15,12 +17,21 @@ class MultiTakedownAlien: Alien {
     //    var damage: Int //Invasion Damage: amount of damage to deal to City upon arrival
     //    var difficulty: Int // Variable that changes depending on room creator's difficulty setting
     //    var model:SCNNode? //Model/Sprite: points to physical model
-    var listOfIdentifiers: [Int] = [Int]()
+    var listOfIdentifiers: [Int]
+    
+    init(identifiers ident: [Int], difficulty dif: Int, moveSpeed m: Int, damage d: Int, canShoot cs: Bool, canMove cm: Bool, location loc: Coordinate3D, anchor a: ARAnchor, node n: SCNNode) {
+        
+        listOfIdentifiers = ident
+        super.init(type: Alien.AlienType.multiTakedown, difficulty: dif, moveSpeed: m, health: 1, maxHealth: 1, damage: 1, location: loc, anchor: a, node: n)
+    }
     
     func TakeDamage(sourceId s: Int) -> lifeState {
-        listOfIdentifiers.append(s)
-        health -= 1
-        if (health == 0){
+        if (listOfIdentifiers.contains(s)){
+            if let loc = listOfIdentifiers.firstIndex(of: s){
+                listOfIdentifiers.remove(at: loc)
+            }
+        }
+        if (listOfIdentifiers.isEmpty){
             return lifeState.dead
         }
         return lifeState.alive
