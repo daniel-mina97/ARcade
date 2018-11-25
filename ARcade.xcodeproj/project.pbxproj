@@ -30,6 +30,7 @@
 		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
 		D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B5A2A21AA1092002BA556 /* AlienFactory.swift */; };
+		D50EBD6221AA1DE80050A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +43,6 @@
 		65C131152153254C00A79DE6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		65C131182153254C00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		65C1311D2153254F00A79DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65FE8A7E21A9CDFE00816E40 /* SceneUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneUpdate.swift; sourceTree = "<group>"; };
 		A9239174219DBA9B00D73541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ARcade/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
@@ -58,6 +58,7 @@
 		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		D57B5A2A21AA1092002BA556 /* AlienFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
+		D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +122,8 @@
 				65C131132153254C00A79DE6 /* art.scnassets */,
 				65C131172153254C00A79DE6 /* Main.storyboard */,
 				65C1311A2153254F00A79DE6 /* Assets.xcassets */,
-				65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */,
 				65C1311F2153254F00A79DE6 /* Info.plist */,
+				D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */,
 			);
 			path = ARcade;
 			sourceTree = "<group>";
@@ -233,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C131142153254C00A79DE6 /* art.scnassets in Resources */,
-				65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */,
+				D50EBD6221AA1DE80050A166 /* LaunchScreen.storyboard in Resources */,
 				65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */,
 				65C131192153254C00A79DE6 /* Main.storyboard in Resources */,
 			);
@@ -277,14 +278,6 @@
 				65C131182153254C00A79DE6 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65C1311D2153254F00A79DE6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
