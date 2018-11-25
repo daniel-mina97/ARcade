@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Mo-Vt-LcN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Mo-Vt-LcN">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -262,6 +262,12 @@
                                     <action selector="saveCityPlane:" destination="BV1-FR-VrT" eventType="touchUpInside" id="izQ-l5-S2B"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-yW-wwO">
+                                <rect key="frame" x="5" y="546" width="312" height="2"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <color key="progressTintColor" red="0.052362293004989624" green="0.96523267030715942" blue="0.36328887939453125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="trackTintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -271,14 +277,18 @@
                             <constraint firstItem="K7W-cz-U1x" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="KRc-QD-O1K"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="K7W-cz-U1x" secondAttribute="trailing" constant="16" id="TbZ-QT-pgD"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
+                            <constraint firstItem="Fbd-yW-wwO" firstAttribute="leading" secondItem="U0K-SW-4ec" secondAttribute="leading" constant="5" id="WY1-gF-jH0"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="x0V-bo-2SE" secondAttribute="bottom" constant="20" id="YxB-EW-NtF"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="Fbd-yW-wwO" secondAttribute="bottom" constant="20" id="quo-ps-Oba"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                             <constraint firstItem="COf-U5-1kM" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xBb-mG-7sa"/>
+                            <constraint firstAttribute="trailing" secondItem="Fbd-yW-wwO" secondAttribute="trailing" constant="3" id="vbn-5T-WHU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="PlayerHealyBar" destination="Fbd-yW-wwO" id="IdF-Oo-CKC"/>
                         <outlet property="cancelButton" destination="COf-U5-1kM" id="9Dw-UJ-Y0f"/>
                         <outlet property="saveButton" destination="K7W-cz-U1x" id="xKL-q8-enm"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>

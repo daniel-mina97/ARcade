@@ -26,6 +26,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
+    @IBOutlet weak var PlayerHealyBar: UIProgressView!
+    
+    
+    
     
     var manager: GameManager!
     var networkManager: NetworkManager!
@@ -91,7 +95,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func unwindToMainMenu() {
-        
+        networkManager = NetworkManager(host: true)
+        // Set the scene to the view
+        sceneView.scene = scene
+        configureSession()
+        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
+        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -143,6 +152,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // the player health progress bar 
+        PlayerHealyBar.setProgress(100, animated: false)
         
     }
     
