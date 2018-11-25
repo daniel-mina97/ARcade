@@ -60,11 +60,13 @@ class GameManager{
         switch action.type {
         case .playerShootAlien:
             if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                aliens[action.targetID]!.node.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
             break
         case .playerShootMultiTakedown:
             if aliens[action.targetID]!.takeDamage(from: action.sourceID) == GameActor.lifeState.dead {
+                aliens[action.targetID]!.node.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
         case .alienShootPlayer:
