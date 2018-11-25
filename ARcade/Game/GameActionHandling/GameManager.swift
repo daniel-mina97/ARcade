@@ -21,6 +21,7 @@ enum GameState{
 }
 
 class GameManager{
+    var sceneManager: SceneManager
     var players: [Int: Player]
     var aliens: [Int: Alien]
     var city: City!
@@ -31,12 +32,17 @@ class GameManager{
     
     init(host: Bool, scene: SCNScene, id: Int) {
         queue = GameActionQueue()
+        sceneManager = SceneManager(scene: scene)
         //city = City()
         isHost = host
         sessionState = .startup
         players = [:]
         aliens = [:]
         localID = id
+    }
+    
+    func spawnCity(x: Float, y: Float, z: Float) -> SCNNode{
+        return sceneManager.spawnCity(x: x, y: y, z: z)
     }
     
     func executeNextAction() {

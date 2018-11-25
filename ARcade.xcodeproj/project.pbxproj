@@ -17,14 +17,6 @@
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
 		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
 		65FE8A7F21A9CDFE00816E40 /* SceneUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FE8A7E21A9CDFE00816E40 /* SceneUpdate.swift */; };
-		9175998821A0C830008A657C /* BasicAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998721A0C830008A657C /* BasicAlien.swift */; };
-		9175998A21A0C83B008A657C /* DivingAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998921A0C83B008A657C /* DivingAlien.swift */; };
-		9175998C21A0C846008A657C /* ShootingAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998B21A0C846008A657C /* ShootingAlien.swift */; };
-		9175998E21A0C852008A657C /* BossAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998D21A0C852008A657C /* BossAlien.swift */; };
-		9175999021A0C85D008A657C /* MultiTakedownAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175998F21A0C85D008A657C /* MultiTakedownAlien.swift */; };
-		9175999521A0C8B2008A657C /* PlayerBalanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999421A0C8B2008A657C /* PlayerBalanced.swift */; };
-		9175999721A0C8C4008A657C /* PlayerTank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999621A0C8C4008A657C /* PlayerTank.swift */; };
-		9175999921A0C8D2008A657C /* PlayerDamage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175999821A0C8D2008A657C /* PlayerDamage.swift */; };
 		A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9239174219DBA9B00D73541 /* NetworkManager.swift */; };
 		A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083721A0A3D30078E5C8 /* SceneManager.swift */; };
 		A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */; };
@@ -53,9 +45,6 @@
 		65C1311A2153254F00A79DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C1311F2153254F00A79DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65FE8A7E21A9CDFE00816E40 /* SceneUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneUpdate.swift; sourceTree = "<group>"; };
-		9175999421A0C8B2008A657C /* PlayerBalanced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBalanced.swift; sourceTree = "<group>"; };
-		9175999621A0C8C4008A657C /* PlayerTank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTank.swift; sourceTree = "<group>"; };
-		9175999821A0C8D2008A657C /* PlayerDamage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDamage.swift; sourceTree = "<group>"; };
 		A9239174219DBA9B00D73541 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = ARcade/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		A94A083721A0A3D30078E5C8 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate3D.swift; sourceTree = "<group>"; };
@@ -152,9 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				A95DFCE3219D0E880069549D /* Player.swift */,
-				9175999421A0C8B2008A657C /* PlayerBalanced.swift */,
-				9175999621A0C8C4008A657C /* PlayerTank.swift */,
-				9175999821A0C8D2008A657C /* PlayerDamage.swift */,
 			);
 			path = Players;
 			sourceTree = "<group>";
@@ -261,11 +247,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9175999521A0C8B2008A657C /* PlayerBalanced.swift in Sources */,
 				A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */,
-				9175999921A0C8D2008A657C /* PlayerDamage.swift in Sources */,
 				65FE8A7F21A9CDFE00816E40 /* SceneUpdate.swift in Sources */,
-				9175999721A0C8C4008A657C /* PlayerTank.swift in Sources */,
 				659F6598219E61B000F5593D /* GameActor.swift in Sources */,
 				65BE41AA21A1EF8500500A17 /* GameObject.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
