@@ -16,7 +16,7 @@ class City: GameActor {
     
     init(location loc: Coordinate3D, node n: SCNNode) {
         let h = 10
-        super.init(health: h, maxHealth: h, damage: 0, location: loc, node: n)
+        super.init(health: h, maxHealth: h, damage: 0, node: n)
         
     }
 }
