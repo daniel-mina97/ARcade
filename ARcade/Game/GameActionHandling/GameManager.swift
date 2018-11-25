@@ -28,6 +28,7 @@ class GameManager{
     var queue: GameActionQueue!
     var isHost: Bool
     var sessionState: GameState
+    var spawnAlienTimer: Timer?
     let localID: Int
     
     static let MAX_ALIENS: Int = 15
@@ -46,6 +47,10 @@ class GameManager{
         return sceneManager.spawnCity(x: x, y: y, z: z)
     }
     
+    func startGame() {
+        spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector(("spawnAlien")),
+                                               userInfo: nil, repeats: true)
+    }
     func executeNextAction() {
         
         guard let action = queue.dequeue() else {return}
