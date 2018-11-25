@@ -82,8 +82,13 @@ class GameManager{
         let nodeID: Int = Int(node.name!)!
         var gameAction: GameAction?
         if typeOfNode == "A" {
-            gameAction = GameAction(type: GameAction.ActionTypes.playerShootAlien, sourceID: localID,
-                                                    targetID: nodeID)
+            let typeOfAlien: Alien.AlienType = aliens[nodeID]!.type
+            if typeOfAlien == Alien.AlienType.multiTakedown {
+                gameAction = GameAction(type: GameAction.ActionTypes.playerShootMultiTakedown, sourceID: localID, targetID: nodeID)
+            } else {
+                gameAction = GameAction(type: GameAction.ActionTypes.playerShootAlien, sourceID: localID,
+                    targetID: nodeID)
+            }
         } else if typeOfNode == "P" {
             gameAction = GameAction(type: GameAction.ActionTypes.pickup, sourceID: localID, targetID: nodeID)
         }
