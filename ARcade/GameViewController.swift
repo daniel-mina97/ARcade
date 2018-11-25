@@ -17,7 +17,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     enum SessionState{
         case lookingForPlane
         case cityPlaced
-        case citySaved
+        case waitingForPeers
         case gameStarted
     }
     
@@ -33,6 +33,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var cityNode: SCNNode?
     var cityAnchor: ARAnchor?
     var state: SessionState = .lookingForPlane
+    var actionTimer: Timer?
     
     func configureSession(){
         let configuration = ARWorldTrackingConfiguration()
@@ -56,13 +57,15 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func startGame(_ sender: UIButton) {
         state = .gameStarted
-        //manager.startGame
+        startGameButton.isHidden = true
+        manager.startGame(cityNode: cityNode!)
+        actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: manager, selector: Selector(("executeNextAction")), userInfo: nil, repeats: true)
     }
     
     @IBAction func saveCityPlane(_ sender: UIButton) {
         //sessionstate is startup game
         cityPlaneNode?.removeFromParentNode()
-        state = .citySaved
+        state = .waitingForPeers
         cancelButton.isHidden = true
         saveButton.isHidden = true
         

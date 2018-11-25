@@ -67,8 +67,6 @@ class GameActor: GameObject {
     }
     
     func death(){
-        //code later
-        
     }
     
     func move(){
