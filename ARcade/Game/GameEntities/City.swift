@@ -12,11 +12,11 @@ import ARKit
 
 class City: GameActor {
     //var health: Int // health of city
-    
+    let id: Int
     
     init(node n: SCNNode) {
-        let h = 10
+        let h = 100
+        id = -1
         super.init(health: h, maxHealth: h, damage: 0, node: n)
-        
     }
 }

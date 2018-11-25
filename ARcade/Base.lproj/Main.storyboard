@@ -31,7 +31,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfw-1Z-v94" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="590" y="-707"/>
+            <point key="canvasLocation" x="588.75" y="-707.74647887323943"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="RFe-ib-mnt">
@@ -229,38 +229,52 @@
                                     <outletCollection property="gestureRecognizers" destination="LL6-Sh-pla" appends="YES" id="n0c-oN-tRJ"/>
                                 </connections>
                             </arscnView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COf-U5-1kM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COf-U5-1kM">
                                 <rect key="frame" x="15" y="20" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="1ei-rw-Cca"/>
+                                    <constraint firstAttribute="height" constant="30" id="d6B-FK-Gvq"/>
+                                </constraints>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelCityPlane:" destination="BV1-FR-VrT" eventType="touchUpInside" id="k42-R5-q1L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7W-cz-U1x">
-                                <rect key="frame" x="71" y="20" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveCityPlane:" destination="BV1-FR-VrT" eventType="touchUpInside" id="izQ-l5-S2B"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0V-bo-2SE">
                                 <rect key="frame" x="121" y="518" width="78" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="6i7-f2-tfb"/>
+                                    <constraint firstAttribute="height" constant="30" id="bxe-8E-FT1"/>
+                                </constraints>
                                 <state key="normal" title="Start Game"/>
                                 <connections>
                                     <action selector="startGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EuI-sA-Fkz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7W-cz-U1x">
+                                <rect key="frame" x="270" y="20" width="34" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4WB-Uz-KXt"/>
+                                    <constraint firstAttribute="width" constant="34" id="bj9-rF-NOG"/>
+                                </constraints>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveCityPlane:" destination="BV1-FR-VrT" eventType="touchUpInside" id="izQ-l5-S2B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="COf-U5-1kM" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="15" id="DTn-OA-pEk"/>
                             <constraint firstItem="x0V-bo-2SE" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="Dgq-oO-uly"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="K7W-cz-U1x" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="KRc-QD-O1K"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="K7W-cz-U1x" secondAttribute="trailing" constant="16" id="TbZ-QT-pgD"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="x0V-bo-2SE" secondAttribute="bottom" constant="20" id="YxB-EW-NtF"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="COf-U5-1kM" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xBb-mG-7sa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
@@ -270,16 +284,18 @@
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="startGameButton" destination="x0V-bo-2SE" id="pIj-MZ-WnR"/>
                         <outlet property="tapGestureRecognizer" destination="LL6-Sh-pla" id="ld4-lC-ieW"/>
+                        <segue destination="9qz-Os-0mu" kind="unwind" identifier="returnToMainMenu" unwindAction="returnFromSettingsWithDestination:" id="qEg-p5-B0M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <exit id="9qz-Os-0mu" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="LL6-Sh-pla">
                     <connections>
                         <action selector="didTap:" destination="BV1-FR-VrT" id="6A7-7I-YkN"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1783" y="39"/>
+            <point key="canvasLocation" x="1781.25" y="38.028169014084504"/>
         </scene>
     </scenes>
 </document>
