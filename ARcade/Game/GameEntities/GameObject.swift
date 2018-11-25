@@ -13,11 +13,9 @@ import SceneKit
 
 class GameObject {
     
-    var location: Coordinate3D
     var node: SCNNode
 
-    init(location l: Coordinate3D, node n: SCNNode) {
-        location = l
+    init(node n: SCNNode) {
         node = n
     }
 }

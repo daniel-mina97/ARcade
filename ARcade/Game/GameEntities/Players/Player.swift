@@ -26,17 +26,17 @@ class Player: GameActor {
         case .damage:
             let h = 1
             let d = 3
-            super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
+            super.init(health: h, maxHealth: h, damage: d, node: n)
             
         case .tank:
             let h = 3
             let d = 1
-            super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
+            super.init(health: h, maxHealth: h, damage: d, node: n)
             
         default:
             let h = 2
             let d = 2
-            super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
+            super.init(health: h, maxHealth: h, damage: d, node: n)
         }
         //var loc = self
         

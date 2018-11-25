@@ -27,14 +27,14 @@ class Alien: GameActor {
     static var numOfPlayers = 0
     var listOfIdentifiers: [Int] = [Int]()
     
-    init(type t: AlienType, /*difficulty dif: Int,*/ moveSpeed m: Int, health h: Int,
-         damage d: Int, location loc: Coordinate3D, node n: SCNNode) {
+    init(type t: AlienType, moveSpeed m: Int, health h: Int,
+        damage d: Int, node n: SCNNode) {
         moveSpeed = m
         identifier = Alien.numOfAliens
         Alien.numOfAliens += 1
         type = t
         
-        super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
+        super.init(health: h, maxHealth: h, damage: d, node: n)
     }
     
     func ReachCity(city:City) -> Bool {
