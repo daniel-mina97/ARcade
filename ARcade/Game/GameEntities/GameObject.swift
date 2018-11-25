@@ -13,9 +13,9 @@ import SceneKit
 
 class GameObject {
     
-    var node: SCNNode
+    var node: SCNNode?
 
-    init(node n: SCNNode) {
+    init(node n: SCNNode?) {
         node = n
     }
 }

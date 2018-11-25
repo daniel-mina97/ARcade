@@ -21,22 +21,22 @@ class Player: GameActor {
     }
     
     
-    init(playerType type: PlayerType, location loc: Coordinate3D, node n: SCNNode) {
+    init(playerType type: PlayerType) {
         switch type {
         case .damage:
             let h = 1
             let d = 3
-            super.init(health: h, maxHealth: h, damage: d, node: n)
+            super.init(health: h, maxHealth: h, damage: d, node: nil)
             
         case .tank:
             let h = 3
             let d = 1
-            super.init(health: h, maxHealth: h, damage: d, node: n)
+            super.init(health: h, maxHealth: h, damage: d, node: nil)
             
         default:
             let h = 2
             let d = 2
-            super.init(health: h, maxHealth: h, damage: d, node: n)
+            super.init(health: h, maxHealth: h, damage: d, node: nil)
         }
         //var loc = self
         
