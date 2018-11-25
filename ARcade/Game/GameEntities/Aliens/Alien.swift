@@ -60,7 +60,4 @@ class Alien: GameActor {
         return moveSpeed;
         
     }
-    deinit {
-        
-    }
 }
