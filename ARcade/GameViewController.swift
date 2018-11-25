@@ -59,7 +59,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         state = .gameStarted
         startGameButton.isHidden = true
         manager.startGame(cityNode: cityNode!)
-        actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: manager, selector: Selector(("executeNextAction")), userInfo: nil, repeats: true)
+        actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(callExecute), userInfo: nil, repeats: true)
+    }
+    
+    @objc func callExecute() {
+        manager.executeNextAction()
     }
     
     @IBAction func saveCityPlane(_ sender: UIButton) {

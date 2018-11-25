@@ -49,7 +49,8 @@ class GameManager{
     
     func startGame(cityNode: SCNNode) {
         city = City(node: cityNode)
-        spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector(("spawnAlien")),
+        players[1] = Player(playerType: .balanced)
+        spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnAlien),
                                                userInfo: nil, repeats: true)
     }
     
@@ -59,14 +60,15 @@ class GameManager{
         
         switch action.type {
         case .playerShootAlien:
+            print(action.sourceID)
             if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                aliens[action.targetID]!.node.removeFromParentNode()
+                aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
             break
         case .playerShootMultiTakedown:
             if aliens[action.targetID]!.takeDamage(from: action.sourceID) == GameActor.lifeState.dead {
-                aliens[action.targetID]!.node.removeFromParentNode()
+                aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
         case .alienShootPlayer:
@@ -111,14 +113,14 @@ class GameManager{
         }
     }
     
-    func spawnAlien() {
+    @objc func spawnAlien() {
         if aliens.count >= GameManager.MAX_ALIENS {return}
         if let alienType: Alien.AlienType = Alien.AlienTypeArray.randomElement() {
             let spawnCoordinates: SCNVector3 = getSpawnCoordinates().getVector()
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
             aliens[alien.identifier] = alien
-            sceneManager.moveAlien(alien: alien.node, to: city!.node.position, speed: alien.moveSpeed)
+            sceneManager.moveAlien(alien: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
             // pass SceneUpdate
         }
     }
@@ -126,9 +128,9 @@ class GameManager{
     func getSpawnCoordinates() -> Coordinate3D {
         let xSign: Int = [-1,1].randomElement()!
         let zSign: Int = [-1,1].randomElement()!
-        let xCoordinate: Float = city.node.position.x + Float(xSign) * Float.random(in: 2.0...5.0)
-        let yCoordinate: Float = city.node.position.y + Float.random(in: 0.2...1.0)
-        let zCoordinate: Float = city.node.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
+        let xCoordinate: Float = city.node!.position.x + Float(xSign) * Float.random(in: 2.0...5.0)
+        let yCoordinate: Float = city.node!.position.y + Float.random(in: 0.2...1.0)
+        let zCoordinate: Float = city.node!.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
         return Coordinate3D(x: xCoordinate, y: yCoordinate, z: zCoordinate)
     }
     

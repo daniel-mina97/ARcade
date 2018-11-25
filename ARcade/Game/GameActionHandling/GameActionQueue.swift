@@ -35,7 +35,6 @@ class GameActionQueue {
     }
     
     func enqueue (act: GameAction){
-        size += 1
         let node: GameActionQueueNode = GameActionQueueNode(a: act)
         if(isEmpty()){
             head = node
@@ -45,6 +44,7 @@ class GameActionQueue {
             tail?.child = node
             tail = node
         }
+        size += 1
     }
     
 }

@@ -82,11 +82,11 @@ class SceneManager {
     }
     
     func spawnAlienMultiTakedown(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_multitakedown.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/alien_normal.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienBoss(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_boss.dae", scale: 0.2, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/alien_normal.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     
     func spawnCity(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{

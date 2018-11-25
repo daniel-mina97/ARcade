@@ -23,13 +23,17 @@ class GameActor: GameObject {
     var damage: Int
     
     //initializer
-    init(health h: Int, maxHealth mh: Int, damage d: Int, node n: SCNNode){
+    init(health h: Int, maxHealth mh: Int, damage d: Int, node n: SCNNode?){
         health = h
         maxHealth = mh
         damage = d
         
         //call super
-        super.init(node: n)
+        if let n = n {
+            super.init(node: n)
+        } else {
+            super.init(node: nil)
+        }
     }
     
     //class functions (all children will need these functions)
