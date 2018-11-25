@@ -32,6 +32,7 @@ class GameManager{
     let localID: Int
     
     static let MAX_ALIENS: Int = 15
+    
     init(host: Bool, scene: SCNScene, id: Int) {
         queue = GameActionQueue()
         sceneManager = SceneManager(scene: scene)
@@ -51,6 +52,7 @@ class GameManager{
         spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector(("spawnAlien")),
                                                userInfo: nil, repeats: true)
     }
+    
     func executeNextAction() {
         
         guard let action = queue.dequeue() else {return}
@@ -106,6 +108,7 @@ class GameManager{
             }
         }
     }
+    
     func spawnAlien() {
         if aliens.count >= GameManager.MAX_ALIENS {return}
         if let alienType: Alien.AlienType = Alien.AlienTypeArray.randomElement() {
@@ -117,6 +120,7 @@ class GameManager{
             // pass SceneUpdate
         }
     }
+    
     func getSpawnCoordinates() -> Coordinate3D {
         let xSign: Int = [-1,1].randomElement()!
         let zSign: Int = [-1,1].randomElement()!
@@ -125,4 +129,6 @@ class GameManager{
         let zCoordinate: Float = city.node.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
         return Coordinate3D(x: xCoordinate, y: yCoordinate, z: zCoordinate)
     }
+    
 }
+

@@ -19,7 +19,6 @@ class SceneManager {
         case multitakedown
         case boss
     }
-    
     var scene: SCNScene
     var cityPlaced: Bool = false
     

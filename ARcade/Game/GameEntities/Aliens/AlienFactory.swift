@@ -12,10 +12,6 @@ import SceneKit
 class AlienFactory {
     // initialize letiable values
     static func createAlien(type t: Alien.AlienType, location loc: Coordinate3D, node n: SCNNode) -> Alien {
-        
-        
-        
-        
         switch t {
             //todo: implement case specific things
             
@@ -42,15 +38,11 @@ class AlienFactory {
             let health = 1
             let speed = 1
             return Alien(type: t, moveSpeed: speed, health: health, damage: damage, location: loc, node: n)
-            
         default: //case .basic:
             let damage = 1
             let health = 1
             let speed = 1
             return Alien(type: t, moveSpeed: speed, health: health, damage: damage, location: loc, node: n)
-            
         }
-        
-        
     }
 }

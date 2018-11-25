@@ -19,6 +19,8 @@ class Alien: GameActor {
         case boss
         case multiTakedown
     }
+    
+
     var identifier: Int
     static var numOfAliens = 0
     var type: AlienType
@@ -33,13 +35,9 @@ class Alien: GameActor {
         type = t
         
         super.init(health: h, maxHealth: h, damage: d, location: loc, node: n)
-        
-        
     }
     
     func ReachCity(city:City) -> Bool {
-        
-        
         if (city.takeDamage(from: damage) == lifeState.dead){
             city.death()
             return true;
@@ -61,7 +59,6 @@ class Alien: GameActor {
         return moveSpeed;
         
     }
-    
     deinit {
         
     }
