@@ -13,12 +13,6 @@ import SceneKit
 
 class SceneManager {
     
-    enum alienType {
-        case diver
-        case normal
-        case multitakedown
-        case boss
-    }
     var scene: SCNScene
     var cityPlaced: Bool = false
     
@@ -26,19 +20,19 @@ class SceneManager {
         self.scene = scene
     }
     
-    func makeAlien(id: Int, type: alienType, at: SCNVector3) -> SCNNode{
+    func makeAlien(id: Int, type: Alien.AlienType, at: SCNVector3) -> SCNNode{
         var newAlienNode: SCNNode!
         switch type{
-        case .normal:
+        case Alien.AlienType.shooting:
             newAlienNode = spawnAlienShooter(id: id, x: at.x, y: at.y, z: at.z)
             break
-        case .boss:
+        case Alien.AlienType.boss:
             newAlienNode = spawnAlienBoss(id: id, x: at.x, y: at.y, z: at.z)
             break
-        case .diver:
+        case Alien.AlienType.diving:
             newAlienNode = spawnAlienDiver(id: id, x: at.x, y: at.y, z: at.z)
             break
-        case .multitakedown:
+        case Alien.AlienType.multiTakedown:
             newAlienNode = spawnAlienMultiTakedown(id: id, x: at.x, y: at.y, z: at.z)
             break
         }
