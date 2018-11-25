@@ -95,4 +95,12 @@ class GameManager{
             }
         }
     }
+    func getSpawnCoordinates() -> Coordinate3D {
+        let xSign: Int = [-1,1].randomElement()!
+        let zSign: Int = [-1,1].randomElement()!
+        let xCoordinate: Float = city.node.position.x + Float(xSign) * Float.random(in: 2.0...5.0)
+        let yCoordinate: Float = city.node.position.y + Float.random(in: 0.2...1.0)
+        let zCoordinate: Float = city.node.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
+        return Coordinate3D(x: xCoordinate, y: yCoordinate, z: zCoordinate)
+    }
 }
