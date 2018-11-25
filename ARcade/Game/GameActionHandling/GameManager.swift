@@ -36,7 +36,6 @@ class GameManager{
     init(host: Bool, scene: SCNScene, id: Int) {
         queue = GameActionQueue()
         sceneManager = SceneManager(scene: scene)
-        //city = City()
         isHost = host
         sessionState = .startup
         players = [:]
