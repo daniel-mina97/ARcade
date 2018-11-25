@@ -47,7 +47,8 @@ class GameManager{
         return sceneManager.spawnCity(x: x, y: y, z: z)
     }
     
-    func startGame() {
+    func startGame(cityNode: SCNNode) {
+        city = City(node: cityNode)
         spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector(("spawnAlien")),
                                                userInfo: nil, repeats: true)
     }
