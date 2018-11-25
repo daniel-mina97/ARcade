@@ -21,6 +21,7 @@ class Alien: GameActor {
     
     static let AlienTypeArray = [AlienType.diving, AlienType.shooting, AlienType.multiTakedown]
 
+    var moveSpeed: Int
     var identifier: Int
     static var numOfAliens = 0
     var type: AlienType
