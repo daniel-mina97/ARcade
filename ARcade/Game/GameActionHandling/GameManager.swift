@@ -95,6 +95,17 @@ class GameManager{
             }
         }
     }
+    func spawnAlien() {
+        if aliens.count >= GameManager.MAX_ALIENS {return}
+        if let alienType: Alien.AlienType = Alien.AlienTypeArray.randomElement() {
+            let spawnCoordinates: SCNVector3 = getSpawnCoordinates().getVector()
+            let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
+            let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
+            aliens[alien.identifier] = alien
+            sceneManager.moveAlien(alien: alien.node, to: city!.node.position, speed: alien.moveSpeed)
+            // pass SceneUpdate
+        }
+    }
     func getSpawnCoordinates() -> Coordinate3D {
         let xSign: Int = [-1,1].randomElement()!
         let zSign: Int = [-1,1].randomElement()!
