@@ -138,7 +138,7 @@ class GameManager{
             }
             break
         case .playerShootMultiTakedown:
-            if aliens[action.targetID]!.takeDamage(from: action.sourceID) == GameActor.lifeState.dead {
+            if aliens[action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
