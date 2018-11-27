@@ -95,12 +95,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func unwindToMainMenu() {
-        networkManager = NetworkManager(host: true)
+        /*networkManager = NetworkManager(host: true)
         // Set the scene to the view
         sceneView.scene = scene
         configureSession()
         manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]*/
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
