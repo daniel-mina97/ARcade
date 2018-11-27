@@ -24,17 +24,17 @@ class Player: GameActor {
     init(playerType type: PlayerType) {
         switch type {
         case .damage:
-            let h = 1
+            let h = 20
             let d = 3
             super.init(health: h, maxHealth: h, damage: d, node: nil)
             
         case .tank:
-            let h = 3
+            let h = 40
             let d = 1
             super.init(health: h, maxHealth: h, damage: d, node: nil)
             
         default:
-            let h = 2
+            let h = 30
             let d = 2
             super.init(health: h, maxHealth: h, damage: d, node: nil)
         }

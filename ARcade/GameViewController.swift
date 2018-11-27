@@ -37,7 +37,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var cityNode: SCNNode?
     var cityAnchor: ARAnchor?
     var state: SessionState = .lookingForPlane
-    var actionTimer: Timer?
     
     func configureSession(){
         let configuration = ARWorldTrackingConfiguration()
@@ -59,17 +58,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         state = .lookingForPlane
     }
     
-    @IBAction func startGame(_ sender: UIButton) {
-        state = .gameStarted
-        startGameButton.isHidden = true
-        manager.startGame(cityNode: cityNode!)
-        actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(callExecute), userInfo: nil, repeats: true)
-    }
-    
-    @objc func callExecute() {
-        manager.executeNextAction()
-    }
-    
     @IBAction func saveCityPlane(_ sender: UIButton) {
         //sessionstate is startup game
         cityPlaneNode?.removeFromParentNode()
@@ -82,7 +70,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    @IBAction func startGame(_ sender: UIButton) {
+        state = .gameStarted
+        startGameButton.isHidden = true
+        manager.startGame(cityNode: cityNode!)
+    }
+    
     @IBAction func didTap(_ sender: UITapGestureRecognizer){
+        if manager.sessionState == .ended{
+            self.performSegue(withIdentifier: "returnToMainMenu", sender: self)
+        }
         let location = sender.location(in: sceneView)
         let result = sceneView.hitTest(location, options: nil)
 
@@ -97,26 +94,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Create classes
-        startGameButton.isHidden = true
-        state = .lookingForPlane
-        let scene = SCNScene()
-        // Set the view's delegate
-        sceneView.delegate = self
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        sceneView.addGestureRecognizer(tapGestureRecognizer)
-        
+    @IBAction func unwindToMainMenu() {
         networkManager = NetworkManager(host: true)
         // Set the scene to the view
         sceneView.scene = scene
         configureSession()
         manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-        
-    
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -144,6 +128,26 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 return
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Create classes
+        startGameButton.isHidden = true
+        state = .lookingForPlane
+        let scene = SCNScene()
+        // Set the view's delegate
+        sceneView.delegate = self
+        // Show statistics such as fps and timing information
+        sceneView.showsStatistics = true
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+        
+        networkManager = NetworkManager(host: true)
+        // Set the scene to the view
+        sceneView.scene = scene
+        configureSession()
+        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
+        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
     override func viewWillAppear(_ animated: Bool) {

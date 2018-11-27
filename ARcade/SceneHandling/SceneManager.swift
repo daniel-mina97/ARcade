@@ -47,7 +47,11 @@ class SceneManager {
         return pickupNode
     }
     
-    func removeAlien(node: SCNNode){
+    func add(node: SCNNode){
+        scene.rootNode.addChildNode(node)
+    }
+    
+    func remove(node: SCNNode){
         node.removeFromParentNode()
     }
     
@@ -55,9 +59,9 @@ class SceneManager {
         return Int(node.name!)!
     }
     
-    func moveAlien(alien: SCNNode, to city: SCNVector3, speed: Int){
+    func getMoveAction(alien: SCNNode, to city: SCNVector3, speed: Int) -> SCNAction{
         let action =  SCNAction.move(to: city, duration: 30.0/Double(speed))
-        alien.runAction(action)
+        return action
     }
     
     func spawnObject(asset: String, scale: Float, id: Int, x: Float, y: Float, z: Float) -> SCNNode{
