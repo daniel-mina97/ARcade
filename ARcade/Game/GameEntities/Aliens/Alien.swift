@@ -47,6 +47,7 @@ class Alien: GameActor {
     }
     
     func takeDamage(fromPlayerNumber playerNumber: Int) -> GameActor.lifeState {
+        /// Specific implementation for MultiTakeDownType alien
         if (!listOfIdentifiers.contains(playerNumber)){
             listOfIdentifiers.append(playerNumber)
         }
