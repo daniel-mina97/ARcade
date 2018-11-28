@@ -74,8 +74,28 @@
                                     <segue destination="WR8-Vq-LVS" kind="show" identifier="Settings" id="yMX-FY-Qm1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnF-8T-vSD">
+                                <rect key="frame" x="-6" y="80" width="331" height="41"/>
+                                <color key="tintColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="ARCADE Alien Invader ">
+                                        <attributes>
+                                            <font key="NSFont" size="36" name="MarkerFelt-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PnF-8T-vSD" secondAttribute="trailing" constant="-5" id="az6-MU-bVt"/>
+                            <constraint firstItem="PnF-8T-vSD" firstAttribute="leading" secondItem="9JL-Fq-Y8M" secondAttribute="leading" constant="-6" id="f0E-rA-mmB"/>
+                            <constraint firstItem="PnF-8T-vSD" firstAttribute="top" secondItem="IVx-oG-3zQ" secondAttribute="top" constant="60" id="jMz-zm-piq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IVx-oG-3zQ"/>
                     </view>
                 </viewController>
@@ -282,8 +302,8 @@
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="x0V-bo-2SE" secondAttribute="bottom" constant="20" id="YxB-EW-NtF"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="Fbd-yW-wwO" secondAttribute="bottom" constant="20" id="quo-ps-Oba"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
-                            <constraint firstItem="COf-U5-1kM" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xBb-mG-7sa"/>
                             <constraint firstAttribute="trailing" secondItem="Fbd-yW-wwO" secondAttribute="trailing" constant="3" id="vbn-5T-WHU"/>
+                            <constraint firstItem="COf-U5-1kM" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xBb-mG-7sa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
