@@ -147,6 +147,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         configureSession()
         manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
+        manager.healthDelegate = self
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
@@ -186,5 +187,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+}
+
+extension GameViewController: HealthBarDelegate {
+    func updateHealth(as percentage: Float) {
+        PlayerHealyBar.progress = percentage
     }
 }

@@ -17,6 +17,10 @@ enum GameState{
     case ended
 }
 
+protocol HealthBarDelegate {
+    func updateHealth(as percentage: Float)
+}
+
 class GameManager{
     var sceneManager: SceneManager
     var players: [Int: Player]
@@ -29,6 +33,7 @@ class GameManager{
     var spawnAlienTimer: Timer?
     var alienShotTimer: Timer?
     var actionTimer: Timer?
+    var healthDelegate: HealthBarDelegate?
     let localID: Int
     
     static let MAX_ALIENS: Int = 15
@@ -144,9 +149,11 @@ class GameManager{
             }
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                // players[action.targetID] = nil
-                // We don't want to just kick the player out...
+                
+                healthDelegate!.updateHealth(as: 0.0)
+                break
             }
+            healthDelegate!.updateHealth(as: Float(players[localID]!.health) / Float(players[localID]!.maxHealth))
             break
         case .alienShootCity:
             if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
