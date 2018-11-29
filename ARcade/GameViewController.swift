@@ -28,9 +28,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var PlayerHealyBar: UIProgressView!
     
-    
-    
-    
     var manager: GameManager!
     var networkManager: NetworkManager!
     var cityPlaneNode: SCNNode?
