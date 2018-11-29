@@ -29,6 +29,7 @@ class GameManager{
     var spawnAlienTimer: Timer?
     var alienShotTimer: Timer?
     var actionTimer: Timer?
+    var healthBar: UIProgressView
     let localID: Int
     
     static let MAX_ALIENS: Int = 15
