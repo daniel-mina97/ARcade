@@ -150,7 +150,7 @@ class GameManager{
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 
-                healthDelegate!.updateHealth(as: 0.0)
+                healthDelegate?.updateHealth(as: 0.0)
                 break
             }
             healthDelegate!.updateHealth(as: Float(players[localID]!.health) / Float(players[localID]!.maxHealth))
