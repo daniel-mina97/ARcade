@@ -75,6 +75,17 @@ class NetworkManager: NSObject {
         }
         return nil
     }
+    func JsonToGameAction(json: Data) -> GameAction? {
+        let jsonDecoder = JSONDecoder()
+        do {
+            let recievedData = try jsonDecoder.decode(GameAction.self, from: json)
+            return recievedData
+        }
+        catch {
+            print("JsonToGameAction failed.")
+        }
+        return nil
+    }
 }
 
 extension NetworkManager: MCNearbyServiceAdvertiserDelegate {
