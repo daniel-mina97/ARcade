@@ -65,6 +65,7 @@ class NetworkManager: NSObject {
             }
         }
     }
+    
     func GameActionToJson(action: GameAction) -> Data? {
         let jsonEncoder = JSONEncoder()
         do {
@@ -76,6 +77,7 @@ class NetworkManager: NSObject {
         }
         return nil
     }
+    
     func JsonToGameAction(json: Data) -> GameAction? {
         let jsonDecoder = JSONDecoder()
         do {
