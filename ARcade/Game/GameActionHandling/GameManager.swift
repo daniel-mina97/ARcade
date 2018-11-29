@@ -146,7 +146,12 @@ class GameManager{
             }
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                //set a flag preventing player from shooting?
+                Alien.numOfPlayers -= 1
+                healthBar.progress = 0.0
+                break
             }
+            healthBar.progress = Float(players[action.targetID]!.health) / Float(players[action.targetID]!.maxHealth)
             break
         case .alienShootCity:
             if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
