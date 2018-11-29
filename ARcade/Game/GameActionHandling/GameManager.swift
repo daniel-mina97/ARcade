@@ -144,8 +144,6 @@ class GameManager{
             }
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                // players[action.targetID] = nil
-                // We don't want to just kick the player out...
             }
             break
         case .alienShootCity:
