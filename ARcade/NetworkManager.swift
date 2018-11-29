@@ -55,9 +55,10 @@ class NetworkManager: NSObject {
     func send(gameAction: GameAction) {
         if session.connectedPeers.count > 0 {
             do {
-                // should only send to host
-                try session.send(NSKeyedArchiver.archivedData(withRootObject: gameAction, requiringSecureCoding: false),
-                    toPeers: session.connectedPeers, with: .reliable)
+                // should only send to host instead of all connected peers
+                guard let jsonData = GameActionToJson(action: gameAction) else {return}
+                try session.send(jsonData, toPeers: session.connectedPeers, with: .reliable)
+                return
             }
             catch let error {
                 print("Error occured: \(error)")
