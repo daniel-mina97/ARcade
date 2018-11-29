@@ -34,7 +34,7 @@ class GameManager{
     
     static let MAX_ALIENS: Int = 15
     
-    init(host: Bool, scene: SCNScene, id: Int) {
+    init(host: Bool, scene: SCNScene, id: Int, healthBarView: UIProgressView) {
         sessionState = .startup
         queue = GameActionQueue()
         sceneManager = SceneManager(scene: scene)

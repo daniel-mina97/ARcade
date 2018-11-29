@@ -143,7 +143,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         configureSession()
-        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
+        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID, healthBarView: PlayerHealyBar)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
