@@ -192,6 +192,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 
 extension GameViewController: HealthBarDelegate {
     func updateHealth(as percentage: Float) {
-        PlayerHealyBar.progress = percentage
+        PlayerHealyBar.setProgress(percentage, animated: true)
     }
 }
