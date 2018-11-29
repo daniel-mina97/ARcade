@@ -8,14 +8,21 @@
 
 import Foundation
 
-class GameAction {
+class GameAction: Codable {
     
-    enum ActionTypes {
+    enum ActionTypes: String, Codable {
         case playerShootAlien
         case playerShootMultiTakedown
         case alienShootPlayer
         case alienShootCity
         case pickup
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case actionType = "actionType"
+        case actionID
+        case sourceID
+        case targetID
     }
     
     static var overallActionID: Int = 0
@@ -31,6 +38,22 @@ class GameAction {
         GameAction.overallActionID += 1
         self.sourceID = sourceID
         self.targetID = targetID
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        type = try values.decode(ActionTypes.self, forKey: .actionType)
+        actionID = try values.decode(Int.self, forKey: .actionID)
+        sourceID = try values.decode(Int.self, forKey: .sourceID)
+        targetID = try values.decode(Int.self, forKey: .targetID)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .actionType)
+        try container.encode(actionID, forKey: .actionID)
+        try container.encode(sourceID, forKey: .sourceID)
+        try container.encode(targetID, forKey: .targetID)
     }
 }
 
