@@ -64,6 +64,17 @@ class NetworkManager: NSObject {
             }
         }
     }
+    func GameActionToJson(action: GameAction) -> Data? {
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(action)
+            return jsonData
+        }
+        catch {
+            print("GameActionToJson failed.")
+        }
+        return nil
+    }
 }
 
 extension NetworkManager: MCNearbyServiceAdvertiserDelegate {
