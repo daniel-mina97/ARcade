@@ -16,7 +16,7 @@ class NetworkManager: NSObject {
     let advertiser: MCNearbyServiceAdvertiser?
     let browser: MCNearbyServiceBrowser?
     let gameServiceType: String = "session-share"
-    
+
     init(host: Bool){
         isHost = host
         playerID = 1
@@ -32,7 +32,7 @@ class NetworkManager: NSObject {
             advertiser = nil
         }
     }
-    
+
     deinit {
         if isHost {
             advertiser?.stopAdvertisingPeer()
@@ -40,7 +40,7 @@ class NetworkManager: NSObject {
             browser?.stopBrowsingForPeers()
         }
     }
-    
+
     func send(worldUpdate: SceneUpdate) {
         if session.connectedPeers.count > 0 {
             do {
@@ -51,7 +51,7 @@ class NetworkManager: NSObject {
             }
         }
     }
-    
+
     func send(gameAction: GameAction) {
         if session.connectedPeers.count > 0 {
             do {
@@ -65,7 +65,7 @@ class NetworkManager: NSObject {
             }
         }
     }
-    
+
     func GameActionToJson(action: GameAction) -> Data? {
         let jsonEncoder = JSONEncoder()
         do {
@@ -77,7 +77,7 @@ class NetworkManager: NSObject {
         }
         return nil
     }
-    
+
     func JsonToGameAction(json: Data) -> GameAction? {
         let jsonDecoder = JSONDecoder()
         do {
@@ -95,7 +95,7 @@ extension NetworkManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         // do something
     }
-    
+
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         invitationHandler(true, session)
     }
@@ -105,11 +105,11 @@ extension NetworkManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         // do something
     }
-    
+
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         // do something
     }
-    
+
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 10)
     }
