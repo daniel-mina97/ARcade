@@ -42,6 +42,7 @@ class GameManager{
         players = [:]
         aliens = [:]
         targetList = []
+        healthBar = healthBarView
         localID = id
     }
     
