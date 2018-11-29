@@ -26,7 +26,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
-    @IBOutlet weak var PlayerHealyBar: UIProgressView!
+    @IBOutlet weak var PlayerHealthBar: UIProgressView!
     
     
     
@@ -155,7 +155,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         // the player health progress bar 
-        PlayerHealyBar.setProgress(100, animated: false)
+        PlayerHealthBar.setProgress(100, animated: false)
         
     }
     
@@ -192,6 +192,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
 
 extension GameViewController: HealthBarDelegate {
     func updateHealth(as percentage: Float) {
-        PlayerHealyBar.setProgress(percentage, animated: true)
+        PlayerHealthBar.setProgress(percentage, animated: true)
     }
 }
