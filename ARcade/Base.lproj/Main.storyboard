@@ -25,6 +25,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="joinSession:" destination="8Mo-Vt-LcN" eventType="touchUpInside" id="m1L-Mt-XAt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup" customClass="HostButton" customModule="ARcade" customModuleProvider="target">
                                 <rect key="frame" x="54" y="176" width="213" height="30"/>
