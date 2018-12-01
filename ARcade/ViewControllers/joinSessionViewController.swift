@@ -10,10 +10,26 @@ import UIKit
 
 class joinSessionViewController: UIViewController, UITableViewDelegate {
     
+    @IBOutlet weak var table: UITableView!
+    
+    
+    var network: NetworkManager?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as! GameViewController
+        dest.networkManager = network
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        table.
+        network = NetworkManager(host: false)
+        network?.browser.
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
