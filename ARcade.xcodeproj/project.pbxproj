@@ -15,7 +15,6 @@
 		65C131162153254C00A79DE6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C131152153254C00A79DE6 /* GameViewController.swift */; };
 		65C131192153254C00A79DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C131172153254C00A79DE6 /* Main.storyboard */; };
 		65C1311B2153254F00A79DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311A2153254F00A79DE6 /* Assets.xcassets */; };
-		65C1311E2153254F00A79DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C1311C2153254F00A79DE6 /* LaunchScreen.storyboard */; };
 		65FE8A7F21A9CDFE00816E40 /* SceneUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FE8A7E21A9CDFE00816E40 /* SceneUpdate.swift */; };
 		A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9239174219DBA9B00D73541 /* NetworkManager.swift */; };
 		A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083721A0A3D30078E5C8 /* SceneManager.swift */; };
@@ -27,10 +26,12 @@
 		A95DFCE8219D0EA00069549D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE7219D0EA00069549D /* City.swift */; };
 		A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99E49B921755B2E006858D0 /* MainMenuViewController.swift */; };
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
-		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
-		D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B5A2A21AA1092002BA556 /* AlienFactory.swift */; };
+		D509C84921B32153009343F6 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84621B32153009343F6 /* JoinButton.swift */; };
+		D509C84A21B32153009343F6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84721B32153009343F6 /* SettingButton.swift */; };
+		D509C84B21B32153009343F6 /* HostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84821B32153009343F6 /* HostButton.swift */; };
 		D50EBD6221AA1DE80050A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */; };
+		D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B5A2A21AA1092002BA556 /* AlienFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,10 +56,12 @@
 		A95DFCE7219D0EA00069549D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		A99E49B921755B2E006858D0 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
-		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
-		D57B5A2A21AA1092002BA556 /* AlienFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
+		D509C84621B32153009343F6 /* JoinButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
+		D509C84721B32153009343F6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		D509C84821B32153009343F6 /* HostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostButton.swift; sourceTree = "<group>"; };
 		D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D57B5A2A21AA1092002BA556 /* AlienFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,7 @@
 				A95DFCD7219D07900069549D /* ViewControllers */,
 				65C131132153254C00A79DE6 /* art.scnassets */,
 				65C131172153254C00A79DE6 /* Main.storyboard */,
+				D509C84521B3212D009343F6 /* CustomButtons */,
 				65C1311A2153254F00A79DE6 /* Assets.xcassets */,
 				65C1311F2153254F00A79DE6 /* Info.plist */,
 				D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */,
@@ -159,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				A9C1672821669C82006C5A7F /* hostSessionViewController.swift */,
-				A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */,
 				A9C1672C21669D13006C5A7F /* settingsViewController.swift */,
 				A99E49B921755B2E006858D0 /* MainMenuViewController.swift */,
 			);
@@ -173,6 +176,16 @@
 				65B838A72194891500F5FD91 /* GameActionHandling */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		D509C84521B3212D009343F6 /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				D509C84821B32153009343F6 /* HostButton.swift */,
+				D509C84621B32153009343F6 /* JoinButton.swift */,
+				D509C84721B32153009343F6 /* SettingButton.swift */,
+			);
+			path = CustomButtons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +268,8 @@
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
+				D509C84A21B32153009343F6 /* SettingButton.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
-				A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */,
 				65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */,
 				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
@@ -266,6 +279,8 @@
 				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
 				A95DFCE8219D0EA00069549D /* City.swift in Sources */,
+				D509C84921B32153009343F6 /* JoinButton.swift in Sources */,
+				D509C84B21B32153009343F6 /* HostButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

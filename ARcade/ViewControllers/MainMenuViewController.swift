@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class MainMenuViewController: UIViewController {
+    
+    var netManager: NetworkManager?
     
     func initializeUserDefaults () {
         if UserDefaults.standard.object(forKey: "name") == nil{
@@ -22,10 +25,28 @@ class MainMenuViewController: UIViewController {
         
     }
     
+    @IBAction func joinSession() {
+        netManager = NetworkManager(host: false, displayName: UserDefaults.standard.object(forKey: "name") as! String)
+        let browser = MCBrowserViewController(serviceType: (netManager?.gameServiceType)!, session: (netManager?.session)!)
+        browser.delegate = self
+        present(browser, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUserDefaults()
         // Do any additional setup after loading the view.
     }
+}
 
+extension MainMenuViewController: MCBrowserViewControllerDelegate {
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true)
+        print("You were declined noob")
+    }
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true)
+        print("You were accepted")
+    }
 }

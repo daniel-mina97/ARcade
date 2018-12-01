@@ -18,10 +18,10 @@ class NetworkManager: NSObject {
     var browser: MCBrowserViewController?
     let gameServiceType: String = "session-share"
 
-    init(host: Bool){
+    init(host: Bool, displayName: String){
         isHost = host
         playerID = 1
-        let myPeerID: MCPeerID = MCPeerID(displayName: String(playerID))
+        let myPeerID: MCPeerID = MCPeerID(displayName: displayName)
         session = MCSession(peer: myPeerID)
     }
     

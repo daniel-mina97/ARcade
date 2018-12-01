@@ -50,6 +50,7 @@ class GameManager{
         sessionState = .ongoing
         city = City(node: cityNode)
         players[1] = Player(playerType: .balanced)
+        Alien.numOfPlayers = players.count
         targetList.append(-1)
         for player in players.keys{
             targetList.append(player)
@@ -133,13 +134,14 @@ class GameManager{
         
         switch action.type {
         case .playerShootAlien:
-            print(action.sourceID)
+            print(aliens[action.targetID]?.health)
             if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
             break
         case .playerShootMultiTakedown:
+            print(aliens[action.targetID]?.health)
             if aliens[action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
@@ -172,6 +174,10 @@ class GameManager{
     }
     
     func nodeTapped(node: SCNNode) {
+        print(node.name)
+        if node.name == "-1" {
+            return
+        }
         let typeOfNode: Character = node.name!.removeFirst()
         let nodeID: Int = Int(node.name!)!
         node.name = String(typeOfNode)+node.name!
