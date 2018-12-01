@@ -26,7 +26,7 @@ class MainMenuViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let the = sender as? JoinButton{
+        if (sender as? JoinButton) != nil{
             let dst = segue.destination as! GameViewController
             dst.networkManager = netManager
         }
@@ -58,11 +58,7 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
         print("You were accepted")
-        
-        let gvc = GameViewController()
-        
-        gvc.networkManager = netManager
-        
-        self.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+
+        self.performSegue(withIdentifier: "JoinGame", sender: JoinButton())
     }
 }
