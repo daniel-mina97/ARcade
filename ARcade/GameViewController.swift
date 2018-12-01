@@ -134,6 +134,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         // Create classes
         startGameButton.isHidden = true
+        saveButton.isHidden = true
+        cancelButton.isHidden = true
         state = .lookingForPlane
         let scene = SCNScene()
         sceneView.delegate = self
