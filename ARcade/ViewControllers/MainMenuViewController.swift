@@ -51,6 +51,7 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let gvc = storyBoard.instantiateViewController(withIdentifier: "gameViewController") as! GameViewController
+        gvc.networkManager = netManager
         self.present(gvc, animated: true, completion: nil)
     }
 }
