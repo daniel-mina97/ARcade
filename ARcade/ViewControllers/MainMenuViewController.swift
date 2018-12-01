@@ -25,16 +25,6 @@ class MainMenuViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (sender as? JoinButton) != nil{
-            let dst = segue.destination as! GameViewController
-            dst.networkManager = netManager
-        }
-        else{
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-    
     @IBAction func joinSession() {
         netManager = NetworkManager(host: false, displayName: UserDefaults.standard.object(forKey: "name") as! String)
         let browser = MCBrowserViewController(serviceType: (netManager?.gameServiceType)!, session: (netManager?.session)!)
@@ -58,7 +48,9 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
         print("You were accepted")
-
-        self.performSegue(withIdentifier: "JoinGame", sender: JoinButton())
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let gvc = storyBoard.instantiateViewController(withIdentifier: "gameViewController") as! GameViewController
+        self.present(gvc, animated: true, completion: nil)
     }
 }
