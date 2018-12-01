@@ -64,6 +64,21 @@ class SceneManager {
         return action
     }
     
+    func creatAlineBullet ()-> SCNNode{
+        
+        let sphere = SCNSphere(radius: 0.01)
+        let material = SCNMaterial()
+        
+        material.diffuse.contents = UIColor.red
+        
+        sphere.materials = [material]
+        
+        let sphereNode = SCNNode(geometry: sphere)
+        
+        return sphereNode
+    }
+    
+ 
     func spawnObject(asset: String, scale: Float, id: Int, x: Float, y: Float, z: Float) -> SCNNode{
         let scene = SCNScene(named: asset)!
         let node = SCNNode()
