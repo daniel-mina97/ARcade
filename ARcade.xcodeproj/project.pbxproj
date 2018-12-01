@@ -29,7 +29,6 @@
 		A9C1672B21669CF3006C5A7F /* joinSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
 		A9CD2BEC21B308B40028CE41 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD2BEB21B308B40028CE41 /* Queue.swift */; };
-		A9CD2BEE21B312250028CE41 /* WorldPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD2BED21B312250028CE41 /* WorldPackage.swift */; };
 		D50EBD6221AA1DE80050A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */; };
 		D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B5A2A21AA1092002BA556 /* AlienFactory.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +58,6 @@
 		A9C1672A21669CF3006C5A7F /* joinSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		A9CD2BEB21B308B40028CE41 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		A9CD2BED21B312250028CE41 /* WorldPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldPackage.swift; sourceTree = "<group>"; };
 		D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D57B5A2A21AA1092002BA556 /* AlienFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +118,6 @@
 				65C131152153254C00A79DE6 /* GameViewController.swift */,
 				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
 				A9CD2BEB21B308B40028CE41 /* Queue.swift */,
-				A9CD2BED21B312250028CE41 /* WorldPackage.swift */,
 				A94A083421A0A3960078E5C8 /* SceneHandling */,
 				A95DFCD8219D07F60069549D /* Game */,
 				A95DFCD7219D07900069549D /* ViewControllers */,
@@ -253,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */,
-				A9CD2BEE21B312250028CE41 /* WorldPackage.swift in Sources */,
 				65FE8A7F21A9CDFE00816E40 /* SceneUpdate.swift in Sources */,
 				659F6598219E61B000F5593D /* GameActor.swift in Sources */,
 				65BE41AA21A1EF8500500A17 /* GameObject.swift in Sources */,
