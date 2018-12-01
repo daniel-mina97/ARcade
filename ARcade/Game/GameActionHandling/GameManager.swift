@@ -80,7 +80,7 @@ class GameManager{
             numberOfShooters = Int.random(in: 0...3)
         }
         else{
-            numberOfShooters = Int.random(in: 0...aliens.count)
+            numberOfShooters = Int.random(in: 0...alienList.count)
         }
         var shooterList: [Int] = []
         for _ in 0..<numberOfShooters{
@@ -166,6 +166,7 @@ class GameManager{
     func nodeTapped(node: SCNNode) {
         let typeOfNode: Character = node.name!.removeFirst()
         let nodeID: Int = Int(node.name!)!
+        node.name = String(typeOfNode)+node.name!
         var gameAction: GameAction?
         if typeOfNode == "A" {
             let typeOfAlien: Alien.AlienType = aliens[nodeID]!.type
@@ -178,7 +179,6 @@ class GameManager{
         } else if typeOfNode == "P" {
             gameAction = GameAction(type: GameAction.ActionTypes.pickup, sourceID: localID, targetID: nodeID)
         }
-        node.name = String(typeOfNode)+node.name!
         if let gameAction = gameAction {
             if isHost {
                 queue.enqueue(act: gameAction)
