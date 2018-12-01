@@ -64,7 +64,7 @@ class SceneManager {
         return action
     }
     
-    func creatAlineBullet ()-> SCNNode{
+    func creatAlienBullet() -> SCNNode{
         
         let sphere = SCNSphere(radius: 0.01)
         let material = SCNMaterial()
@@ -78,6 +78,10 @@ class SceneManager {
         return sphereNode
     }
     
+    func bulletMovement(alienBullet: SCNNode, targetCoordinates: SCNVector3) -> SCNAction{
+        let action = SCNAction.move(to: targetCoordinates, duration: 30.0/Double(8))
+        return action
+    }
  
     func spawnObject(asset: String, scale: Float, id: Int, x: Float, y: Float, z: Float) -> SCNNode{
         let scene = SCNScene(named: asset)!

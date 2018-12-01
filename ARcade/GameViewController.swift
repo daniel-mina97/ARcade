@@ -141,7 +141,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addGestureRecognizer(tapGestureRecognizer)
         sceneView.scene = scene
         configureSession()
-        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
+        manager = GameManager(host: networkManager.isHost, scene: scene, SceneView: sceneView,  id: networkManager.playerID)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         if networkManager.isHost {
             networkManager.startHosting()
