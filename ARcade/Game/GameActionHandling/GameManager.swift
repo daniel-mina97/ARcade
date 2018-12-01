@@ -19,6 +19,7 @@ enum GameState{
 
 class GameManager{
     var sceneManager: SceneManager
+    var ARSceneView: ARSCNView
     var players: [Int: Player]
     var aliens: [Int: Alien]
     var targetList: [Int]
@@ -33,10 +34,11 @@ class GameManager{
     
     static let MAX_ALIENS: Int = 15
     
-    init(host: Bool, scene: SCNScene, id: Int) {
+    init(host: Bool, scene: SCNScene, SceneView: ARSCNView, id: Int) {
         sessionState = .startup
         queue = GameActionQueue()
         sceneManager = SceneManager(scene: scene)
+        ARSceneView = SceneView
         isHost = host
         players = [:]
         aliens = [:]
@@ -144,8 +146,14 @@ class GameManager{
             }
         case .alienShootPlayer:
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                // players[action.targetID] = nil
-                // We don't want to just kick the player out...
+                
+                //find the coordinate matrix of the player
+                let coordinateMatrix: simd_float4x4 = (ARSceneView.session.currentFrame?.camera.transform ?? nil)!
+                
+                //retrieve the first 3 values of the last column of the coordinate matrix to find the  x, y, z location
+                let targetLocation = SCNVector3(coordinateMatrix.columns.3.x, coordinateMatrix.columns.3.y, coordinateMatrix.columns.3.z)
+                
+                sceneManager.bulletMovement(alienBullet: sceneManager.creatAlienBullet(), targetCoordinates: targetLocation)
             }
             break
         case .alienShootCity:
