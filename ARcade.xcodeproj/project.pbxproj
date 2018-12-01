@@ -27,6 +27,7 @@
 		A99E49BA21755B2E006858D0 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99E49B921755B2E006858D0 /* MainMenuViewController.swift */; };
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
+		A9CD2BEC21B308B40028CE41 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD2BEB21B308B40028CE41 /* Queue.swift */; };
 		D509C84921B32153009343F6 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84621B32153009343F6 /* JoinButton.swift */; };
 		D509C84A21B32153009343F6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84721B32153009343F6 /* SettingButton.swift */; };
 		D509C84B21B32153009343F6 /* HostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84821B32153009343F6 /* HostButton.swift */; };
@@ -57,6 +58,7 @@
 		A99E49B921755B2E006858D0 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
+		A9CD2BEB21B308B40028CE41 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		D509C84621B32153009343F6 /* JoinButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
 		D509C84721B32153009343F6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		D509C84821B32153009343F6 /* HostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostButton.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				65C131112153254C00A79DE6 /* AppDelegate.swift */,
 				65C131152153254C00A79DE6 /* GameViewController.swift */,
 				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
+				A9CD2BEB21B308B40028CE41 /* Queue.swift */,
 				A94A083421A0A3960078E5C8 /* SceneHandling */,
 				A95DFCD8219D07F60069549D /* Game */,
 				A95DFCD7219D07900069549D /* ViewControllers */,
@@ -275,6 +278,7 @@
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
 				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */,
+				A9CD2BEC21B308B40028CE41 /* Queue.swift in Sources */,
 				D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */,
 				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
