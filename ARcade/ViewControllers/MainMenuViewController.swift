@@ -25,12 +25,7 @@ class MainMenuViewController: UIViewController {
         
     }
     
-    @IBAction func joinSession() {
-        netManager = NetworkManager(host: false, displayName: UserDefaults.standard.object(forKey: "name") as! String)
-        let browser = MCBrowserViewController(serviceType: (netManager?.gameServiceType)!, session: (netManager?.session)!)
-        browser.delegate = self
-        present(browser, animated: true)
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,5 +43,12 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
         print("You were accepted")
+        
+        let gvc = GameViewController()
+        
+        gvc.networkManager = netManager
+        
+        self.present(gvc, animated: true, completion: nil)
+        
     }
 }
