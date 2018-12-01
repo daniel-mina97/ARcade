@@ -10,8 +10,6 @@ import UIKit
 import SceneKit
 import ARKit
 
-
-
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
     enum SessionState{
@@ -27,9 +25,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var PlayerHealyBar: UIProgressView!
-    
-    
-    
     
     var manager: GameManager!
     var networkManager: NetworkManager!
@@ -80,6 +75,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if manager.sessionState == .ended{
             self.performSegue(withIdentifier: "returnToMainMenu", sender: self)
         }
+        if manager.sessionState != .ongoing {
+            return
+        }
         let location = sender.location(in: sceneView)
         let result = sceneView.hitTest(location, options: nil)
 
@@ -108,14 +106,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if state == .lookingForPlane{
             if let planeAnchor = anchor as? ARPlaneAnchor{
                 state = .cityPlaced
-                cancelButton.isHidden = false
-                saveButton.isHidden = false
                 cityAnchor = anchor
                 
                 let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                 let planeNode = SCNNode()
-                planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
+                
                 planeNode.transform = SCNMatrix4MakeRotation(-Float.pi/2, 1, 0, 0)
+                planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
                 
                 let gridMaterial = SCNMaterial()
                 gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
@@ -124,6 +121,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 node.addChildNode(planeNode)
                 cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
                 cityPlaneNode = node
+                print("\(planeAnchor.center.x) \(planeAnchor.center.y) \(planeAnchor.center.z)")
+                print("\(planeNode.position.x) \(planeNode.position.y) \(planeNode.position.z)")
+                print("\(cityNode?.position.x) \(cityNode?.position.y) \(cityNode?.position.z)")
             }else{
                 return
             }
@@ -134,20 +134,20 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         // Create classes
         startGameButton.isHidden = true
+        saveButton.isHidden = true
+        cancelButton.isHidden = true
         state = .lookingForPlane
         let scene = SCNScene()
-        // Set the view's delegate
         sceneView.delegate = self
-        // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(tapGestureRecognizer)
-        
-        networkManager = NetworkManager(host: true)
-        // Set the scene to the view
         sceneView.scene = scene
         configureSession()
         manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        if networkManager.isHost {
+            networkManager.startHosting()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

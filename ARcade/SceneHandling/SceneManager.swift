@@ -86,33 +86,34 @@ class SceneManager {
         for childNode in sceneChildNodes{
             node.addChildNode(childNode)
         }
-        node.position = SCNVector3(x: x, y: y, z: z)
         node.scale = SCNVector3(x: scale, y: scale, z: scale)
+        node.position = SCNVector3(x: x, y: y, z: z)
         node.name = String(id)
         return node
     }
     
     func spawnAlienDiver(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_diver.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/diving_alien_ship.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienShooter(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_normal.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/basic_alien_shooting_ship.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienMultiTakedown(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_normal.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/multi_takedown_alien_ship.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienBoss(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/alien_normal.dae", scale: 0.2, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     
-    func spawnCity(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/ship.scn", scale: 0.1, id: 0, x: x, y: y, z: z)
+    func spawnCity(id: Int = -1, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.01, id: id, x: x, y: y, z: z)
+        //return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     
     func spawnPickup(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/pickup.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/health_pickup.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
 }

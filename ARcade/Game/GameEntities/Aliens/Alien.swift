@@ -48,6 +48,8 @@ class Alien: GameActor {
     
     func takeDamage(fromPlayerNumber playerNumber: Int) -> GameActor.lifeState {
         /// Specific implementation for MultiTakeDownType alien
+        print("LOOK HERE: \(Alien.numOfPlayers)")
+        print("LOOK HERE: \(listOfIdentifiers.count)")
         if (!listOfIdentifiers.contains(playerNumber)){
             listOfIdentifiers.append(playerNumber)
         }
