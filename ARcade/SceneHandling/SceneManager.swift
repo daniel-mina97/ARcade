@@ -86,8 +86,8 @@ class SceneManager {
         for childNode in sceneChildNodes{
             node.addChildNode(childNode)
         }
-        node.position = SCNVector3(x: x, y: y, z: z)
         node.scale = SCNVector3(x: scale, y: scale, z: scale)
+        node.position = SCNVector3(x: x, y: y, z: z)
         node.name = String(id)
         return node
     }
@@ -108,8 +108,9 @@ class SceneManager {
         return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     
-    func spawnCity(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.1, id: 0, x: x, y: y, z: z)
+    func spawnCity(id: Int = -1, x: Float, y: Float, z: Float) -> SCNNode{
+        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.01, id: id, x: x, y: y, z: z)
+        //return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     
     func spawnPickup(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
