@@ -30,6 +30,9 @@
 		D509C84221B31CEC009343F6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C83F21B31CEC009343F6 /* SettingButton.swift */; };
 		D509C84321B31CEC009343F6 /* HostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84021B31CEC009343F6 /* HostButton.swift */; };
 		D509C84421B31CEC009343F6 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84121B31CEC009343F6 /* JoinButton.swift */; };
+		D509C84921B32153009343F6 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84621B32153009343F6 /* JoinButton.swift */; };
+		D509C84A21B32153009343F6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84721B32153009343F6 /* SettingButton.swift */; };
+		D509C84B21B32153009343F6 /* HostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84821B32153009343F6 /* HostButton.swift */; };
 		D50EBD6221AA1DE80050A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */; };
 		D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B5A2A21AA1092002BA556 /* AlienFactory.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +63,9 @@
 		D509C83F21B31CEC009343F6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		D509C84021B31CEC009343F6 /* HostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostButton.swift; sourceTree = "<group>"; };
 		D509C84121B31CEC009343F6 /* JoinButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
+		D509C84621B32153009343F6 /* JoinButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
+		D509C84721B32153009343F6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		D509C84821B32153009343F6 /* HostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostButton.swift; sourceTree = "<group>"; };
 		D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D57B5A2A21AA1092002BA556 /* AlienFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +131,7 @@
 				65C131132153254C00A79DE6 /* art.scnassets */,
 				65C131172153254C00A79DE6 /* Main.storyboard */,
 				D509C83821B31BCE009343F6 /* CustomButtons */,
+				D509C84521B3212D009343F6 /* CustomButtons */,
 				65C1311A2153254F00A79DE6 /* Assets.xcassets */,
 				65C1311F2153254F00A79DE6 /* Info.plist */,
 				D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */,
@@ -184,6 +191,12 @@
 				D509C84021B31CEC009343F6 /* HostButton.swift */,
 				D509C84121B31CEC009343F6 /* JoinButton.swift */,
 				D509C83F21B31CEC009343F6 /* SettingButton.swift */,
+		D509C84521B3212D009343F6 /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				D509C84821B32153009343F6 /* HostButton.swift */,
+				D509C84621B32153009343F6 /* JoinButton.swift */,
+				D509C84721B32153009343F6 /* SettingButton.swift */,
 			);
 			path = CustomButtons;
 			sourceTree = "<group>";
@@ -269,6 +282,7 @@
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
+				D509C84A21B32153009343F6 /* SettingButton.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
 				65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */,
 				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
@@ -281,6 +295,8 @@
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
 				A95DFCE8219D0EA00069549D /* City.swift in Sources */,
 				D509C84221B31CEC009343F6 /* SettingButton.swift in Sources */,
+				D509C84921B32153009343F6 /* JoinButton.swift in Sources */,
+				D509C84B21B32153009343F6 /* HostButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
