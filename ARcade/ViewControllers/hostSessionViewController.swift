@@ -20,7 +20,7 @@ class hostSessionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        netManager = NetworkManager(host: true)
+        netManager = NetworkManager(host: true, displayName: UserDefaults.standard.object(forKey: "name") as! String)
     }
 
     override func didReceiveMemoryWarning() {
