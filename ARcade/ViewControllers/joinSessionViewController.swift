@@ -7,34 +7,40 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
-class joinSessionViewController: UIViewController, UITableViewDelegate {
+class joinSessionViewController: UIViewController {
+    
+    var netManager: NetworkManager?
     
     @IBOutlet weak var table: UITableView!
-    
-    
-    var network: NetworkManager?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dest = segue.destination as! GameViewController
         dest.networkManager = network
     }
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        table.
         network = NetworkManager(host: false)
-        network?.browser.
         
-        
-        
+    }
+    
+    override func viewDidAppear(_ bool: Bool) {
+        let browser = MCBrowserViewController(serviceType: (netManager?.gameServiceType)!, session: (netManager?.session)!)
+        browser.delegate = self
+        present(browser, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func joinSession() {
+        
     }
     
 
@@ -48,4 +54,14 @@ class joinSessionViewController: UIViewController, UITableViewDelegate {
     }
     */
 
+}
+
+extension joinSessionViewController: MCBrowserViewControllerDelegate {
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true)
+    }
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        dismiss(animated: true)
+    }
 }

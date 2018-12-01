@@ -17,16 +17,14 @@ class hostSessionViewController: UIViewController {
         let dst = segue.destination as! GameViewController
         dst.networkManager = netManager
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         netManager = NetworkManager(host: true)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

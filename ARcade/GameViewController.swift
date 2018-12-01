@@ -10,8 +10,6 @@ import UIKit
 import SceneKit
 import ARKit
 
-
-
 class GameViewController: UIViewController, ARSCNViewDelegate {
     
     enum SessionState{
@@ -27,9 +25,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var PlayerHealyBar: UIProgressView!
-    
-    
-    
     
     var manager: GameManager!
     var networkManager: NetworkManager!
@@ -136,18 +131,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         startGameButton.isHidden = true
         state = .lookingForPlane
         let scene = SCNScene()
-        // Set the view's delegate
         sceneView.delegate = self
-        // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(tapGestureRecognizer)
-        
-        networkManager = NetworkManager(host: true)
-        // Set the scene to the view
         sceneView.scene = scene
         configureSession()
         manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        if networkManager.isHost {
+            networkManager.startHosting()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
