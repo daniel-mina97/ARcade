@@ -154,7 +154,9 @@ class GameManager{
                 
                 let target = SCNVector3(targetCoordinates.columns.3.x, targetCoordinates.columns.3.y, targetCoordinates.columns.3.z)
                 
-                sceneManager.bulletMovement(alienBullet: sceneManager.creatAlienBullet(), targetCoordinates: target)
+                let bulletAction = sceneManager.bulletMovement(alienBullet: sceneManager.creatAlienBullet(), targetCoordinates: target)
+                
+                aliens[action.sourceID]!.node?.runAction(bulletAction, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienShootCity, sourceID: self.aliens[action.sourceID]!.identifier, targetID: 0))})
             }
             break
         case .alienShootCity:
