@@ -116,7 +116,6 @@
 		65C131102153254C00A79DE6 /* ARcade */ = {
 			isa = PBXGroup;
 			children = (
-				D509C83821B31BCE009343F6 /* CustomButtons */,
 				65C131112153254C00A79DE6 /* AppDelegate.swift */,
 				65C131152153254C00A79DE6 /* GameViewController.swift */,
 				A9239174219DBA9B00D73541 /* NetworkManager.swift */,
@@ -125,6 +124,7 @@
 				A95DFCD7219D07900069549D /* ViewControllers */,
 				65C131132153254C00A79DE6 /* art.scnassets */,
 				65C131172153254C00A79DE6 /* Main.storyboard */,
+				D509C83821B31BCE009343F6 /* CustomButtons */,
 				65C1311A2153254F00A79DE6 /* Assets.xcassets */,
 				65C1311F2153254F00A79DE6 /* Info.plist */,
 				D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */,
