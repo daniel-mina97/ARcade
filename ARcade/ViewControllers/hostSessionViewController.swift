@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class hostSessionViewController: UIViewController {
-
+    
+    var netManager: NetworkManager?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dst = segue.destination as! GameViewController
+        dst.networkManager = netManager
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        netManager = NetworkManager(host: true)
         // Do any additional setup after loading the view.
     }
 
