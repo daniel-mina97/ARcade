@@ -75,6 +75,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if manager.sessionState == .ended{
             self.performSegue(withIdentifier: "returnToMainMenu", sender: self)
         }
+        if manager.sessionState != .ongoing {
+            return
+        }
         let location = sender.location(in: sceneView)
         let result = sceneView.hitTest(location, options: nil)
 
@@ -103,14 +106,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if state == .lookingForPlane{
             if let planeAnchor = anchor as? ARPlaneAnchor{
                 state = .cityPlaced
-                cancelButton.isHidden = false
-                saveButton.isHidden = false
                 cityAnchor = anchor
                 
                 let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                 let planeNode = SCNNode()
-                planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
+                
                 planeNode.transform = SCNMatrix4MakeRotation(-Float.pi/2, 1, 0, 0)
+                planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
                 
                 let gridMaterial = SCNMaterial()
                 gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
@@ -119,6 +121,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 node.addChildNode(planeNode)
                 cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
                 cityPlaneNode = node
+                print("\(planeAnchor.center.x) \(planeAnchor.center.y) \(planeAnchor.center.z)")
+                print("\(planeNode.position.x) \(planeNode.position.y) \(planeNode.position.z)")
+                print("\(cityNode?.position.x) \(cityNode?.position.y) \(cityNode?.position.z)")
             }else{
                 return
             }
