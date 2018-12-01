@@ -48,5 +48,11 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
         print("You were accepted")
+        
+        let gvc = GameViewController()
+        
+        gvc.networkManager = netManager
+        
+        self.present(gvc, animated: true, completion: nil)
     }
 }
