@@ -107,6 +107,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if let planeAnchor = anchor as? ARPlaneAnchor{
                 state = .cityPlaced
                 cityAnchor = anchor
+                DispatchQueue.main.async{
+                    self.cancelButton.isHidden = false
+                    self.saveButton.isHidden = false
+                }
                 
                 let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                 let planeNode = SCNNode()
