@@ -107,40 +107,28 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer){
-        if networkManager.isHost {
-            if manager.sessionState == .ended{
-                self.performSegue(withIdentifier: "returnToMainMenu", sender: self)
-            }
-            if manager.sessionState != .ongoing {
-                return
-            }
-            let location = sender.location(in: sceneView)
-            let result = sceneView.hitTest(location, options: nil)
-
-            if ((result.first?.node.name) != nil){ //if tapped alien
-                if let node = result.first?.node{
-                    var nodeTapped = node
-                    while(nodeTapped.parent?.parent?.parent != nil){
-                        nodeTapped = nodeTapped.parent!
-                    }
-                    manager.nodeTapped(node: nodeTapped)
-                }
-            }
+        if manager.sessionState == .ended{
+            self.performSegue(withIdentifier: "returnToMainMenu", sender: self)
         }
-        else {
-            //get node kidnapped
-            //game manager creates game action to send to host
+        if manager.sessionState != .ongoing {
+            return
+        }
+        let location = sender.location(in: sceneView)
+        let result = sceneView.hitTest(location, options: nil)
+
+        if ((result.first?.node.name) != nil){ //if tapped alien
+            if let node = result.first?.node{
+                var nodeTapped = node
+                while(nodeTapped.parent?.parent?.parent != nil){
+                    nodeTapped = nodeTapped.parent!
+                }
+                manager.nodeTapped(node: nodeTapped)
+            }
         }
     }
     
-    @IBAction func unwindToMainMenu() {
-        /*networkManager = NetworkManager(host: true)
-        // Set the scene to the view
-        sceneView.scene = scene
-        configureSession()
-        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]*/
-    }
+    
+    @IBAction func unwindToMainMenu() {}
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         //if session state is looking for plane
@@ -192,7 +180,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         PlayerHealthBar.setProgress(100, animated: false)
         configureSession()
-        manager = GameManager(scene: scene, SceneView: sceneView, netManager: networkManager)
+        manager = GameManager(scene: scene, netManager: networkManager)
         if networkManager.isHost{
             self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
@@ -201,7 +189,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // the player health progress bar
         
     }
     
