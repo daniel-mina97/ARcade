@@ -141,7 +141,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 manager.sceneManager.setSceneNode(node: node)
                 print("\(planeAnchor.center.x) \(planeAnchor.center.y) \(planeAnchor.center.z)")
                 print("\(planeNode.position.x) \(planeNode.position.y) \(planeNode.position.z)")
-                print("\(cityNode?.position.x) \(cityNode?.position.y) \(cityNode?.position.z)")
+                print("\(String(describing: cityNode?.position.x)) \(String(describing: cityNode?.position.y)) \(String(describing: cityNode?.position.z))")
             }else{
                 return
             }

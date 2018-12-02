@@ -132,14 +132,14 @@ class GameManager{
         
         switch action.type {
         case .playerShootAlien:
-            print(aliens[action.targetID]?.health)
+            print(aliens[action.targetID]?.health ?? -10)
             if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
             break
         case .playerShootMultiTakedown:
-            print(aliens[action.targetID]?.health)
+            print(aliens[action.targetID]?.health ?? -10)
             if aliens[action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
@@ -169,7 +169,7 @@ class GameManager{
     }
     
     func nodeTapped(node: SCNNode) {
-        print(node.name)
+        print(node.name ?? "--unknown")
         if node.name == "-1" {
             return
         }
