@@ -19,6 +19,7 @@ enum GameState{
 
 class GameManager{
     var sceneManager: SceneManager
+    var ARSceneView: ARSCNView
     var players: [Int: Player]
     var aliens: [Int: Alien]
     var targetList: [Int]
@@ -33,10 +34,11 @@ class GameManager{
     
     static let MAX_ALIENS: Int = 15
     
-    init(host: Bool, scene: SCNScene, id: Int) {
+    init(host: Bool, scene: SCNScene, SceneView: ARSCNView, id: Int) {
         sessionState = .startup
         queue = GameActionQueue()
         sceneManager = SceneManager(scene: scene)
+        ARSceneView = SceneView
         isHost = host
         players = [:]
         aliens = [:]
@@ -109,12 +111,24 @@ class GameManager{
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
             aliens[alien.identifier] = alien
-            let action = sceneManager.getMoveAction(alien: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
+            let action = sceneManager.getMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
             //add alien crash into city gameaction
             alien.node?.runAction(action, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienShootCity, sourceID: alien.identifier, targetID: 0))})
             // get coordinates relative to city location, not local coordinates
             // pass SceneUpdate
         }
+    }
+    
+    
+    func AlienShootCity(alienID: Int){
+        
+        var alienPostion: SCNVector3 = (aliens[alienID]?.node?.position)!
+        var cityPostion : SCNVector3 = (city.node?.position)!
+        
+        var bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
+        let moveAction : SCNAction = sceneManager.getMoveAction(object: bullet, to: cityPostion, speed: 20)
+        
+        bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
     }
     
     func getSpawnCoordinates() -> Coordinate3D {
@@ -149,11 +163,12 @@ class GameManager{
             //send bullet -- depends on player location
             //send to peer
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                // players[action.targetID] = nil
-                // We don't want to just kick the player out...
             }
             break
         case .alienShootCity:
+            
+            AlienShootCity(alienID: action.sourceID)
+            
             if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 //Game Ends
                 //Players Lose
