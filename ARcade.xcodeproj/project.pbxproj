@@ -21,7 +21,6 @@
 		A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083721A0A3D30078E5C8 /* SceneManager.swift */; };
 		A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */; };
 		A95DFCDC219D087B0069549D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDB219D087B0069549D /* GameManager.swift */; };
-		A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCDF219D09390069549D /* GameActionQueue.swift */; };
 		A95DFCE4219D0E880069549D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE3219D0E880069549D /* Player.swift */; };
 		A95DFCE6219D0E940069549D /* Alien.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE5219D0E940069549D /* Alien.swift */; };
 		A95DFCE8219D0EA00069549D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DFCE7219D0EA00069549D /* City.swift */; };
@@ -51,7 +50,6 @@
 		A94A083721A0A3D30078E5C8 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate3D.swift; sourceTree = "<group>"; };
 		A95DFCDB219D087B0069549D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		A95DFCDF219D09390069549D /* GameActionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionQueue.swift; sourceTree = "<group>"; };
 		A95DFCE3219D0E880069549D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		A95DFCE5219D0E940069549D /* Alien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alien.swift; sourceTree = "<group>"; };
 		A95DFCE7219D0EA00069549D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				A95DFCDB219D087B0069549D /* GameManager.swift */,
-				A95DFCDF219D09390069549D /* GameActionQueue.swift */,
 				65B838A82194898100F5FD91 /* GameAction.swift */,
 			);
 			path = GameActionHandling;
@@ -273,7 +270,6 @@
 				65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */,
 				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
 				A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */,
-				A95DFCE0219D09390069549D /* GameActionQueue.swift in Sources */,
 				A94A083821A0A3D30078E5C8 /* SceneManager.swift in Sources */,
 				A9CD2BEC21B308B40028CE41 /* Queue.swift in Sources */,
 				D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */,

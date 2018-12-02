@@ -51,9 +51,9 @@ extension NetworkManager: MCSessionDelegate {
             if let data = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScenePeerInitialization.self, GameAction.self, SceneUpdate.self], from: data) {
                 switch data {
                 case let gameAction as GameAction:
-                    print("INFO: GameAction Detected.")
+                    print("INFO: GameAction Detected. \(gameAction.sourceID)")
                 case let sceneUpdate as SceneUpdate:
-                    print("INFO: SceneUpdate Detected.")
+                    print("INFO: SceneUpdate Detected. \(sceneUpdate.type)")
                 case let beginningWorldState as ScenePeerInitialization:
                     print("INFO: ScenePeerInitialization recieved.")
                 default:
