@@ -14,8 +14,10 @@ class hostSessionViewController: UIViewController {
     var netManager: NetworkManager?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dst = segue.destination as! GameViewController
-        dst.networkManager = netManager
+        if (segue.identifier == "toGame"){
+            let dst = segue.destination as! GameViewController
+            dst.networkManager = netManager
+        }
     }
 
     override func viewDidLoad() {

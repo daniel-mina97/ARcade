@@ -28,7 +28,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     var manager: GameManager!
     var networkManager: NetworkManager!
-    var cityPlaneNode: SCNNode?
+    var baseNode: SCNNode?
+    var gridNode: SCNNode?
     var cityNode: SCNNode?
     var cityAnchor: ARAnchor?
     var state: SessionState = .lookingForPlane
@@ -44,24 +45,33 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func cancelCityPlane(_ sender: UIButton) {
-        if let oldPlaneNode = cityPlaneNode {
-            oldPlaneNode.removeFromParentNode()
+        if let oldGridNode = gridNode {
+            oldGridNode.removeFromParentNode()
         }
-        if let oldCityNode = cityPlaneNode {
+        if let oldCityNode = cityNode {
             oldCityNode.removeFromParentNode()
         }
+        if let oldBaseNode = baseNode {
+            oldBaseNode.removeFromParentNode()
+        }
+        
+        saveButton.isHidden = true
+        cancelButton.isHidden = true
+        
         state = .lookingForPlane
     }
     
     @IBAction func saveCityPlane(_ sender: UIButton) {
         //sessionstate is startup game
-        cityPlaneNode?.removeFromParentNode()
-        state = .waitingForPeers
-        cancelButton.isHidden = true
-        saveButton.isHidden = true
-        
-        if networkManager.isHost{
-            startGameButton.isHidden = false
+        if state == .cityPlaced {
+            gridNode?.removeFromParentNode()
+            state = .waitingForPeers
+            cancelButton.isHidden = true
+            saveButton.isHidden = true
+            
+            if networkManager.isHost{
+                startGameButton.isHidden = false
+            }
         }
     }
     
@@ -84,7 +94,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if ((result.first?.node.name) != nil){ //if tapped alien
             if let node = result.first?.node{
                 var nodeTapped = node
-                while(nodeTapped.parent?.parent != nil){
+                while(nodeTapped.parent?.parent?.parent != nil){
                     nodeTapped = nodeTapped.parent!
                 }
                 manager.nodeTapped(node: nodeTapped)
@@ -107,6 +117,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if let planeAnchor = anchor as? ARPlaneAnchor{
                 state = .cityPlaced
                 cityAnchor = anchor
+                DispatchQueue.main.async{
+                    self.cancelButton.isHidden = false
+                    self.saveButton.isHidden = false
+                }
                 
                 let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                 let planeNode = SCNNode()
@@ -118,9 +132,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
                 plane.materials = [gridMaterial]
                 planeNode.geometry = plane
+                sceneView.scene.rootNode.addChildNode(node)
                 node.addChildNode(planeNode)
+                baseNode = node
+                gridNode = planeNode
                 cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
-                cityPlaneNode = node
+                node.addChildNode(cityNode!)
+                manager.sceneManager.setSceneNode(node: node)
                 print("\(planeAnchor.center.x) \(planeAnchor.center.y) \(planeAnchor.center.z)")
                 print("\(planeNode.position.x) \(planeNode.position.y) \(planeNode.position.z)")
                 print("\(cityNode?.position.x) \(cityNode?.position.y) \(cityNode?.position.z)")
@@ -134,6 +152,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         // Create classes
         startGameButton.isHidden = true
+        saveButton.isHidden = true
+        cancelButton.isHidden = true
         state = .lookingForPlane
         let scene = SCNScene()
         sceneView.delegate = self
