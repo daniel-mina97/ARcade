@@ -28,9 +28,7 @@
 		A9C1672921669C82006C5A7F /* hostSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672821669C82006C5A7F /* hostSessionViewController.swift */; };
 		A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C1672C21669D13006C5A7F /* settingsViewController.swift */; };
 		A9CD2BEC21B308B40028CE41 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD2BEB21B308B40028CE41 /* Queue.swift */; };
-		D509C84921B32153009343F6 /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84621B32153009343F6 /* JoinButton.swift */; };
-		D509C84A21B32153009343F6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84721B32153009343F6 /* SettingButton.swift */; };
-		D509C84B21B32153009343F6 /* HostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84821B32153009343F6 /* HostButton.swift */; };
+		D509C84B21B32153009343F6 /* CustomB.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C84821B32153009343F6 /* CustomB.swift */; };
 		D50EBD6221AA1DE80050A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */; };
 		D57B5A2B21AA1092002BA556 /* AlienFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57B5A2A21AA1092002BA556 /* AlienFactory.swift */; };
 /* End PBXBuildFile section */
@@ -59,9 +57,7 @@
 		A9C1672821669C82006C5A7F /* hostSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostSessionViewController.swift; sourceTree = "<group>"; };
 		A9C1672C21669D13006C5A7F /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		A9CD2BEB21B308B40028CE41 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		D509C84621B32153009343F6 /* JoinButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
-		D509C84721B32153009343F6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
-		D509C84821B32153009343F6 /* HostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostButton.swift; sourceTree = "<group>"; };
+		D509C84821B32153009343F6 /* CustomB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomB.swift; sourceTree = "<group>"; };
 		D50EBD6121AA1DE80050A166 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D57B5A2A21AA1092002BA556 /* AlienFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlienFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,9 +180,7 @@
 		D509C84521B3212D009343F6 /* CustomButtons */ = {
 			isa = PBXGroup;
 			children = (
-				D509C84821B32153009343F6 /* HostButton.swift */,
-				D509C84621B32153009343F6 /* JoinButton.swift */,
-				D509C84721B32153009343F6 /* SettingButton.swift */,
+				D509C84821B32153009343F6 /* CustomB.swift */,
 			);
 			path = CustomButtons;
 			sourceTree = "<group>";
@@ -271,7 +265,6 @@
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,
-				D509C84A21B32153009343F6 /* SettingButton.swift in Sources */,
 				65C131162153254C00A79DE6 /* GameViewController.swift in Sources */,
 				65C131122153254C00A79DE6 /* AppDelegate.swift in Sources */,
 				A9239175219DBA9B00D73541 /* NetworkManager.swift in Sources */,
@@ -283,8 +276,7 @@
 				A95DFCE6219D0E940069549D /* Alien.swift in Sources */,
 				A95DFCE4219D0E880069549D /* Player.swift in Sources */,
 				A95DFCE8219D0EA00069549D /* City.swift in Sources */,
-				D509C84921B32153009343F6 /* JoinButton.swift in Sources */,
-				D509C84B21B32153009343F6 /* HostButton.swift in Sources */,
+				D509C84B21B32153009343F6 /* CustomB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
