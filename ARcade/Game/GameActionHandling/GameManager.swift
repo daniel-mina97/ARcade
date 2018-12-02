@@ -119,6 +119,15 @@ class GameManager{
         }
     }
     
+    
+    func AlienShoot(){
+        
+        let alienNode: SCNNode = sceneManager.
+        
+    
+        
+    }
+    
     func getSpawnCoordinates() -> Coordinate3D {
         let xSign: Int = [-1,1].randomElement()!
         let zSign: Int = [-1,1].randomElement()!
