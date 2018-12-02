@@ -17,7 +17,7 @@ class NetworkManager: NSObject {
     let session: MCSession
     var advertiser: MCAdvertiserAssistant?
     var browser: MCBrowserViewController?
-    let gameServiceType: String = "ARcade-session-share"
+    let gameServiceType: String = "ARcadeSession"
 
     init(host: Bool, displayName: String){
         isHost = host
