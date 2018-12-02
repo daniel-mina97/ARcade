@@ -54,6 +54,10 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         if let oldBaseNode = baseNode {
             oldBaseNode.removeFromParentNode()
         }
+        
+        saveButton.isHidden = true
+        cancelButton.isHidden = true
+        
         state = .lookingForPlane
     }
     
