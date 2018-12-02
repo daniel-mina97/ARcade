@@ -17,7 +17,7 @@ class NetworkManager: NSObject {
     let session: MCSession
     var advertiser: MCAdvertiserAssistant?
     var browser: MCBrowserViewController?
-    let gameServiceType: String = "session-share"
+    let gameServiceType: String = "ARcade-session-share"
 
     init(host: Bool, displayName: String){
         isHost = host
@@ -63,6 +63,7 @@ extension NetworkManager: MCSessionDelegate {
                     print("INFO: SceneUpdate Detected. \(sceneUpdate.type)")
                 case let startingState as ScenePeerInitialization:
                     hostID = startingState.hostID
+                    print("INFO: ScenePeerInitialization Detected.")
                 default:
                     print("ERROR: Unable to convert unarchived data to relevant data type.")
                 }
