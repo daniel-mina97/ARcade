@@ -21,10 +21,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var shareWorldButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
-    @IBOutlet weak var PlayerHealyBar: UIProgressView!
+    @IBOutlet weak var playerHealthBar: UIProgressView!
+    
     
     var manager: GameManager!
     var networkManager: NetworkManager!
@@ -32,13 +34,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var gridNode: SCNNode?
     var cityNode: SCNNode?
     var cityAnchor: ARAnchor?
+    var beginningScene: ScenePeerInitialization?
     var state: SessionState = .lookingForPlane
     
     func configureSession(){
         let configuration = ARWorldTrackingConfiguration()
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
-        configuration.planeDetection = .horizontal
+        if networkManager.isHost {
+            configuration.planeDetection = .horizontal
+        }
         configuration.isLightEstimationEnabled = true
         //do state checking here
         sceneView.session.run(configuration)
@@ -62,16 +67,37 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func saveCityPlane(_ sender: UIButton) {
-        //sessionstate is startup game
         if state == .cityPlaced {
             gridNode?.removeFromParentNode()
             state = .waitingForPeers
             cancelButton.isHidden = true
             saveButton.isHidden = true
+            shareWorldButton.isHidden = false
             
-            if networkManager.isHost{
-                startGameButton.isHidden = false
+            if let cityAnchor = cityAnchor {
+                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, planeNode: baseNode!, hostID: networkManager.session.myPeerID)
+            } else {
+                print("ERROR: Unable to construct beginning scene package. No cityAnchor found.")
             }
+            networkManager.startAdvertising()
+        }
+    }
+    
+    @IBAction func shareWorld(_ sender: UIButton) {
+        networkManager.stopAdvertising()
+        if let sceneToSend = beginningScene {
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: sceneToSend, requiringSecureCoding: false) else {
+                print("ERROR: Unable to encode beginningScene.")
+                return
+            }
+            do {
+                try networkManager.session.send(data, toPeers: networkManager.session.connectedPeers, with: .reliable)
+                print("INFO: Sent beginningScene to peers successfully.")
+            } catch {
+                print("ERROR: \(error)")
+            }
+        } else {
+            print("ERROR: No beginningScene available found to send to peers")
         }
     }
     
@@ -102,24 +128,40 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    @IBAction func unwindToMainMenu() {
-        /*networkManager = NetworkManager(host: true)
-        // Set the scene to the view
-        sceneView.scene = scene
-        configureSession()
-        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]*/
-    }
+    
+    @IBAction func unwindToMainMenu() {}
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         //if session state is looking for plane
-        if state == .lookingForPlane{
-            if let planeAnchor = anchor as? ARPlaneAnchor{
-                state = .cityPlaced
-                cityAnchor = anchor
-                DispatchQueue.main.async{
-                    self.cancelButton.isHidden = false
-                    self.saveButton.isHidden = false
+        if networkManager.isHost{
+            if state == .lookingForPlane {
+                if let planeAnchor = anchor as? ARPlaneAnchor {
+                    state = .cityPlaced
+                    cityAnchor = anchor
+                    DispatchQueue.main.async{
+                        self.cancelButton.isHidden = false
+                        self.saveButton.isHidden = false
+                    }
+                    
+                    let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+                    let planeNode = SCNNode()
+                    
+                    planeNode.transform = SCNMatrix4MakeRotation(-Float.pi/2, 1, 0, 0)
+                    planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
+                    
+                    let gridMaterial = SCNMaterial()
+                    gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
+                    plane.materials = [gridMaterial]
+                    planeNode.geometry = plane
+                    sceneView.scene.rootNode.addChildNode(node)
+                    node.addChildNode(planeNode)
+                    baseNode = node
+                    gridNode = planeNode
+                    cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
+                    node.addChildNode(cityNode!)
+                    manager.sceneManager.setSceneNode(node: node)
+                } else {
+                    return
                 }
                 
                 let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
@@ -150,8 +192,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Create classes
         startGameButton.isHidden = true
+        shareWorldButton.isHidden = true
         saveButton.isHidden = true
         cancelButton.isHidden = true
         state = .lookingForPlane
@@ -160,19 +202,17 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(tapGestureRecognizer)
         sceneView.scene = scene
+        playerHealthBar.setProgress(100, animated: false)
         configureSession()
-        manager = GameManager(host: networkManager.isHost, scene: scene, id: networkManager.playerID)
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-        if networkManager.isHost {
-            networkManager.startHosting()
+        manager = GameManager(scene: scene, netManager: networkManager)
+        if networkManager.isHost{
+            self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // the player health progress bar 
-        PlayerHealyBar.setProgress(100, animated: false)
         
     }
     

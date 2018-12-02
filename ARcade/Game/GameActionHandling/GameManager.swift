@@ -19,12 +19,13 @@ enum GameState{
 
 class GameManager{
     var sceneManager: SceneManager
-    var players: [Int: Player]
-    var aliens: [Int: Alien]
-    var targetList: [Int]
-    var city: City!
-    var queue: GameActionQueue!
-    var isHost: Bool
+    var networkManager: NetworkManager
+    var players: [Int: Player]?
+    var aliens: [Int: Alien]?
+    var targetList: [Int]?
+    var city: City?
+    var actionQueue: Queue<GameAction>?
+    var updateQueue: Queue<SceneUpdate>?
     var sessionState: GameState
     var spawnAlienTimer: Timer?
     var alienShotTimer: Timer?
@@ -33,29 +34,41 @@ class GameManager{
     
     static let MAX_ALIENS: Int = 15
     
-    init(host: Bool, scene: SCNScene, id: Int) {
+    init(scene: SCNScene, netManager: NetworkManager) {
+        networkManager = netManager
+        localID = netManager.playerID
         sessionState = .startup
-        queue = GameActionQueue()
+        
+        if networkManager.isHost{
+            actionQueue = Queue<GameAction>()
+            players = [:]
+            aliens = [:]
+            targetList = []
+        }
+        else{
+            updateQueue = Queue<SceneUpdate>()
+        }
+        
         sceneManager = SceneManager(scene: scene)
-        isHost = host
-        players = [:]
-        aliens = [:]
-        targetList = []
-        localID = id
     }
     
     func startGame(cityNode: SCNNode) {
         sessionState = .ongoing
         city = City(node: cityNode)
-        players[1] = Player(playerType: .balanced)
-        Alien.numOfPlayers = players.count
-        targetList.append(-1)
-        for player in players.keys{
-            targetList.append(player)
+        players![1] = Player(playerType: .balanced)
+        Alien.numOfPlayers = players!.count
+        targetList!.append(-1)
+        for player in players!.keys{
+            targetList!.append(player)
         }
-        spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnAlien), userInfo: nil, repeats: true)
-        actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(executeNextAction), userInfo: nil, repeats: true)
-        alienShotTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(createAlienShots), userInfo: nil, repeats: true)
+        if networkManager.isHost{
+            spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnAlien), userInfo: nil, repeats: true)
+            actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(executeNextAction), userInfo: nil, repeats: true)
+            alienShotTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(createAlienShots), userInfo: nil, repeats: true)
+        }
+        else {
+            //make update timer
+        }
     }
     
     func endGame() {
@@ -72,8 +85,8 @@ class GameManager{
     @objc func createAlienShots(){
         let numberOfShooters: Int
         var alienList: [Int] = []
-        for element in aliens.keys{
-            if aliens[element]?.type != Alien.AlienType.diving{
+        for element in aliens!.keys{
+            if aliens![element]?.type != Alien.AlienType.diving{
                 alienList.append(element)
             }
         }
@@ -90,7 +103,7 @@ class GameManager{
             shooterList.append(alienChosen)
         }
         for shooter in shooterList{
-            let target = targetList.randomElement()
+            let target = targetList!.randomElement()
             let action: GameAction
             if target == -1 {
                 action = GameAction(type: .alienShootCity, sourceID: shooter, targetID: target!)
@@ -98,69 +111,84 @@ class GameManager{
             else{
                 action = GameAction(type: .alienShootPlayer, sourceID: shooter, targetID: target!)
             }
-            queue.enqueue(act: action)
+            actionQueue!.enqueue(act: action)
         }
     }
     
     @objc func spawnAlien() {
-        if aliens.count >= GameManager.MAX_ALIENS {return}
+        if aliens!.count >= GameManager.MAX_ALIENS {return}
         if let alienType: Alien.AlienType = Alien.AlienTypeArray.randomElement() {
             let spawnCoordinates: SCNVector3 = getSpawnCoordinates().getVector()
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
-            aliens[alien.identifier] = alien
-            let action = sceneManager.getMoveAction(alien: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
-            //add alien crash into city gameaction
-            alien.node?.runAction(action, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienShootCity, sourceID: alien.identifier, targetID: 0))})
+            aliens![alien.identifier] = alien
+            let action = sceneManager.getMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
+            alien.node?.runAction(action, completionHandler: {self.actionQueue!.enqueue(act: GameAction(type: .alienCrashIntoCity, sourceID: alien.identifier, targetID: 0))})
             // get coordinates relative to city location, not local coordinates
             // pass SceneUpdate
         }
     }
     
+    
+    func AlienShootCity(alienID: Int){
+        let alienPostion: SCNVector3 = (aliens![alienID]?.node?.position)!
+        let cityPostion : SCNVector3 = (city!.node?.position)!
+        
+        let bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
+        let moveAction : SCNAction = sceneManager.getMoveAction(object: bullet, to: cityPostion, speed: 20)
+        
+        bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
+    }
+    
     func getSpawnCoordinates() -> Coordinate3D {
         let xSign: Int = [-1,1].randomElement()!
         let zSign: Int = [-1,1].randomElement()!
-        let xCoordinate: Float = city.node!.position.x + Float(xSign) * Float.random(in: 2.0...5.0)
-        let yCoordinate: Float = city.node!.position.y + Float.random(in: 0.2...1.0)
-        let zCoordinate: Float = city.node!.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
+        let xCoordinate: Float = city!.node!.position.x + Float(xSign) * Float.random(in: 2.0...5.0)
+        let yCoordinate: Float = city!.node!.position.y + Float.random(in: 0.2...1.0)
+        let zCoordinate: Float = city!.node!.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
         return Coordinate3D(x: xCoordinate, y: yCoordinate, z: zCoordinate)
     }
     
     @objc func executeNextAction() {
         
-        guard let action = queue.dequeue() else {return}
+        guard let action = actionQueue!.dequeue() else {return}
         
         switch action.type {
         case .playerShootAlien:
-            print(aliens[action.targetID]?.health ?? -10)
-            if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                aliens[action.targetID]!.node!.removeFromParentNode()
-                aliens[action.targetID] = nil
+            if aliens![action.targetID]!.takeDamage(from: players![action.sourceID]!.damage) == GameActor.lifeState.dead {
+                aliens![action.targetID]!.node!.removeFromParentNode()
+                aliens![action.targetID] = nil
             }
-            break
         case .playerShootMultiTakedown:
-            print(aliens[action.targetID]?.health ?? -10)
-            if aliens[action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
-                aliens[action.targetID]!.node!.removeFromParentNode()
-                aliens[action.targetID] = nil
+            if aliens![action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
+                aliens![action.targetID]!.node!.removeFromParentNode()
+                aliens![action.targetID] = nil
             }
         case .alienShootPlayer:
-            //make bullet -- depends on alien location
-            //send bullet -- depends on player location
-            //send to peer
-            if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                // players[action.targetID] = nil
-                // We don't want to just kick the player out...
+            if players![action.targetID]!.takeDamage(from : aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
+                //send scene
             }
-            break
         case .alienShootCity:
-            if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+            
+            AlienShootCity(alienID: action.sourceID)
+            
+            if city!.takeDamage(from: aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
                 //Game Ends
                 //Players Lose
                 //send end game notification to other players
                 endGame()
             }
-            break
+        case .alienCrashIntoCity:
+            if city!.takeDamage(from: aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
+                //Game Ends
+                //Players Lose
+                //send end game notification to other players
+                endGame()
+            }
+            else {
+                aliens![action.sourceID]!.node!.removeFromParentNode()
+                aliens![action.sourceID] = nil
+            }
         case .pickup:
             // Pick it up
             break
@@ -178,7 +206,7 @@ class GameManager{
         node.name = String(typeOfNode)+node.name!
         var gameAction: GameAction?
         if typeOfNode == "A" {
-            let typeOfAlien: Alien.AlienType = aliens[nodeID]!.type
+            let typeOfAlien: Alien.AlienType = aliens![nodeID]!.type
             if typeOfAlien == Alien.AlienType.multiTakedown {
                 gameAction = GameAction(type: GameAction.ActionTypes.playerShootMultiTakedown, sourceID: localID, targetID: nodeID)
             } else {
@@ -189,10 +217,10 @@ class GameManager{
             gameAction = GameAction(type: GameAction.ActionTypes.pickup, sourceID: localID, targetID: nodeID)
         }
         if let gameAction = gameAction {
-            if isHost {
-                queue.enqueue(act: gameAction)
+            if networkManager.isHost {
+                actionQueue!.enqueue(act: gameAction)
             } else {
-                // send gameAction to host
+                networkManager.send(object: gameAction)
             }
         }
     }

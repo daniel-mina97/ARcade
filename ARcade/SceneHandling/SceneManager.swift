@@ -64,26 +64,28 @@ class SceneManager {
         return Int(node.name!)!
     }
     
-    func getMoveAction(alien: SCNNode, to city: SCNVector3, speed: Int) -> SCNAction{
+    func getMoveAction(object: SCNNode, to city: SCNVector3, speed: Int) -> SCNAction{
         let action =  SCNAction.move(to: city, duration: 30.0/Double(speed))
         return action
     }
     
-    func creatAlineBullet ()-> SCNNode{
+    
+    func creatAlienBullet(spawnPosition: SCNVector3) -> SCNNode{
         
         let sphere = SCNSphere(radius: 0.01)
         let material = SCNMaterial()
         
         material.diffuse.contents = UIColor.red
-        
         sphere.materials = [material]
         
         let sphereNode = SCNNode(geometry: sphere)
-        
+        sphereNode.position = spawnPosition
+        sphereNode.name = "-1"
+        add(node: sphereNode)
         return sphereNode
     }
     
- 
+   
     func spawnObject(asset: String, scale: Float, id: Int, x: Float, y: Float, z: Float) -> SCNNode{
         let scene = SCNScene(named: asset)!
         let node = SCNNode()
@@ -114,7 +116,7 @@ class SceneManager {
     }
     
     func spawnCity(id: Int = -1, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.01, id: id, x: x, y: y, z: z)
+        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.03, id: id, x: x, y: y, z: z)
         //return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     

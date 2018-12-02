@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-hD-p2h" customClass="JoinButton" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="52" y="269" width="215" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-hD-p2h" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="32" y="269" width="253" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Join a Session"/>
@@ -29,8 +29,8 @@
                                     <action selector="joinSession" destination="8Mo-Vt-LcN" eventType="touchUpInside" id="g9A-zx-8nY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup" customClass="HostButton" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="54" y="176" width="213" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="32" y="176" width="253" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Host a Session">
@@ -44,8 +44,8 @@
                                     <segue destination="Cu6-G7-HC3" kind="show" id="YYn-jr-gcp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuN-KP-Ujj" customClass="SettingButton" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="54" y="361" width="213" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuN-KP-Ujj" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="32" y="361" width="253" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Settings"/>
@@ -104,17 +104,10 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-oG-fdc">
-                                <rect key="frame" x="61" y="457" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <segue destination="URA-FR-vi0" kind="unwind" unwindAction="returnFromSettingsWithDestination:" id="bmW-XG-690"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PF1-gy-Y06">
-                                <rect key="frame" x="158" y="455" width="124" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PF1-gy-Y06" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="222" y="456" width="60" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Start">
                                     <color key="titleColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -125,15 +118,49 @@
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="toGame" id="9ye-cm-HQX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Session Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsI-5q-GtC">
+                                <rect key="frame" x="26" y="138" width="119" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
+                                <rect key="frame" x="166" y="138" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-oG-fdc" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="53" y="453" width="60" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="0.21700583759727876" blue="0.1005009442259388" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="URA-FR-vi0" kind="unwind" unwindAction="returnFromSettingsWithDestination:" id="bmW-XG-690"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="bottom" secondItem="PF1-gy-Y06" secondAttribute="bottom" constant="78" id="N8L-fk-Nxk"/>
+                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="trailing" secondItem="PF1-gy-Y06" secondAttribute="trailing" constant="38" id="OBK-h0-dyL"/>
+                            <constraint firstItem="5FV-oG-fdc" firstAttribute="leading" secondItem="jc5-Zx-LUF" secondAttribute="leading" constant="53" id="YrF-r6-owX"/>
+                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="bottom" secondItem="5FV-oG-fdc" secondAttribute="bottom" constant="81" id="sXX-g5-x5E"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jc5-Zx-LUF"/>
                     </view>
+                    <connections>
+                        <outlet property="SessionName" destination="5WS-Oy-My5" id="ugv-ad-zYQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h17-yS-meR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="URA-FR-vi0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="771" y="-532"/>
+            <point key="canvasLocation" x="767" y="38"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="8mo-Uw-Utm">
@@ -226,7 +253,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-lj-CEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5v9-dd-v8A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="585" y="970.77464788732391"/>
+            <point key="canvasLocation" x="-174" y="845"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -282,6 +309,14 @@
                                 <color key="progressTintColor" red="0.052362293004989624" green="0.96523267030715942" blue="0.36328887939453125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BW-t5-nrH" userLabel="Share World with Peers">
+                                <rect key="frame" x="80" y="518" width="160" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Share World with Peers"/>
+                                <connections>
+                                    <action selector="shareWorld:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Jwp-pT-C1g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -302,10 +337,11 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
-                        <outlet property="PlayerHealyBar" destination="Fbd-yW-wwO" id="IdF-Oo-CKC"/>
                         <outlet property="cancelButton" destination="COf-U5-1kM" id="9Dw-UJ-Y0f"/>
+                        <outlet property="playerHealthBar" destination="Fbd-yW-wwO" id="nFz-7F-tKY"/>
                         <outlet property="saveButton" destination="K7W-cz-U1x" id="xKL-q8-enm"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="shareWorldButton" destination="9BW-t5-nrH" id="LLL-j6-Kx7"/>
                         <outlet property="startGameButton" destination="x0V-bo-2SE" id="pIj-MZ-WnR"/>
                         <outlet property="tapGestureRecognizer" destination="LL6-Sh-pla" id="ld4-lC-ieW"/>
                         <segue destination="9qz-Os-0mu" kind="unwind" identifier="returnToMainMenu" unwindAction="returnFromSettingsWithDestination:" id="qEg-p5-B0M"/>

@@ -9,20 +9,30 @@
 import UIKit
 import MultipeerConnectivity
 
-class hostSessionViewController: UIViewController {
+class hostSessionViewController: UIViewController, UITextFieldDelegate {
     
     var netManager: NetworkManager?
+    
+    @IBOutlet weak var SessionName: UITextField!
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        SessionName.resignFirstResponder()
+        return true
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toGame"){
             let dst = segue.destination as! GameViewController
+            netManager = NetworkManager(host: true, displayName: SessionName.text!)
             dst.networkManager = netManager
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        netManager = NetworkManager(host: true, displayName: UserDefaults.standard.object(forKey: "name") as! String)
+        SessionName.delegate = self
+        SessionName.text = (UserDefaults.standard.object(forKey: "name") as! String)
     }
 
     override func didReceiveMemoryWarning() {

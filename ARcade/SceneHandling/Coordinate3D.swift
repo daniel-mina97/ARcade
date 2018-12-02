@@ -22,6 +22,12 @@ class Coordinate3D {
         self.z = z
     }
     
+    init(vector: SCNVector3) {
+        self.x = vector.x
+        self.y = vector.y
+        self.z = vector.z
+    }
+    
     func changeValues(xDiff: Float, yDiff: Float, zDiff: Float){
         x += xDiff
         y += yDiff

@@ -28,6 +28,8 @@ class settingsViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameField.delegate = self
