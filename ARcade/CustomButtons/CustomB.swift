@@ -1,5 +1,5 @@
 //
-//  SettingButton.swift
+//  HostSessionButton.swift
 //  ARcade
 //
 //  Created by Rudy on 11/28/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingButton: UIButton{
+class CustomB: UIButton{
     
     
     override func awakeFromNib(){
@@ -22,5 +22,4 @@ class SettingButton: UIButton{
         layer.cornerRadius = frame.height/2
         
     }
-    
 }
