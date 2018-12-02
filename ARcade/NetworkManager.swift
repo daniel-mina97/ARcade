@@ -25,9 +25,13 @@ class NetworkManager: NSObject {
         session = MCSession(peer: myPeerID)
     }
     
-    func startHosting() {
+    func startAdvertising() {
         advertiser = MCAdvertiserAssistant(serviceType: gameServiceType, discoveryInfo: nil, session: session)
         advertiser!.start()
+    }
+    
+    func stopAdvertising() {
+        advertiser!.stop()
     }
     
     func send<T>(object: T) {
