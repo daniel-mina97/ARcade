@@ -14,6 +14,7 @@ import SceneKit
 class SceneManager {
     
     var scene: SCNScene
+    var sceneNode: SCNNode?
     var cityPlaced: Bool = false
     
     init(scene: SCNScene){
@@ -37,8 +38,12 @@ class SceneManager {
             break
         }
         newAlienNode.name = "A" + newAlienNode.name!
-        scene.rootNode.addChildNode(newAlienNode)
+        sceneNode?.addChildNode(newAlienNode)
         return newAlienNode
+    }
+    
+    func setSceneNode (node: SCNNode) {
+        sceneNode = node
     }
     
     func makePickup(id: Int, at: SCNVector3) -> SCNNode{
@@ -48,7 +53,7 @@ class SceneManager {
     }
     
     func add(node: SCNNode){
-        scene.rootNode.addChildNode(node)
+        sceneNode?.addChildNode(node)
     }
     
     func remove(node: SCNNode){

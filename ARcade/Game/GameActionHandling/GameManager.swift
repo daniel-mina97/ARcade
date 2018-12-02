@@ -145,6 +145,9 @@ class GameManager{
                 aliens[action.targetID] = nil
             }
         case .alienShootPlayer:
+            //make bullet -- depends on alien location
+            //send bullet -- depends on player location
+            //send to peer
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 // players[action.targetID] = nil
                 // We don't want to just kick the player out...
