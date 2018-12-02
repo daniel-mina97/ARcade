@@ -14,6 +14,9 @@ class SceneUpdate: NSObject, NSCoding {
     enum UpdateTypes: String {
         case SpawnAlien
         case RemoveAlien
+        case SpawnPickup
+        case BulletShot
+        case EndGame
     }
     enum CodingKeys: String, CodingKey {
         case updateID

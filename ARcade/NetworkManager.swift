@@ -13,6 +13,7 @@ import MultipeerConnectivity
 class NetworkManager: NSObject {
     var isHost: Bool
     var playerID: Int
+    var hostID: MCPeerID
     let session: MCSession
     var advertiser: MCAdvertiserAssistant?
     var browser: MCBrowserViewController?
@@ -20,8 +21,8 @@ class NetworkManager: NSObject {
 
     init(host: Bool, displayName: String){
         isHost = host
-        playerID = 1
         let myPeerID: MCPeerID = MCPeerID(displayName: displayName)
+        playerID = myPeerID.hash
         session = MCSession(peer: myPeerID)
     }
     
@@ -41,7 +42,9 @@ class NetworkManager: NSObject {
                 return
         }
         do {
-            try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            if object is GameAction {
+                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            }
             print("INFO: Sent object of type \(T.self) to peers successfully.")
         } catch {
             print("ERROR: \(error)")
@@ -58,8 +61,8 @@ extension NetworkManager: MCSessionDelegate {
                     print("INFO: GameAction Detected. \(gameAction.sourceID)")
                 case let sceneUpdate as SceneUpdate:
                     print("INFO: SceneUpdate Detected. \(sceneUpdate.type)")
-                case let beginningWorldState as ScenePeerInitialization:
-                    print("INFO: ScenePeerInitialization recieved.")
+                case let startingState as ScenePeerInitialization:
+                    hostID = startingState.hostID
                 default:
                     print("ERROR: Unable to convert unarchived data to relevant data type.")
                 }
