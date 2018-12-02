@@ -30,53 +30,59 @@ class NetworkManager: NSObject {
         advertiser!.start()
     }
     
-    func send(worldUpdate: SceneUpdate) {
-        if session.connectedPeers.count > 0 {
-            do {
-                try session.send(NSKeyedArchiver.archivedData(withRootObject: worldUpdate, requiringSecureCoding: false), toPeers: session.connectedPeers, with: .reliable)
-            }
-            catch let error {
-                print("Error occured: \(error)")
-            }
-        }
-    }
-
-    func send(gameAction: GameAction) {
-        if session.connectedPeers.count > 0 {
-            do {
-                // should only send to host instead of all connected peers
-                guard let jsonData = GameActionToJson(action: gameAction) else {return}
-                try session.send(jsonData, toPeers: session.connectedPeers, with: .reliable)
+    func send<T>(object: T) {
+        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: true)
+            else {
+                print("ERROR: Unable to encode object of type \(T.self)")
                 return
-            }
-            catch let error {
-                print("Error occured: \(error)")
-            }
+        }
+        do {
+            try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            print("INFO: Sent object of type \(T.self) to peers successfully.")
+        } catch {
+            print("ERROR: \(error)")
         }
     }
+}
 
-    func GameActionToJson(action: GameAction) -> Data? {
-        let jsonEncoder = JSONEncoder()
+extension NetworkManager: MCSessionDelegate {
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
-            let jsonData = try jsonEncoder.encode(action)
-            return jsonData
+            if let data = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScenePeerInitialization.self, GameAction.self, SceneUpdate.self], from: data) {
+                switch data {
+                case let gameAction as GameAction:
+                    print("INFO: GameAction Detected.")
+                case let sceneUpdate as SceneUpdate:
+                    print("INFO: SceneUpdate Detected.")
+                case let beginningWorldState as ScenePeerInitialization:
+                    print("INFO: ScenePeerInitialization recieved.")
+                default:
+                    print("ERROR: Unable to convert unarchived data to relevant data type.")
+                }
+            }
+        } catch {
+            print("ERROR: \(error)")
         }
-        catch {
-            print("GameActionToJson failed.")
-        }
-        return nil
     }
-
-    func JsonToGameAction(json: Data) -> GameAction? {
-        let jsonDecoder = JSONDecoder()
-        do {
-            let recievedData = try jsonDecoder.decode(GameAction.self, from: json)
-            return recievedData
-        }
-        catch {
-            print("JsonToGameAction failed.")
-        }
-        return nil
+    
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        print("INFO: Peer \(peerID.displayName) changed state.")
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print("INFO: Stream recieved.")
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        print("INFO: Started receiving resource with name '\(resourceName)'")
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        print("INFO: Finished receiving resource with name '\(resourceName)'")
+    }
+    
+    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
+        print("INFO: Recieved certificate.")
     }
 }
 

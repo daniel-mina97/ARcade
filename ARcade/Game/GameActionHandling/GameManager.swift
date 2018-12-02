@@ -196,7 +196,6 @@ class GameManager{
     }
     
     func nodeTapped(node: SCNNode) {
-        print(node.name)
         if node.name == "-1" {
             return
         }
@@ -219,7 +218,6 @@ class GameManager{
             if isHost {
                 queue.enqueue(act: gameAction)
             } else {
-                // send gameAction to host
             }
         }
     }
