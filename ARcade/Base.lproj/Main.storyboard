@@ -93,9 +93,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are Hosting a Session" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6o-46-89d">
-                                <rect key="frame" x="-46" y="271" width="411" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are Hosting a Session" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6o-46-89d">
+                                <rect key="frame" x="61" y="273" width="198.5" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -112,26 +111,12 @@
                                     <color key="titleColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="toGame" id="9ye-cm-HQX"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Session Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsI-5q-GtC">
-                                <rect key="frame" x="26" y="138" width="119" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
-                                <rect key="frame" x="166" y="138" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-oG-fdc" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
                                 <rect key="frame" x="53" y="453" width="60" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -143,13 +128,49 @@
                                     <segue destination="URA-FR-vi0" kind="unwind" unwindAction="returnFromSettingsWithDestination:" id="bmW-XG-690"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7W-hE-wLi">
+                                <rect key="frame" x="39" y="64" width="240" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsI-5q-GtC">
+                                        <rect key="frame" x="10" y="54" width="220" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
+                                        <rect key="frame" x="147" y="50" width="78" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fsI-5q-GtC" firstAttribute="centerY" secondItem="H7W-hE-wLi" secondAttribute="centerY" id="H3A-8d-tZt"/>
+                                    <constraint firstItem="fsI-5q-GtC" firstAttribute="centerX" secondItem="H7W-hE-wLi" secondAttribute="centerX" id="HpW-JC-xIz"/>
+                                    <constraint firstAttribute="trailing" secondItem="5WS-Oy-My5" secondAttribute="trailing" constant="15" id="XbD-bI-Rdu"/>
+                                    <constraint firstItem="fsI-5q-GtC" firstAttribute="top" secondItem="H7W-hE-wLi" secondAttribute="top" constant="54" id="eOn-Xk-mYS"/>
+                                    <constraint firstItem="5WS-Oy-My5" firstAttribute="leading" secondItem="H7W-hE-wLi" secondAttribute="leading" constant="147" id="hZp-GO-Z8j"/>
+                                    <constraint firstItem="fsI-5q-GtC" firstAttribute="leading" secondItem="H7W-hE-wLi" secondAttribute="leading" constant="10" id="i9P-Iu-WL3"/>
+                                    <constraint firstItem="fsI-5q-GtC" firstAttribute="centerY" secondItem="H7W-hE-wLi" secondAttribute="centerY" id="se2-7Y-wce"/>
+                                    <constraint firstItem="fsI-5q-GtC" firstAttribute="centerY" secondItem="5WS-Oy-My5" secondAttribute="centerY" id="z2R-Nf-uZ8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="e6o-46-89d" firstAttribute="centerX" secondItem="hTd-1c-157" secondAttribute="centerX" id="8FR-xF-vhJ"/>
+                            <constraint firstItem="e6o-46-89d" firstAttribute="top" secondItem="H7W-hE-wLi" secondAttribute="bottom" constant="79" id="D6D-vG-Llg"/>
+                            <constraint firstItem="e6o-46-89d" firstAttribute="centerY" secondItem="hTd-1c-157" secondAttribute="centerY" id="F1B-zq-6oT"/>
                             <constraint firstItem="jc5-Zx-LUF" firstAttribute="bottom" secondItem="PF1-gy-Y06" secondAttribute="bottom" constant="78" id="N8L-fk-Nxk"/>
                             <constraint firstItem="jc5-Zx-LUF" firstAttribute="trailing" secondItem="PF1-gy-Y06" secondAttribute="trailing" constant="38" id="OBK-h0-dyL"/>
+                            <constraint firstItem="H7W-hE-wLi" firstAttribute="leading" secondItem="jc5-Zx-LUF" secondAttribute="leading" constant="39" id="Stf-gS-xBM"/>
+                            <constraint firstItem="H7W-hE-wLi" firstAttribute="top" secondItem="jc5-Zx-LUF" secondAttribute="top" constant="44" id="VHb-iK-Cvk"/>
+                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="trailing" secondItem="H7W-hE-wLi" secondAttribute="trailing" constant="41" id="W4F-B1-xol"/>
                             <constraint firstItem="5FV-oG-fdc" firstAttribute="leading" secondItem="jc5-Zx-LUF" secondAttribute="leading" constant="53" id="YrF-r6-owX"/>
+                            <constraint firstItem="e6o-46-89d" firstAttribute="centerY" secondItem="hTd-1c-157" secondAttribute="centerY" id="rKC-Jt-VAr"/>
                             <constraint firstItem="jc5-Zx-LUF" firstAttribute="bottom" secondItem="5FV-oG-fdc" secondAttribute="bottom" constant="81" id="sXX-g5-x5E"/>
+                            <constraint firstItem="e6o-46-89d" firstAttribute="top" secondItem="H7W-hE-wLi" secondAttribute="bottom" constant="79" id="ugL-5z-spB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jc5-Zx-LUF"/>
                     </view>
