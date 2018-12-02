@@ -64,7 +64,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func saveCityPlane(_ sender: UIButton) {
-        //sessionstate is startup game
         if state == .cityPlaced {
             gridNode?.removeFromParentNode()
             state = .waitingForPeers
@@ -77,10 +76,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             } else {
                 print("ERROR: Unable to construct beginning scene package. No cityAnchor found.")
             }
+            networkManager.startAdvertising()
         }
     }
     
     @IBAction func shareWorld(_ sender: UIButton) {
+        networkManager.stopAdvertising()
         if let sceneToSend = beginningScene {
             guard let data = try? NSKeyedArchiver.archivedData(withRootObject: sceneToSend, requiringSecureCoding: false) else {
                 print("ERROR: Unable to encode beginningScene.")
@@ -183,9 +184,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         configureSession()
         manager = GameManager(scene: scene, SceneView: sceneView, netManager: networkManager)
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-        if networkManager.isHost {
-            networkManager.startHosting()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
