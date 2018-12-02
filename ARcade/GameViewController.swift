@@ -72,7 +72,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             shareWorldButton.isHidden = false
             
             if let cityAnchor = cityAnchor {
-                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, planeNode: baseNode!)
+                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, planeNode: baseNode!, hostID: networkManager.session.myPeerID)
             } else {
                 print("ERROR: Unable to construct beginning scene package. No cityAnchor found.")
             }

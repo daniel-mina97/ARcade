@@ -13,7 +13,7 @@ import MultipeerConnectivity
 class NetworkManager: NSObject {
     var isHost: Bool
     var playerID: Int
-    var hostID: MCPeerID
+    var hostID: MCPeerID?
     let session: MCSession
     var advertiser: MCAdvertiserAssistant?
     var browser: MCBrowserViewController?
