@@ -35,22 +35,26 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUserDefaults()
-        // Do any additional setup after loading the view.
     }
 }
 
 extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
-        print("You were declined noob")
+        print("INFO: Stopped looking for advertised session.")
     }
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
-        print("You were accepted")
+        print("INFO: Successfully joined an advertised session.")
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let gvc = storyBoard.instantiateViewController(withIdentifier: "gameViewController") as! GameViewController
+        if let newPlayerID = netManager?.session.myPeerID.hash {
+            netManager?.playerID = newPlayerID
+        } else {
+            print("ERROR: Unable to generate new playerID.")
+        }
         gvc.networkManager = netManager
         self.present(gvc, animated: true, completion: nil)
     }
