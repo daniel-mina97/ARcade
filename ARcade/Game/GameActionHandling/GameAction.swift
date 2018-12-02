@@ -15,6 +15,7 @@ class GameAction: Codable {
         case playerShootMultiTakedown
         case alienShootPlayer
         case alienShootCity
+        case alienCrashIntoCity
         case pickup
     }
     
