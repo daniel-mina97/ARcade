@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		653DA1F321B46C890039576C /* ScenePeerInitialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653DA1F221B46C890039576C /* ScenePeerInitialization.swift */; };
 		659F6598219E61B000F5593D /* GameActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F6597219E61B000F5593D /* GameActor.swift */; };
 		65B838A92194898100F5FD91 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B838A82194898100F5FD91 /* GameAction.swift */; };
 		65BE41AA21A1EF8500500A17 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE41A921A1EF8500500A17 /* GameObject.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		653DA1F221B46C890039576C /* ScenePeerInitialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePeerInitialization.swift; sourceTree = "<group>"; };
 		659F6597219E61B000F5593D /* GameActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActor.swift; sourceTree = "<group>"; };
 		65B838A82194898100F5FD91 /* GameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAction.swift; sourceTree = "<group>"; };
 		65BE41A921A1EF8500500A17 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				A94A083721A0A3D30078E5C8 /* SceneManager.swift */,
 				A94A083921A0A5C40078E5C8 /* Coordinate3D.swift */,
 				65FE8A7E21A9CDFE00816E40 /* SceneUpdate.swift */,
+				653DA1F221B46C890039576C /* ScenePeerInitialization.swift */,
 			);
 			path = SceneHandling;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				659F6598219E61B000F5593D /* GameActor.swift in Sources */,
 				65BE41AA21A1EF8500500A17 /* GameObject.swift in Sources */,
 				A9C1672D21669D13006C5A7F /* settingsViewController.swift in Sources */,
+				653DA1F321B46C890039576C /* ScenePeerInitialization.swift in Sources */,
 				A94A083A21A0A5C40078E5C8 /* Coordinate3D.swift in Sources */,
 				65B838A92194898100F5FD91 /* GameAction.swift in Sources */,
 				A95DFCDC219D087B0069549D /* GameManager.swift in Sources */,

@@ -309,6 +309,14 @@
                                 <color key="progressTintColor" red="0.052362293004989624" green="0.96523267030715942" blue="0.36328887939453125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BW-t5-nrH" userLabel="Share World with Peers">
+                                <rect key="frame" x="80" y="518" width="160" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Share World with Peers"/>
+                                <connections>
+                                    <action selector="shareWorld:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Jwp-pT-C1g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -333,6 +341,7 @@
                         <outlet property="cancelButton" destination="COf-U5-1kM" id="9Dw-UJ-Y0f"/>
                         <outlet property="saveButton" destination="K7W-cz-U1x" id="xKL-q8-enm"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="shareWorldButton" destination="9BW-t5-nrH" id="LLL-j6-Kx7"/>
                         <outlet property="startGameButton" destination="x0V-bo-2SE" id="pIj-MZ-WnR"/>
                         <outlet property="tapGestureRecognizer" destination="LL6-Sh-pla" id="ld4-lC-ieW"/>
                         <segue destination="9qz-Os-0mu" kind="unwind" identifier="returnToMainMenu" unwindAction="returnFromSettingsWithDestination:" id="qEg-p5-B0M"/>

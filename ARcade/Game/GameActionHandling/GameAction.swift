@@ -8,9 +8,9 @@
 
 import Foundation
 
-class GameAction: Codable {
+class GameAction: NSObject, NSCoding {
     
-    enum ActionTypes: String, Codable {
+    enum ActionTypes: String {
         case playerShootAlien
         case playerShootMultiTakedown
         case alienShootPlayer
@@ -20,7 +20,7 @@ class GameAction: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case actionType = "actionType"
+        case actionType
         case actionID
         case sourceID
         case targetID
@@ -41,20 +41,18 @@ class GameAction: Codable {
         self.targetID = targetID
     }
     
-    required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        type = try values.decode(ActionTypes.self, forKey: .actionType)
-        actionID = try values.decode(Int.self, forKey: .actionID)
-        sourceID = try values.decode(Int.self, forKey: .sourceID)
-        targetID = try values.decode(Int.self, forKey: .targetID)
+    required init?(coder aDecoder: NSCoder) {
+        type = aDecoder.decodeObject(forKey: CodingKeys.actionType.rawValue) as! ActionTypes
+        actionID = aDecoder.decodeInteger(forKey: CodingKeys.actionID.rawValue)
+        sourceID = aDecoder.decodeInteger(forKey: CodingKeys.sourceID.rawValue)
+        targetID = aDecoder.decodeInteger(forKey: CodingKeys.targetID.rawValue)
     }
     
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(type, forKey: .actionType)
-        try container.encode(actionID, forKey: .actionID)
-        try container.encode(sourceID, forKey: .sourceID)
-        try container.encode(targetID, forKey: .targetID)
+    func encode(with encoder: NSCoder) {
+        encoder.encode(type, forKey: CodingKeys.actionType.rawValue)
+        encoder.encode(actionID, forKey: CodingKeys.actionType.rawValue)
+        encoder.encode(sourceID, forKey: CodingKeys.actionType.rawValue)
+        encoder.encode(targetID, forKey: CodingKeys.actionType.rawValue)
     }
 }
 

@@ -21,6 +21,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var shareWorldButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
@@ -32,6 +33,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     var gridNode: SCNNode?
     var cityNode: SCNNode?
     var cityAnchor: ARAnchor?
+    var beginningScene: ScenePeerInitialization?
     var state: SessionState = .lookingForPlane
     
     func configureSession(){
@@ -68,10 +70,30 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             state = .waitingForPeers
             cancelButton.isHidden = true
             saveButton.isHidden = true
+            shareWorldButton.isHidden = false
             
-            if networkManager.isHost{
-                startGameButton.isHidden = false
+            if let cityAnchor = cityAnchor {
+                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, planeNode: baseNode!)
+            } else {
+                print("ERROR: Unable to construct beginning scene package. No cityAnchor found.")
             }
+        }
+    }
+    
+    @IBAction func shareWorld(_ sender: UIButton) {
+        if let sceneToSend = beginningScene {
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: sceneToSend, requiringSecureCoding: false) else {
+                print("ERROR: Unable to encode beginningScene.")
+                return
+            }
+            do {
+                try networkManager.session.send(data, toPeers: networkManager.session.connectedPeers, with: .reliable)
+                print("INFO: Sent beginningScene to peers successfully.")
+            } catch {
+                print("ERROR: \(error)")
+            }
+        } else {
+            print("ERROR: No beginningScene available found to send to peers")
         }
     }
     
@@ -113,8 +135,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         //if session state is looking for plane
-        if state == .lookingForPlane{
-            if let planeAnchor = anchor as? ARPlaneAnchor{
+        if state == .lookingForPlane {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
                 state = .cityPlaced
                 cityAnchor = anchor
                 DispatchQueue.main.async{
@@ -139,10 +161,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
                 node.addChildNode(cityNode!)
                 manager.sceneManager.setSceneNode(node: node)
-                print("\(planeAnchor.center.x) \(planeAnchor.center.y) \(planeAnchor.center.z)")
-                print("\(planeNode.position.x) \(planeNode.position.y) \(planeNode.position.z)")
-                print("\(cityNode?.position.x) \(cityNode?.position.y) \(cityNode?.position.z)")
-            }else{
+            } else {
                 return
             }
         }
@@ -152,6 +171,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         // Create classes
         startGameButton.isHidden = true
+        shareWorldButton.isHidden = true
         saveButton.isHidden = true
         cancelButton.isHidden = true
         state = .lookingForPlane
