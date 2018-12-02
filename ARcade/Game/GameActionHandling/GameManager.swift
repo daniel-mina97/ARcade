@@ -19,12 +19,13 @@ enum GameState{
 
 class GameManager{
     var sceneManager: SceneManager
+    var networkManager: NetworkManager
     var ARSceneView: ARSCNView
     var players: [Int: Player]
     var aliens: [Int: Alien]
     var targetList: [Int]
     var city: City!
-    var queue: GameActionQueue!
+    var queue: Queue<GameAction>!
     var isHost: Bool
     var sessionState: GameState
     var spawnAlienTimer: Timer?
@@ -34,16 +35,17 @@ class GameManager{
     
     static let MAX_ALIENS: Int = 15
     
-    init(host: Bool, scene: SCNScene, SceneView: ARSCNView, id: Int) {
+    init(scene: SCNScene, SceneView: ARSCNView, netManager: NetworkManager) {
         sessionState = .startup
-        queue = GameActionQueue()
+        queue = Queue<GameAction>()
         sceneManager = SceneManager(scene: scene)
+        networkManager = netManager
         ARSceneView = SceneView
-        isHost = host
+        isHost = netManager.isHost
+        localID = netManager.playerID
         players = [:]
         aliens = [:]
         targetList = []
-        localID = id
     }
     
     func startGame(cityNode: SCNNode) {
@@ -121,11 +123,10 @@ class GameManager{
     
     
     func AlienShootCity(alienID: Int){
+        let alienPostion: SCNVector3 = (aliens[alienID]?.node?.position)!
+        let cityPostion : SCNVector3 = (city.node?.position)!
         
-        var alienPostion: SCNVector3 = (aliens[alienID]?.node?.position)!
-        var cityPostion : SCNVector3 = (city.node?.position)!
-        
-        var bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
+        let bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
         let moveAction : SCNAction = sceneManager.getMoveAction(object: bullet, to: cityPostion, speed: 20)
         
         bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
@@ -146,14 +147,12 @@ class GameManager{
         
         switch action.type {
         case .playerShootAlien:
-            print(aliens[action.targetID]?.health)
             if aliens[action.targetID]!.takeDamage(from: players[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
             }
             break
         case .playerShootMultiTakedown:
-            print(aliens[action.targetID]?.health)
             if aliens[action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
                 aliens[action.targetID]!.node!.removeFromParentNode()
                 aliens[action.targetID] = nil
@@ -218,6 +217,7 @@ class GameManager{
             if isHost {
                 queue.enqueue(act: gameAction)
             } else {
+                networkManager.send(object: gameAction)
             }
         }
     }
