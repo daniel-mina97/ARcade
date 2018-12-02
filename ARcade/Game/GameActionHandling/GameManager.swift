@@ -111,7 +111,7 @@ class GameManager{
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
             aliens[alien.identifier] = alien
-            let action = sceneManager.getMoveAction(alien: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
+            let action = sceneManager.getMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
             //add alien crash into city gameaction
             alien.node?.runAction(action, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienShootCity, sourceID: alien.identifier, targetID: 0))})
             // get coordinates relative to city location, not local coordinates
@@ -120,12 +120,15 @@ class GameManager{
     }
     
     
-    func AlienShoot(){
+    func AlienShootCity(alienID: Int){
         
-        let alienNode: SCNNode = sceneManager.
+        var alienPostion: SCNVector3 = (aliens[alienID]?.node?.position)!
+        var cityPostion : SCNVector3 = (city.node?.position)!
         
-    
+        var bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
+        let moveAction : SCNAction = sceneManager.getMoveAction(object: bullet, to: cityPostion, speed: 20)
         
+        bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
     }
     
     func getSpawnCoordinates() -> Coordinate3D {
@@ -160,18 +163,12 @@ class GameManager{
             //send bullet -- depends on player location
             //send to peer
             if players[action.targetID]!.takeDamage(from : aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
-                
-                //get coordinate matrix for target player
-                let targetCoordinates : simd_float4x4 = (ARSceneView.session.currentFrame?.camera.transform)!
-                
-                let target = SCNVector3(targetCoordinates.columns.3.x, targetCoordinates.columns.3.y, targetCoordinates.columns.3.z)
-                
-                let bulletAction = sceneManager.bulletMovement(alienBullet: sceneManager.creatAlienBullet(), targetCoordinates: target)
-                
-                aliens[action.sourceID]!.node?.runAction(bulletAction, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienShootCity, sourceID: self.aliens[action.sourceID]!.identifier, targetID: 0))})
             }
             break
         case .alienShootCity:
+            
+            AlienShootCity(alienID: action.sourceID)
+            
             if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
                 //Game Ends
                 //Players Lose
