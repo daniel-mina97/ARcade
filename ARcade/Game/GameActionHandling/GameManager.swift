@@ -113,7 +113,7 @@ class GameManager{
             aliens[alien.identifier] = alien
             let action = sceneManager.getMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
             //add alien crash into city gameaction
-            alien.node?.runAction(action, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienShootCity, sourceID: alien.identifier, targetID: 0))})
+            alien.node?.runAction(action, completionHandler: {self.queue.enqueue(act: GameAction(type: .alienCrashIntoCity, sourceID: alien.identifier, targetID: 0))})
             // get coordinates relative to city location, not local coordinates
             // pass SceneUpdate
         }
