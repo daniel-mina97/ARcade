@@ -43,6 +43,8 @@ class NetworkManager: NSObject {
         }
         do {
             if object is GameAction {
+                try session.send(data, toPeers: [hostID!], with: .reliable)
+            } else if object is SceneUpdate || object is ScenePeerInitialization {
                 try session.send(data, toPeers: session.connectedPeers, with: .reliable)
             }
             print("INFO: Sent object of type \(T.self) to peers successfully.")
