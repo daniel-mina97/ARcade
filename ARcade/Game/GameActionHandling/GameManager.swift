@@ -161,6 +161,18 @@ class GameManager{
                 endGame()
             }
             break
+        case .alienCrashIntoCity:
+            if city.takeDamage(from: aliens[action.sourceID]!.damage) == GameActor.lifeState.dead {
+                //Game Ends
+                //Players Lose
+                //send end game notification to other players
+                endGame()
+            }
+            else {
+                aliens[action.sourceID]!.node!.removeFromParentNode()
+                aliens[action.sourceID] = nil
+            }
+            break
         case .pickup:
             // Pick it up
             break
