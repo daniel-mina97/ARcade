@@ -179,7 +179,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(tapGestureRecognizer)
         sceneView.scene = scene
-        PlayerHealthBar.setProgress(100, animated: false)
+        playerHealthBar.setProgress(100, animated: false)
         configureSession()
         manager = GameManager(scene: scene, netManager: networkManager)
         if networkManager.isHost{
