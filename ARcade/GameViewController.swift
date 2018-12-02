@@ -25,7 +25,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
-    @IBOutlet weak var PlayerHealthBar: UIProgressView!
+    @IBOutlet weak var playerHealthBar: UIProgressView!
+    
     
     var manager: GameManager!
     var networkManager: NetworkManager!
@@ -178,7 +179,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(tapGestureRecognizer)
         sceneView.scene = scene
-        PlayerHealthBar.setProgress(100, animated: false)
+        playerHealthBar.setProgress(100, animated: false)
         configureSession()
         manager = GameManager(scene: scene, netManager: networkManager)
         if networkManager.isHost{
