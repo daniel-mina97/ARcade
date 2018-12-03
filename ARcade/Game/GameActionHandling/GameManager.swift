@@ -197,7 +197,6 @@ class GameManager{
     }
     
     func nodeTapped(node: SCNNode) {
-        print(node.name ?? "--unknown")
         if node.name == "-1" {
             return
         }
