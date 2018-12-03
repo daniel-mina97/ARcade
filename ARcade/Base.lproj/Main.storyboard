@@ -83,19 +83,19 @@
                         <color key="tintColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="nPf-hD-p2h" firstAttribute="centerY" secondItem="9JL-Fq-Y8M" secondAttribute="centerY" id="Irl-3R-Ctd"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="width" secondItem="HdV-of-dup" secondAttribute="width" id="Iyz-gt-ZOr"/>
                             <constraint firstItem="KuN-KP-Ujj" firstAttribute="centerX" secondItem="9JL-Fq-Y8M" secondAttribute="centerX" id="JIl-44-nYC"/>
-                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="leading" secondItem="HdV-of-dup" secondAttribute="leading" id="Mgq-8H-u9x"/>
                             <constraint firstItem="HdV-of-dup" firstAttribute="centerX" secondItem="9JL-Fq-Y8M" secondAttribute="centerX" id="U3E-nh-Cse"/>
-                            <constraint firstItem="nPf-hD-p2h" firstAttribute="trailing" secondItem="HdV-of-dup" secondAttribute="trailing" id="aL7-fY-jKI"/>
                             <constraint firstAttribute="trailing" secondItem="PnF-8T-vSD" secondAttribute="trailing" constant="-5" id="az6-MU-bVt"/>
-                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="trailing" secondItem="HdV-of-dup" secondAttribute="trailing" id="buG-8d-NyY"/>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="height" secondItem="HdV-of-dup" secondAttribute="height" id="eiR-bt-IZh"/>
                             <constraint firstItem="PnF-8T-vSD" firstAttribute="leading" secondItem="9JL-Fq-Y8M" secondAttribute="leading" constant="-6" id="f0E-rA-mmB"/>
-                            <constraint firstItem="nPf-hD-p2h" firstAttribute="leading" secondItem="HdV-of-dup" secondAttribute="leading" id="hXx-2j-FLg"/>
                             <constraint firstItem="PnF-8T-vSD" firstAttribute="top" secondItem="IVx-oG-3zQ" secondAttribute="top" constant="60" id="jMz-zm-piq"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="height" secondItem="HdV-of-dup" secondAttribute="height" id="qfv-WS-2qs"/>
                             <constraint firstItem="nPf-hD-p2h" firstAttribute="top" secondItem="HdV-of-dup" secondAttribute="bottom" constant="60" id="qgn-r8-7x5">
                                 <variation key="heightClass=regular-widthClass=compact" constant="60"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="120"/>
                             </constraint>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="width" secondItem="HdV-of-dup" secondAttribute="width" id="sXk-Ac-oyE"/>
                             <constraint firstItem="KuN-KP-Ujj" firstAttribute="top" secondItem="nPf-hD-p2h" secondAttribute="bottom" constant="60" id="vEn-3e-bY1">
                                 <variation key="heightClass=regular-widthClass=compact" constant="60"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="120"/>
