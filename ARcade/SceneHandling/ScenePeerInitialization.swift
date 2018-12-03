@@ -11,7 +11,13 @@ import ARKit
 import SceneKit
 import MultipeerConnectivity
 
-class ScenePeerInitialization: NSObject, NSCoding {
+class ScenePeerInitialization: NSObject, NSSecureCoding {
+    
+    static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
         case cityAnchor
@@ -31,9 +37,9 @@ class ScenePeerInitialization: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        cityAnchor = aDecoder.decodeObject(forKey: CodingKeys.cityAnchor.rawValue) as! ARAnchor
-        baseNode = aDecoder.decodeObject(forKey: CodingKeys.baseNode.rawValue) as! SCNNode
-        hostID = aDecoder.decodeObject(forKey: CodingKeys.hostID.rawValue) as! MCPeerID
+        cityAnchor = aDecoder.decodeObject(of: ARAnchor.self, forKey: CodingKeys.cityAnchor.rawValue)!
+        baseNode = aDecoder.decodeObject(of: SCNNode.self, forKey: CodingKeys.baseNode.rawValue)!
+        hostID = aDecoder.decodeObject(of: MCPeerID.self, forKey: CodingKeys.hostID.rawValue)!
         
     }
     

@@ -12,6 +12,7 @@ import MultipeerConnectivity
 class MainMenuViewController: UIViewController {
     
     var netManager: NetworkManager?
+    var serviceBrowser: MCNearbyServiceBrowser?
     
     func initializeUserDefaults () {
         if UserDefaults.standard.object(forKey: "name") == nil{
@@ -27,9 +28,11 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func joinSession() {
         netManager = NetworkManager(host: false, displayName: UserDefaults.standard.object(forKey: "name") as! String)
-        let browser = MCBrowserViewController(serviceType: (netManager?.gameServiceType)!, session: (netManager?.session)!)
-        browser.delegate = self
-        present(browser, animated: true)
+        serviceBrowser = MCNearbyServiceBrowser(peer: (netManager?.session.myPeerID)!, serviceType: (netManager?.gameServiceType)!)
+        serviceBrowser?.delegate = self
+        let browserViewController = MCBrowserViewController(browser: serviceBrowser!, session:netManager!.session)
+        browserViewController.delegate = self
+        present(browserViewController, animated: true)
     }
     
     override func viewDidLoad() {
@@ -47,7 +50,7 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
         print("INFO: Successfully joined an advertised session.")
-        
+        serviceBrowser!.stopBrowsingForPeers()
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let gvc = storyBoard.instantiateViewController(withIdentifier: "gameViewController") as! GameViewController
         if let newPlayerID = netManager?.session.myPeerID.hash {
@@ -57,5 +60,15 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
         }
         gvc.networkManager = netManager
         self.present(gvc, animated: true, completion: nil)
+    }
+}
+
+extension MainMenuViewController: MCNearbyServiceBrowserDelegate {
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        browser.invitePeer(peerID, to: netManager!.session, withContext: nil, timeout: 10)
+    }
+    
+    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        print("Lost peer")
     }
 }
