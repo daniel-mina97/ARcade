@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PF1-gy-Y06" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="226" y="454" width="56" height="34"/>
+                                <rect key="frame" x="224" y="484" width="56" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Start">
@@ -168,7 +168,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-oG-fdc" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="53" y="454" width="56" height="34"/>
+                                <rect key="frame" x="40" y="484" width="56" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Cancel">
@@ -182,7 +182,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are Hosting a Session" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6o-46-89d">
-                                <rect key="frame" x="61" y="274" width="198" height="21"/>
+                                <rect key="frame" x="61" y="273.5" width="198" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -197,15 +197,16 @@
                             <constraint firstItem="qN7-bw-yOo" firstAttribute="centerX" secondItem="hTd-1c-157" secondAttribute="centerX" id="9cz-l0-yld"/>
                             <constraint firstItem="qN7-bw-yOo" firstAttribute="top" secondItem="jc5-Zx-LUF" secondAttribute="top" constant="100" id="GMl-cp-gQL"/>
                             <constraint firstItem="PF1-gy-Y06" firstAttribute="width" secondItem="5FV-oG-fdc" secondAttribute="width" id="LMb-Xw-Of5"/>
-                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="bottom" secondItem="PF1-gy-Y06" secondAttribute="bottom" constant="80" id="N8L-fk-Nxk"/>
+                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="bottom" secondItem="PF1-gy-Y06" secondAttribute="bottom" constant="50" id="N8L-fk-Nxk"/>
                             <constraint firstItem="e6o-46-89d" firstAttribute="centerX" secondItem="hTd-1c-157" secondAttribute="centerX" id="NJr-f0-IgB"/>
-                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="trailing" secondItem="PF1-gy-Y06" secondAttribute="trailing" constant="38" id="OBK-h0-dyL"/>
+                            <constraint firstItem="jc5-Zx-LUF" firstAttribute="trailing" secondItem="PF1-gy-Y06" secondAttribute="trailing" priority="999" constant="40" id="OBK-h0-dyL"/>
                             <constraint firstItem="PF1-gy-Y06" firstAttribute="height" secondItem="5FV-oG-fdc" secondAttribute="height" id="Q1d-8r-eRU"/>
                             <constraint firstItem="PF1-gy-Y06" firstAttribute="centerY" secondItem="5FV-oG-fdc" secondAttribute="centerY" id="Rre-pN-o3N"/>
                             <constraint firstItem="qN7-bw-yOo" firstAttribute="leading" secondItem="jc5-Zx-LUF" secondAttribute="leading" priority="999" constant="20" id="Xso-ua-wE0"/>
-                            <constraint firstItem="5FV-oG-fdc" firstAttribute="leading" secondItem="jc5-Zx-LUF" secondAttribute="leading" constant="53" id="YrF-r6-owX"/>
+                            <constraint firstItem="5FV-oG-fdc" firstAttribute="leading" secondItem="jc5-Zx-LUF" secondAttribute="leading" priority="999" constant="40" id="YrF-r6-owX"/>
                             <constraint firstItem="e6o-46-89d" firstAttribute="centerY" secondItem="hTd-1c-157" secondAttribute="centerY" id="chC-Ir-EnY"/>
                             <constraint firstItem="jc5-Zx-LUF" firstAttribute="trailing" secondItem="qN7-bw-yOo" secondAttribute="trailing" priority="999" constant="20" id="dJa-94-0PM"/>
+                            <constraint firstItem="PF1-gy-Y06" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5FV-oG-fdc" secondAttribute="trailing" constant="117" id="iKC-X1-QqI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jc5-Zx-LUF"/>
                     </view>
