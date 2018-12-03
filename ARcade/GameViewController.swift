@@ -77,7 +77,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if let cityAnchor = cityAnchor {
                 beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, planeNode: baseNode!, hostID: networkManager.session.myPeerID)
             } else {
-                print("ERROR: Unable to construct beginning scene package. No cityAnchor found.")
+                print("ARCADE-ERROR: Unable to construct beginning scene package. No cityAnchor found.")
             }
             networkManager.startAdvertising()
         }
@@ -87,10 +87,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         networkManager.stopAdvertising()
         if let sceneToSend = beginningScene {
             networkManager.send(object: sceneToSend)
-            print(networkManager.session.connectedPeers)
-            //print("INFO: Sent beginningScene to peers successfully.")
         } else {
-            print("ERROR: No beginningScene available found to send to peers")
+            print("ARCADE-ERROR: No beginningScene available found to send to peers")
         }
     }
     
