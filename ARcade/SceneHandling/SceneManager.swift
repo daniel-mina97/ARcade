@@ -9,13 +9,12 @@
 import Foundation
 import SceneKit
 
-
-
 class SceneManager {
     
     var scene: SCNScene
     var sceneNode: SCNNode?
     var cityPlaced: Bool = false
+    var manager: GameManager!
     
     init(scene: SCNScene){
         self.scene = scene
@@ -100,27 +99,46 @@ class SceneManager {
     }
     
     func spawnAlienDiver(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        print("ARCADE-INFO: Spawning diver alien.")
         return spawnObject(asset: "art.scnassets/diving_alien_ship.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienShooter(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        print("ARCADE-INFO: Spawning shooter alien.")
         return spawnObject(asset: "art.scnassets/basic_alien_shooting_ship.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienMultiTakedown(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        print("ARCADE-INFO: Spawning multi-takedown alien.")
         return spawnObject(asset: "art.scnassets/multi_takedown_alien_ship.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
     
     func spawnAlienBoss(id: Int, x: Float, y: Float, z: Float) -> SCNNode{
+        print("ARCADE-INFO: Spawning boss alien.")
         return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
     }
     
     func spawnCity(id: Int = -1, x: Float, y: Float, z: Float) -> SCNNode{
-        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.03, id: id, x: x, y: y, z: z)
-        //return spawnObject(asset: "art.scnassets/alien_boss_ship.dae", scale: 0.2, id: id, x: x, y: y, z: z)
-    }
+        print("ARCADE-INFO: Spawning city.")
+        return spawnObject(asset: "art.scnassets/City.dae", scale: 0.03, id: id, x: x, y: y, z: z)    }
     
     func spawnPickup(id: Int = 0, x: Float, y: Float, z: Float) -> SCNNode{
+        print("ARCADE-INFO: Spawning pickup.")
         return spawnObject(asset: "art.scnassets/health_pickup.dae", scale: 0.1, id: id, x: x, y: y, z: z)
+    }
+    
+    func apply(this update: SceneUpdate) {
+        switch update.type {
+        case .SpawnAlien:
+            add(node: makeAlien(id: update.alienID, type: update.alienType!, at: (update.spawnPoint?.getVector())!))
+        case .RemoveAlien:
+            remove(node: manager.aliens![update.alienID]!.node!)
+        case .SpawnPickup:
+            print("ARCADE-ERROR: No implementation for spawning pickups.")
+        case .BulletShot:
+            manager.AlienShootCity(alienID: update.alienID)
+        case .EndGame:
+            manager.endGame()
+        }
     }
 }

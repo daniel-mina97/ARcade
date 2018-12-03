@@ -27,7 +27,7 @@ class ScenePeerInitialization: NSObject, NSSecureCoding {
     let cityAnchor: ARAnchor
     let hostID: MCPeerID
     
-    init(cityAnchor: ARAnchor, planeNode: SCNNode, hostID: MCPeerID) {
+    init(cityAnchor: ARAnchor, hostID: MCPeerID) {
         self.cityAnchor = cityAnchor
         self.hostID = hostID
         super.init()

@@ -50,6 +50,7 @@ class GameManager{
         }
         
         sceneManager = SceneManager(scene: scene)
+        sceneManager.manager = self
     }
     
     func startGame(cityNode: SCNNode) {

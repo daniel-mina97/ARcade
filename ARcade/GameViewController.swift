@@ -75,7 +75,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             shareWorldButton.isHidden = false
             
             if let cityAnchor = cityAnchor {
-                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, planeNode: baseNode!, hostID: networkManager.session.myPeerID)
+                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, hostID: networkManager.session.myPeerID)
             } else {
                 print("ARCADE-ERROR: Unable to construct beginning scene package. No cityAnchor found.")
             }
@@ -173,6 +173,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         playerHealthBar.setProgress(100, animated: false)
         configureSession()
         manager = GameManager(scene: scene, netManager: networkManager)
+        networkManager.gameManagerDelegate = manager
+        networkManager.sceneManagerDelegate = manager.sceneManager
         if networkManager.isHost{
             self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }

@@ -8,7 +8,13 @@
 
 import Foundation
 
-class GameAction: NSObject, NSCoding {
+class GameAction: NSObject, NSSecureCoding {
+    
+    static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
     
     enum ActionTypes: String {
         case playerShootAlien
