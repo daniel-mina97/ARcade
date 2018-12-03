@@ -41,11 +41,6 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
         initializeUserDefaults()
         
-        hostButton.sizeToFit()
-        joinButton.sizeToFit()
-        settingsButton.sizeToFit()
-        
-        
     }
 }
 

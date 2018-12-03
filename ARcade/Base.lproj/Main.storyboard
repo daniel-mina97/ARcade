@@ -17,10 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-hD-p2h" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="32" y="269" width="253" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-hD-p2h" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="100" y="268" width="120" height="32"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="5MO-U6-7cf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Join a Session"/>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -30,10 +32,12 @@
                                     <action selector="joinSession" destination="8Mo-Vt-LcN" eventType="touchUpInside" id="g9A-zx-8nY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="32" y="176" width="253" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-of-dup" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="100" y="176" width="120" height="32"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="S5O-wP-k0j"/>
+                                </constraints>
                                 <state key="normal" title="Host a Session">
                                     <color key="titleColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -43,19 +47,6 @@
                                 </variation>
                                 <connections>
                                     <segue destination="Cu6-G7-HC3" kind="show" id="YYn-jr-gcp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuN-KP-Ujj" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
-                                <rect key="frame" x="32" y="361" width="253" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Settings"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="WR8-Vq-LVS" kind="show" identifier="Settings" id="yMX-FY-Qm1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnF-8T-vSD">
@@ -72,13 +63,44 @@
                                 <color key="highlightedColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="shadowColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuN-KP-Ujj" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
+                                <rect key="frame" x="100" y="360" width="120" height="32"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="hJM-nc-oHt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Settings"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="WR8-Vq-LVS" kind="show" identifier="Settings" id="yMX-FY-Qm1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.0" green="0.99718350172042847" blue="0.30857229232788086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="centerY" secondItem="9JL-Fq-Y8M" secondAttribute="centerY" id="Irl-3R-Ctd"/>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="centerX" secondItem="9JL-Fq-Y8M" secondAttribute="centerX" id="JIl-44-nYC"/>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="leading" secondItem="HdV-of-dup" secondAttribute="leading" id="Mgq-8H-u9x"/>
+                            <constraint firstItem="HdV-of-dup" firstAttribute="centerX" secondItem="9JL-Fq-Y8M" secondAttribute="centerX" id="U3E-nh-Cse"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="trailing" secondItem="HdV-of-dup" secondAttribute="trailing" id="aL7-fY-jKI"/>
                             <constraint firstAttribute="trailing" secondItem="PnF-8T-vSD" secondAttribute="trailing" constant="-5" id="az6-MU-bVt"/>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="trailing" secondItem="HdV-of-dup" secondAttribute="trailing" id="buG-8d-NyY"/>
                             <constraint firstItem="PnF-8T-vSD" firstAttribute="leading" secondItem="9JL-Fq-Y8M" secondAttribute="leading" constant="-6" id="f0E-rA-mmB"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="leading" secondItem="HdV-of-dup" secondAttribute="leading" id="hXx-2j-FLg"/>
                             <constraint firstItem="PnF-8T-vSD" firstAttribute="top" secondItem="IVx-oG-3zQ" secondAttribute="top" constant="60" id="jMz-zm-piq"/>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="top" secondItem="HdV-of-dup" secondAttribute="bottom" constant="60" id="qgn-r8-7x5">
+                                <variation key="heightClass=regular-widthClass=compact" constant="60"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                            </constraint>
+                            <constraint firstItem="KuN-KP-Ujj" firstAttribute="top" secondItem="nPf-hD-p2h" secondAttribute="bottom" constant="60" id="vEn-3e-bY1">
+                                <variation key="heightClass=regular-widthClass=compact" constant="60"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                            </constraint>
+                            <constraint firstItem="nPf-hD-p2h" firstAttribute="centerX" secondItem="9JL-Fq-Y8M" secondAttribute="centerX" id="yg9-F8-fxk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IVx-oG-3zQ"/>
                     </view>
@@ -132,13 +154,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
-                                <rect key="frame" x="166" y="138" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-oG-fdc" customClass="CustomB" customModule="ARcade" customModuleProvider="target">
                                 <rect key="frame" x="53" y="453" width="60" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,6 +165,13 @@
                                     <segue destination="URA-FR-vi0" kind="unwind" unwindAction="returnFromSettingsWithDestination:" id="bmW-XG-690"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
+                                <rect key="frame" x="166" y="133" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
