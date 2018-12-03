@@ -13,6 +13,11 @@ class MainMenuViewController: UIViewController {
     
     var netManager: NetworkManager?
     
+    @IBOutlet weak var hostButton: CustomB!
+    @IBOutlet weak var joinButton: CustomB!
+    @IBOutlet weak var settingsButton: CustomB!
+    
+    
     func initializeUserDefaults () {
         if UserDefaults.standard.object(forKey: "name") == nil{
             UserDefaults.standard.set("Player", forKey: "name")
@@ -35,6 +40,12 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUserDefaults()
+        
+        hostButton.sizeToFit()
+        joinButton.sizeToFit()
+        settingsButton.sizeToFit()
+        
+        
     }
 }
 
