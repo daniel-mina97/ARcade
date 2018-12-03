@@ -148,7 +148,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WS-Oy-My5">
                                         <rect key="frame" x="159" y="20" width="101" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -226,7 +226,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enter Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOy-5W-wxG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOy-5W-wxG">
                                 <rect key="frame" x="20" y="120" width="125" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="YEr-LY-YZN"/>
@@ -239,7 +239,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqQ-EB-PVm">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Player" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqQ-EB-PVm">
                                 <rect key="frame" x="150" y="131" width="150" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -248,7 +248,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 </variation>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="goA-Cx-Lze">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="goA-Cx-Lze">
                                 <rect key="frame" x="150" y="336" width="150" height="29"/>
                                 <segments>
                                     <segment title="1"/>
@@ -256,7 +256,7 @@
                                     <segment title="3"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4a-bG-JgF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4a-bG-JgF">
                                 <rect key="frame" x="20" y="222" width="125" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -265,7 +265,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 </variation>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HlM-31-A1k">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HlM-31-A1k">
                                 <rect key="frame" x="150" y="234" width="150" height="29"/>
                                 <segments>
                                     <segment title="Blue"/>
@@ -273,7 +273,7 @@
                                     <segment title="Green"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ship Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-ct-jb8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ship Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-ct-jb8">
                                 <rect key="frame" x="20" y="324" width="125" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -282,9 +282,12 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOc-tm-MzD">
-                                <rect key="frame" x="127" y="461" width="66" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOc-tm-MzD">
+                                <rect key="frame" x="127" y="467" width="66" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="66" id="Id7-xr-U57"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="41" id="l9M-np-GYW"/>
+                                </constraints>
                                 <state key="normal" title="Save"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -298,10 +301,12 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rqQ-EB-PVm" firstAttribute="centerY" secondItem="XOy-5W-wxG" secondAttribute="centerY" id="0Eq-jM-63H"/>
+                            <constraint firstItem="TbR-sG-hPd" firstAttribute="bottom" secondItem="rOc-tm-MzD" secondAttribute="bottom" constant="60" id="0RO-38-aqD"/>
                             <constraint firstItem="TbR-sG-hPd" firstAttribute="trailing" secondItem="HlM-31-A1k" secondAttribute="trailing" constant="20" id="6VR-hD-W21"/>
                             <constraint firstItem="HlM-31-A1k" firstAttribute="centerY" secondItem="a4a-bG-JgF" secondAttribute="centerY" id="96P-59-f8r"/>
                             <constraint firstItem="vYN-ct-jb8" firstAttribute="leading" secondItem="TbR-sG-hPd" secondAttribute="leading" constant="20" id="APO-KV-I9D"/>
                             <constraint firstItem="a4a-bG-JgF" firstAttribute="top" secondItem="XOy-5W-wxG" secondAttribute="bottom" constant="50" id="BOW-p7-B61"/>
+                            <constraint firstItem="rOc-tm-MzD" firstAttribute="centerX" secondItem="XmX-33-yAH" secondAttribute="centerX" id="ECY-uH-FzS"/>
                             <constraint firstItem="a4a-bG-JgF" firstAttribute="leading" secondItem="TbR-sG-hPd" secondAttribute="leading" constant="20" id="H16-EV-jI9"/>
                             <constraint firstItem="a4a-bG-JgF" firstAttribute="height" secondItem="XOy-5W-wxG" secondAttribute="height" id="Hj5-wj-JXJ"/>
                             <constraint firstItem="vYN-ct-jb8" firstAttribute="height" secondItem="XOy-5W-wxG" secondAttribute="height" id="HrQ-GZ-79u"/>
@@ -313,7 +318,7 @@
                             <constraint firstItem="vYN-ct-jb8" firstAttribute="width" secondItem="XOy-5W-wxG" secondAttribute="width" id="fDT-2h-BhR"/>
                             <constraint firstItem="HlM-31-A1k" firstAttribute="leading" secondItem="a4a-bG-JgF" secondAttribute="trailing" constant="5" id="gy8-Xg-ahe"/>
                             <constraint firstItem="TbR-sG-hPd" firstAttribute="trailing" secondItem="goA-Cx-Lze" secondAttribute="trailing" constant="20" id="kIw-wJ-KL2"/>
-                            <constraint firstItem="XOy-5W-wxG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TbR-sG-hPd" secondAttribute="top" constant="100" id="onS-X1-jFY"/>
+                            <constraint firstItem="XOy-5W-wxG" firstAttribute="top" secondItem="TbR-sG-hPd" secondAttribute="top" constant="100" id="onS-X1-jFY"/>
                             <constraint firstItem="goA-Cx-Lze" firstAttribute="leading" secondItem="vYN-ct-jb8" secondAttribute="trailing" constant="5" id="svg-nS-Nn3"/>
                             <constraint firstItem="vYN-ct-jb8" firstAttribute="top" secondItem="a4a-bG-JgF" secondAttribute="bottom" constant="50" id="yHm-Xi-Rse"/>
                         </constraints>
