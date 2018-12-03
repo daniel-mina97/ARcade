@@ -86,16 +86,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func shareWorld(_ sender: UIButton) {
         networkManager.stopAdvertising()
         if let sceneToSend = beginningScene {
-            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: sceneToSend, requiringSecureCoding: false) else {
-                print("ERROR: Unable to encode beginningScene.")
-                return
-            }
-            do {
-                try networkManager.session.send(data, toPeers: networkManager.session.connectedPeers, with: .reliable)
-                print("INFO: Sent beginningScene to peers successfully.")
-            } catch {
-                print("ERROR: \(error)")
-            }
+            networkManager.send(object: sceneToSend)
+            print(networkManager.session.connectedPeers)
+            //print("INFO: Sent beginningScene to peers successfully.")
         } else {
             print("ERROR: No beginningScene available found to send to peers")
         }
@@ -195,6 +188,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        networkManager.session.disconnect()
     }
     
     // MARK: - ARSCNViewDelegate
