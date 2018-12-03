@@ -44,19 +44,19 @@ class MainMenuViewController: UIViewController {
 extension MainMenuViewController: MCBrowserViewControllerDelegate {
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
-        print("INFO: Stopped looking for advertised session.")
+        print("ARCADE-INFO: Stopped looking for advertised session.")
     }
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         dismiss(animated: true)
-        print("INFO: Successfully joined an advertised session.")
+        print("ARCADE-INFO: Successfully joined an advertised session.")
         serviceBrowser!.stopBrowsingForPeers()
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let gvc = storyBoard.instantiateViewController(withIdentifier: "gameViewController") as! GameViewController
         if let newPlayerID = netManager?.session.myPeerID.hash {
             netManager?.playerID = newPlayerID
         } else {
-            print("ERROR: Unable to generate new playerID.")
+            print("ARCADE-ERROR: Unable to generate new playerID.")
         }
         gvc.networkManager = netManager
         self.present(gvc, animated: true, completion: nil)

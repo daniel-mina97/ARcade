@@ -32,7 +32,7 @@ class NetworkManager: NSObject {
         advertiser = MCNearbyServiceAdvertiser(peer: session.myPeerID, discoveryInfo: nil, serviceType: gameServiceType)
         advertiser?.delegate = self
         advertiser!.startAdvertisingPeer()
-        print("INFO: Advertiser started.")
+        print("ARCADE-INFO: Advertiser started.")
     }
     
     func stopAdvertising() {
@@ -42,7 +42,7 @@ class NetworkManager: NSObject {
     func send<T>(object: T) {
         guard let data = try? NSKeyedArchiver.archivedData(withRootObject: object, requiringSecureCoding: false)
             else {
-                print("ERROR: Unable to encode object of type \(T.self)")
+                print("ARCADE-ERROR: Unable to encode object of type \(T.self)")
                 return
         }
         do {
@@ -51,9 +51,9 @@ class NetworkManager: NSObject {
             } else if object is SceneUpdate || object is ScenePeerInitialization {
                 try session.send(data, toPeers: session.connectedPeers, with: .reliable)
             }
-            print("INFO: Sent object of type \(T.self) to peers successfully.")
+            print("ARCADE-INFO: Sent object of type \(T.self) to peers successfully.")
         } catch {
-            print("ERROR: \(error)")
+            print("ARCADE-ERROR: \(error)")
         }
     }
 }
@@ -69,11 +69,11 @@ extension NetworkManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .connected:
-            print("INFO: \(peerID.displayName) connected")
+            print("ARCADE-INFO: \(peerID.displayName) connected")
         case .connecting:
-            print("INFO: \(peerID.displayName) connecting")
+            print("ARCADE-INFO: \(peerID.displayName) connecting")
         case .notConnected:
-            print("INFO: \(peerID.displayName) not connected")
+            print("ARCADE-INFO: \(peerID.displayName) not connected")
         }
     }
     
@@ -83,37 +83,37 @@ extension NetworkManager: MCSessionDelegate {
             if let data = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScenePeerInitialization.self, GameAction.self, SceneUpdate.self], from: data) {
                 switch data {
                 case let gameAction as GameAction:
-                    print("INFO: GameAction Detected. \(gameAction.sourceID)")
+                    print("ARCADE-INFO: GameAction Detected. \(gameAction.sourceID)")
                 case let sceneUpdate as SceneUpdate:
-                    print("INFO: SceneUpdate Detected. \(sceneUpdate.type)")
+                    print("ARCADE-INFO: SceneUpdate Detected. \(sceneUpdate.type)")
                 case let startingState as ScenePeerInitialization:
                     hostID = startingState.hostID
-                    print("INFO: ScenePeerInitialization Detected.")
+                    print("ARCADE-INFO: ScenePeerInitialization Detected.")
                 default:
-                    print("ERROR: Unable to convert unarchived data to relevant data type.")
+                    print("ARCADE-ERROR: Unable to convert unarchived data to relevant data type.")
                 }
             }
         } catch {
-            print("ERROR: \(error)")
+            print("ARCADE-ERROR: \(error)")
         }
     }
 
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        print("INFO: Stream recieved.")
+        print("ARCADE-INFO: Stream recieved.")
     }
     
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        print("INFO: Started receiving resource with name '\(resourceName)'")
+        print("ARCADE-INFO: Started receiving resource with name '\(resourceName)'")
     }
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        print("INFO: Finished receiving resource with name '\(resourceName)'")
+        print("ARCADE-INFO: Finished receiving resource with name '\(resourceName)'")
     }
     
     /*
     func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
         certificateHandler(true)
-        print("INFO: Recieved certificate.")
+        print("ARCADE-INFO: Recieved certificate.")
     }
     */
 }
