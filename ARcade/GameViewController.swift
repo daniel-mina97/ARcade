@@ -163,29 +163,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 } else {
                     return
                 }
-                
-                let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
-                let planeNode = SCNNode()
-                
-                planeNode.transform = SCNMatrix4MakeRotation(-Float.pi/2, 1, 0, 0)
-                planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
-                
-                let gridMaterial = SCNMaterial()
-                gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
-                plane.materials = [gridMaterial]
-                planeNode.geometry = plane
-                sceneView.scene.rootNode.addChildNode(node)
-                node.addChildNode(planeNode)
-                baseNode = node
-                gridNode = planeNode
-                cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
-                node.addChildNode(cityNode!)
-                manager.sceneManager.setSceneNode(node: node)
-                print("\(planeAnchor.center.x) \(planeAnchor.center.y) \(planeAnchor.center.z)")
-                print("\(planeNode.position.x) \(planeNode.position.y) \(planeNode.position.z)")
-                print("\(String(describing: cityNode?.position.x)) \(String(describing: cityNode?.position.y)) \(String(describing: cityNode?.position.z))")
-            }else{
-                return
             }
         }
     }
