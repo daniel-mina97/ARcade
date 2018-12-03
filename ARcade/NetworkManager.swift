@@ -17,7 +17,10 @@ class NetworkManager: NSObject {
     let session: MCSession
     var advertiser: MCNearbyServiceAdvertiser?
     var browser: MCNearbyServiceBrowser?
+    var gameManagerDelegate: GameManager!
+    var sceneManagerDelegate: SceneManager!
     let gameServiceType: String = "ARcadeSession"
+    
 
     init(host: Bool, displayName: String){
         isHost = host
@@ -84,11 +87,14 @@ extension NetworkManager: MCSessionDelegate {
                 switch data {
                 case let gameAction as GameAction:
                     print("ARCADE-INFO: GameAction Detected. \(gameAction.sourceID)")
+                    gameManagerDelegate.actionQueue!.enqueue(act: gameAction)
                 case let sceneUpdate as SceneUpdate:
                     print("ARCADE-INFO: SceneUpdate Detected. \(sceneUpdate.type)")
+                    sceneManagerDelegate.apply(this: sceneUpdate)
                 case let startingState as ScenePeerInitialization:
-                    hostID = startingState.hostID
                     print("ARCADE-INFO: ScenePeerInitialization Detected.")
+                    hostID = startingState.hostID
+                    print("ARCADE-ERROR: No implementation written to process startingState received.")
                 default:
                     print("ARCADE-ERROR: Unable to convert unarchived data to relevant data type.")
                 }
