@@ -18,7 +18,6 @@ class NetworkManager: NSObject {
     var advertiser: MCNearbyServiceAdvertiser?
     var browser: MCNearbyServiceBrowser?
     var gameManagerDelegate: GameManager!
-    var sceneManagerDelegate: SceneManager!
     let gameServiceType: String = "ARcadeSession"
     
 
@@ -90,7 +89,7 @@ extension NetworkManager: MCSessionDelegate {
                     gameManagerDelegate.actionQueue!.enqueue(act: gameAction)
                 case let sceneUpdate as SceneUpdate:
                     print("ARCADE-INFO: SceneUpdate Detected. \(sceneUpdate.type)")
-                    sceneManagerDelegate.apply(this: sceneUpdate)
+                    gameManagerDelegate.apply(this: sceneUpdate)
                 case let startingState as ScenePeerInitialization:
                     print("ARCADE-INFO: ScenePeerInitialization Detected.")
                     hostID = startingState.hostID

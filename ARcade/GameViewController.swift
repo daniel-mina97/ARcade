@@ -217,7 +217,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         manager = GameManager(scene: scene, netManager: networkManager)
         manager.sceneViewDelegate = self
         networkManager.gameManagerDelegate = manager
-        networkManager.sceneManagerDelegate = manager.sceneManager
         if networkManager.isHost{
             self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }

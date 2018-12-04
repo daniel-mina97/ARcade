@@ -29,6 +29,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         case type
         case spawnPoint
         case alienID
+        case targetID
         case alienType
     }
     
@@ -38,6 +39,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
     let type: UpdateTypes
     let spawnPoint: Coordinate3D?
     let alienID: Int
+    let targetID: Int?
     let alienType: Alien.AlienType?
     
     init(alienID: Int, alienType: Alien.AlienType, spawnPoint: Coordinate3D) {
@@ -45,6 +47,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         SceneUpdate.overallUpdateID += 1
         self.type = .SpawnAlien
         self.alienID = alienID
+        self.targetID = nil
         self.spawnPoint = spawnPoint
         self.alienType = alienType
     }
@@ -54,6 +57,17 @@ class SceneUpdate: NSObject, NSSecureCoding {
         SceneUpdate.overallUpdateID += 1
         self.type = .RemoveAlien
         self.alienID = alienID
+        self.targetID = nil
+        self.spawnPoint = nil
+        self.alienType = nil
+    }
+    
+    init(alienID: Int, targetID: Int) {
+        self.updateID = SceneUpdate.overallUpdateID
+        SceneUpdate.overallUpdateID += 1
+        self.type = .BulletShot
+        self.alienID = alienID
+        self.targetID = targetID
         self.spawnPoint = nil
         self.alienType = nil
     }
@@ -64,6 +78,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         spawnPoint = Coordinate3D(vector: aDecoder.decodeObject(forKey: CodingKeys.spawnPoint.rawValue) as! SCNVector3)
         alienType = aDecoder.decodeObject(forKey: CodingKeys.alienType.rawValue) as? Alien.AlienType
         alienID = aDecoder.decodeInteger(forKey: CodingKeys.alienID.rawValue)
+        targetID = aDecoder.decodeInteger(forKey: CodingKeys.targetID.rawValue)
     }
     
     func encode(with encoder: NSCoder) {
@@ -71,6 +86,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         encoder.encode(type, forKey: CodingKeys.type.rawValue)
         encoder.encode(spawnPoint?.getVector(), forKey: CodingKeys.spawnPoint.rawValue)
         encoder.encode(alienID, forKey: CodingKeys.alienID.rawValue)
+        encoder.encode(targetID, forKey: CodingKeys.targetID.rawValue)
         encoder.encode(alienType, forKey: CodingKeys.alienType.rawValue)
     }
 }

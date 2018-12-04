@@ -117,6 +117,8 @@ class GameManager{
             else{
                 action = GameAction(type: .alienShootPlayer, sourceID: shooter, targetID: target!)
             }
+            let sceneUpdate = SceneUpdate(alienID: shooter, targetID: target!)
+            networkManager.send(object: sceneUpdate)
             actionQueue!.enqueue(act: action)
         }
     }
