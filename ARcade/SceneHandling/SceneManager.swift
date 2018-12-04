@@ -131,19 +131,4 @@ class SceneManager {
         print("ARCADE-INFO: Spawning pickup.")
         return spawnObject(asset: "art.scnassets/health_pickup.dae", scale: 0.1, id: id, x: x, y: y, z: z)
     }
-    
-    func apply(this update: SceneUpdate) {
-        switch update.type {
-        case .SpawnAlien:
-            add(node: makeAlien(id: update.alienID, type: update.alienType!, at: (update.spawnPoint?.getVector())!))
-        case .RemoveAlien:
-            remove(node: manager.aliens![update.alienID]!.node!)
-        case .SpawnPickup:
-            print("ARCADE-ERROR: No implementation for spawning pickups.")
-        case .BulletShot:
-            manager.AlienShootCity(alienID: update.alienID)
-        case .EndGame:
-            manager.endGame()
-        }
-    }
 }

@@ -180,6 +180,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 cityNode.name = "-1"
                 node.addChildNode(cityNode)
                 manager.sceneManager.setSceneNode(node: node)
+                manager.city = City(node: cityNode)
             }
         }
     }
