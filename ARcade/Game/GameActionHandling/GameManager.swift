@@ -170,8 +170,9 @@ class GameManager{
         case .SpawnPickup:
             print("ARCADE-ERROR: No implementation for spawning pickups.")
         case .BulletShot:
-            //manager.AlienShootCity(alienID: update.alienID)
-            break
+            if(update.targetID == -1){
+                AlienShootCity(alienID: update.alienID)
+            }
         case .EndGame:
             endGame()
         }
