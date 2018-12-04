@@ -54,8 +54,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func sendAcknowledgement(_ sender: Any) {
         let message = IntegerAcknowledge(message: 1)
         networkManager.send(object: message)
+        acknowledgementButoon.isHidden = true
     }
-    
     
     @IBAction func cancelCityPlane(_ sender: UIButton) {
         if let anchor = cityAnchor {
@@ -89,16 +89,15 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func shareWorld(_ sender: UIButton) {
-        if networkManager.numberOfPeersAcknowledged == networkManager.session.connectedPeers.count {
-            shareWorldButton.isHidden = true
-            startGameButton.isHidden = false
-            return
-        }
+        networkManager.numberOfPeersAcknowledged = 0
         networkManager.stopAdvertising()
         guard let currentFrame = sceneView.session.currentFrame else {return}
         switch currentFrame.worldMappingStatus {
         case .notAvailable, .limited:
             print("ARCADE-ERROR: World mapping status insufficient.")
+            let alert = UIAlertController(title: "Try Again", message: "You have not yet mapped the area well enough to share the AR world.", preferredStyle: .alert)
+            alert.addAction(.init(title: "Okay", style: .default, handler: nil))
+            self.present(alert, animated: true)
         case .extending, .mapped:
             sceneView.session.getCurrentWorldMap { worldMap, error in
                 guard let map = worldMap
@@ -108,6 +107,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 self.beginningScene = ScenePeerInitialization(worldMap: map, cityAnchor: cityAnchor, hostID: self.networkManager.session.myPeerID)
                 if let sceneToSend = self.beginningScene {
                     self.networkManager.send(object: sceneToSend)
+                    let alert = UIAlertController(title: "Success", message: "You have sent the world map to the connected peers.", preferredStyle: .alert)
+                    alert.addAction(.init(title: "Okay", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                 } else {
                     print("ARCADE-ERROR: No beginningScene available found to send to peers.")
                 }
@@ -118,6 +120,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func startGame(_ sender: UIButton) {
         state = .gameStarted
         startGameButton.isHidden = true
+        shareWorldButton.isHidden = true
         manager.startGame(cityNode: cityNode!)
     }
     
@@ -151,14 +154,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             if state == .lookingForPlane {
                 print("ARCADE-INFO: Looking for plane.")
                 if let planeAnchor = anchor as? ARPlaneAnchor {
+                    print("ARCADE-INFO: Found plane.")
                     state = .cityPlaced
                     cityAnchor = ARAnchor(name: "city", transform: anchor.transform)
                     sceneView.session.add(anchor: cityAnchor!)
-                    DispatchQueue.main.async{
-                        self.cancelButton.isHidden = false
-                        self.saveButton.isHidden = false
-                    }
-                    
+                    cancelButton.isHidden = false
+                    saveButton.isHidden = false
                     let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
                     let planeNode = SCNNode()
                     
@@ -176,13 +177,13 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     cityNode = manager.spawnCity(x: planeNode.position.x, y: planeNode.position.y, z: planeNode.position.z)
                     node.addChildNode(cityNode!)
                     manager.sceneManager.setSceneNode(node: node)
+                    print("ARCADE-INFO: SceneNode set.")
                 } else {
                     return
                 }
             }
         }
         else {
-            print("ARCADE-INFO: I am getting called so that's cool")
             if let name = anchor.name, name.hasPrefix("city") {
                 let cityScene = SCNScene(named: "art.scnassets/City.dae")
                 let cityNode = SCNNode()
@@ -195,20 +196,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 node.addChildNode(cityNode)
                 manager.sceneManager.setSceneNode(node: node)
                 manager.city = City(node: cityNode)
+                print("ARCADE-INFO: SceneNode set.")
             }
         }
     }
     
-    /*
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard !networkManager.isHost else {return nil}
-        let node = manager.sceneManager.spawnCity(x: anchor.transform.columns.3.x,
-                                                  y: anchor.transform.columns.3.y,
-                                                  z: anchor.transform.columns.3.z)
-        print("ARCADE-INFO: Node created.")
-        return node
-    }
-    */
     override func viewDidLoad() {
         super.viewDidLoad()
         startGameButton.isHidden = true
@@ -232,6 +224,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         manager = GameManager(scene: scene, netManager: networkManager)
         manager.sceneViewDelegate = self
         networkManager.gameManagerDelegate = manager
+        networkManager.buttonUpdateDelegate = self
         if networkManager.isHost{
             self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
@@ -250,17 +243,31 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
+        print("ARCADE-ERROR: \(error)")
         
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+        print("ARCADE-INFO: Session interrupted.")
         
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
+        print("ARCADE-INFO: Session interruption ended.")
+    }
+}
+
+extension GameViewController: ButtonUpdaterDelegate {
+    
+    func showAcknowledgementButton() {
+        DispatchQueue.main.async {
+            self.acknowledgementButoon.isHidden = false
+        }
+    }
+    
+    func showStartGameButton() {
+        DispatchQueue.main.async {
+            self.startGameButton.isHidden = false
+        }
     }
 }
