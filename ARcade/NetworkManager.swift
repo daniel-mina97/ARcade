@@ -19,13 +19,14 @@ class NetworkManager: NSObject {
     var browser: MCNearbyServiceBrowser?
     var gameManagerDelegate: GameManager!
     let gameServiceType: String = "ARcadeSession"
+    var numberOfPeersAcknowledged: Int
     
-
     init(host: Bool, displayName: String){
         isHost = host
         let myPeerID: MCPeerID = MCPeerID(displayName: displayName)
         playerID = myPeerID.hash
         session = MCSession(peer: myPeerID, securityIdentity: nil, encryptionPreference: .none)
+        numberOfPeersAcknowledged = 0
         super.init()
         self.session.delegate = self
     }
@@ -48,7 +49,7 @@ class NetworkManager: NSObject {
                 return
         }
         do {
-            if object is GameAction {
+            if object is GameAction || object is IntegerAcknowledge {
                 try session.send(data, toPeers: [hostID!], with: .reliable)
             } else if object is SceneUpdate || object is ScenePeerInitialization {
                 try session.send(data, toPeers: session.connectedPeers, with: .reliable)
@@ -72,6 +73,7 @@ extension NetworkManager: MCSessionDelegate {
         switch state {
         case .connected:
             print("ARCADE-INFO: \(peerID.displayName) connected")
+            
         case .connecting:
             print("ARCADE-INFO: \(peerID.displayName) connecting")
         case .notConnected:
@@ -82,18 +84,22 @@ extension NetworkManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("I recieved data")
         do {
-            if let data = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScenePeerInitialization.self, GameAction.self, SceneUpdate.self], from: data) {
+            if let data = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScenePeerInitialization.self, GameAction.self, SceneUpdate.self, IntegerAcknowledge.self], from: data) {
                 switch data {
                 case let gameAction as GameAction:
                     print("ARCADE-INFO: GameAction Detected. \(gameAction.sourceID)")
                     gameManagerDelegate.actionQueue!.enqueue(act: gameAction)
                 case let sceneUpdate as SceneUpdate:
                     print("ARCADE-INFO: SceneUpdate Detected. \(sceneUpdate.type)")
+                    print("LOOK HERE2: \(sceneUpdate.alienID)")
                     gameManagerDelegate.apply(this: sceneUpdate)
                 case let startingState as ScenePeerInitialization:
                     print("ARCADE-INFO: ScenePeerInitialization Detected.")
                     hostID = startingState.hostID
                     gameManagerDelegate.peerGameSetup(map: startingState.worldMap, cityAnchor: startingState.cityAnchor)
+                case _ as IntegerAcknowledge:
+                    print("ARCADE-INFO: Acknowledgement Detected.")
+                    numberOfPeersAcknowledged += 1
                 default:
                     print("ARCADE-ERROR: Unable to convert unarchived data to relevant data type.")
                 }
@@ -123,3 +129,29 @@ extension NetworkManager: MCSessionDelegate {
     */
 }
 
+class IntegerAcknowledge: NSObject, NSSecureCoding {
+    
+    static var supportsSecureCoding: Bool {
+        get {
+            return true
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case message
+    }
+    
+    let message: Int
+    
+    init(message: Int) {
+        self.message = message
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(message, forKey: CodingKeys.message.rawValue)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        message = aDecoder.decodeInteger(forKey: CodingKeys.message.rawValue)
+    }
+}

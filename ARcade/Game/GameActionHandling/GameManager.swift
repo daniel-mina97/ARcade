@@ -69,6 +69,7 @@ class GameManager{
     }
     
     func peerGameSetup(map: ARWorldMap, cityAnchor: ARAnchor){
+        sessionState = .ongoing
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         configuration.initialWorldMap = map
@@ -160,13 +161,15 @@ class GameManager{
     func apply(this update: SceneUpdate) {
         switch update.type {
         case .SpawnAlien:
-            let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: update.alienType!, at: (update.spawnPoint?.getVector())!)
-            let alien: Alien = AlienFactory.createAlien(type: update.alienType!, node: alienNode)
-            aliens![alien.id] = alien
+            let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: update.alienType, at: Coordinate3D(x: update.spawnPointX, y: update.spawnPointY, z: update.spawnPointZ).getVector())
+            alienNode.name = "A" + String(update.alienID)
+            let alien: Alien = AlienFactory.createAlien(type: update.alienType, node: alienNode)
+            aliens![update.alienID] = alien
             let action = sceneManager.getAlienMoveAction(object: alien.node!, to: (city!.node?.position)!, speed: alien.moveSpeed)
             alien.node?.runAction(action)
         case .RemoveAlien:
-            sceneManager.remove(node: aliens![update.alienID]!.node!)
+            aliens![update.alienID]!.node?.removeFromParentNode()
+            aliens![update.alienID] = nil
         case .SpawnPickup:
             print("ARCADE-ERROR: No implementation for spawning pickups.")
         case .BulletShot:
@@ -184,14 +187,20 @@ class GameManager{
         
         switch action.type {
         case .playerShootAlien:
-            if aliens![action.targetID]!.takeDamage(from: players![action.sourceID]!.damage) == GameActor.lifeState.dead {
-                aliens![action.targetID]!.node!.removeFromParentNode()
+            guard let alien = aliens![action.targetID] else {return}
+            if alien.takeDamage(from: players![action.sourceID]!.damage) == GameActor.lifeState.dead {
+                alien.node!.removeFromParentNode()
                 aliens![action.targetID] = nil
+                let sceneUpdate = SceneUpdate(alienID: action.targetID)
+                networkManager.send(object: sceneUpdate)
             }
         case .playerShootMultiTakedown:
-            if aliens![action.targetID]!.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
-                aliens![action.targetID]!.node!.removeFromParentNode()
+            guard let alien = aliens![action.targetID] else {return}
+            if alien.takeDamage(fromPlayerNumber: action.sourceID) == GameActor.lifeState.dead {
+                alien.node!.removeFromParentNode()
                 aliens![action.targetID] = nil
+                let sceneUpdate = SceneUpdate(alienID: action.targetID)
+                networkManager.send(object: sceneUpdate)
             }
         case .alienShootPlayer:
             if players![action.targetID]!.takeDamage(from : aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
@@ -208,6 +217,8 @@ class GameManager{
                 endGame()
             }
         case .alienCrashIntoCity:
+            let sceneUpdate = SceneUpdate(alienID: action.sourceID)
+            networkManager.send(object: sceneUpdate)
             if city!.takeDamage(from: aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
                 //Game Ends
                 //Players Lose
@@ -248,6 +259,7 @@ class GameManager{
             if networkManager.isHost {
                 actionQueue!.enqueue(act: gameAction)
             } else {
+                print("BANANA: \(gameAction.type.rawValue) and also target ID: \(gameAction.targetID)")
                 networkManager.send(object: gameAction)
             }
         }

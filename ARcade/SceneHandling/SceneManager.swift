@@ -35,6 +35,8 @@ class SceneManager {
         case Alien.AlienType.multiTakedown:
             newAlienNode = spawnAlienMultiTakedown(id: id, x: at.x, y: at.y, z: at.z)
             break
+        case Alien.AlienType.filler:
+            break
         }
         newAlienNode.name = "A" + newAlienNode.name!
         sceneNode?.addChildNode(newAlienNode)

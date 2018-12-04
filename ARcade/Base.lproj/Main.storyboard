@@ -398,6 +398,14 @@
                                     <action selector="shareWorld:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Jwp-pT-C1g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPj-lT-sYB">
+                                <rect key="frame" x="77" y="57" width="166" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send Acknowledgement"/>
+                                <connections>
+                                    <action selector="sendAcknowledgement:" destination="BV1-FR-VrT" eventType="touchUpInside" id="hsq-PI-LbO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -418,6 +426,7 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="acknowledgementButoon" destination="sPj-lT-sYB" id="5fS-bL-pSs"/>
                         <outlet property="cancelButton" destination="COf-U5-1kM" id="9Dw-UJ-Y0f"/>
                         <outlet property="playerHealthBar" destination="Fbd-yW-wwO" id="nFz-7F-tKY"/>
                         <outlet property="saveButton" destination="K7W-cz-U1x" id="xKL-q8-enm"/>
