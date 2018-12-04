@@ -22,7 +22,7 @@ class Alien: GameActor {
     static let AlienTypeArray = [AlienType.diving, AlienType.shooting, AlienType.multiTakedown]
 
     var moveSpeed: Int
-    var identifier: Int
+    var id: Int
     static var numOfAliens = 0
     var type: AlienType
     static var numOfPlayers = 0
@@ -31,7 +31,7 @@ class Alien: GameActor {
     init(type t: AlienType, moveSpeed m: Int, health h: Int,
         damage d: Int, node n: SCNNode) {
         moveSpeed = m
-        identifier = Alien.numOfAliens
+        id = Alien.numOfAliens
         Alien.numOfAliens += 1
         type = t
         
