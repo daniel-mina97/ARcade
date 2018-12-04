@@ -10,6 +10,11 @@ import UIKit
 import Foundation
 import MultipeerConnectivity
 
+protocol ButtonUpdaterDelegate {
+    func showAcknowledgementButton()
+    func showStartGameButton()
+}
+
 class NetworkManager: NSObject {
     var isHost: Bool
     var playerID: Int
@@ -18,6 +23,7 @@ class NetworkManager: NSObject {
     var advertiser: MCNearbyServiceAdvertiser?
     var browser: MCNearbyServiceBrowser?
     var gameManagerDelegate: GameManager!
+    var buttonUpdateDelegate: ButtonUpdaterDelegate!
     let gameServiceType: String = "ARcadeSession"
     var numberOfPeersAcknowledged: Int
     
@@ -29,6 +35,7 @@ class NetworkManager: NSObject {
         numberOfPeersAcknowledged = 0
         super.init()
         self.session.delegate = self
+        print("ARCADE-INFO: Network Manager initiated.")
     }
     
     func startAdvertising() {
@@ -40,6 +47,7 @@ class NetworkManager: NSObject {
     
     func stopAdvertising() {
         advertiser!.stopAdvertisingPeer()
+        print("ARCADE-INFO: Advertiser stopped.")
     }
     
     func send<T>(object: T) {
@@ -82,7 +90,6 @@ extension NetworkManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("I recieved data")
         do {
             if let data = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScenePeerInitialization.self, GameAction.self, SceneUpdate.self, IntegerAcknowledge.self], from: data) {
                 switch data {
@@ -91,15 +98,19 @@ extension NetworkManager: MCSessionDelegate {
                     gameManagerDelegate.actionQueue!.enqueue(act: gameAction)
                 case let sceneUpdate as SceneUpdate:
                     print("ARCADE-INFO: SceneUpdate Detected. \(sceneUpdate.type)")
-                    print("LOOK HERE2: \(sceneUpdate.alienID)")
                     gameManagerDelegate.apply(this: sceneUpdate)
                 case let startingState as ScenePeerInitialization:
                     print("ARCADE-INFO: ScenePeerInitialization Detected.")
                     hostID = startingState.hostID
                     gameManagerDelegate.peerGameSetup(map: startingState.worldMap, cityAnchor: startingState.cityAnchor)
+                    buttonUpdateDelegate.showAcknowledgementButton()
                 case _ as IntegerAcknowledge:
                     print("ARCADE-INFO: Acknowledgement Detected.")
                     numberOfPeersAcknowledged += 1
+                    if numberOfPeersAcknowledged == session.connectedPeers.count {
+                        print("ARCADE-INFO: All peers have acknowledged.")
+                        buttonUpdateDelegate.showStartGameButton()
+                    }
                 default:
                     print("ARCADE-ERROR: Unable to convert unarchived data to relevant data type.")
                 }
@@ -120,13 +131,6 @@ extension NetworkManager: MCSessionDelegate {
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         print("ARCADE-INFO: Finished receiving resource with name '\(resourceName)'")
     }
-    
-    /*
-    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
-        certificateHandler(true)
-        print("ARCADE-INFO: Recieved certificate.")
-    }
-    */
 }
 
 class IntegerAcknowledge: NSObject, NSSecureCoding {

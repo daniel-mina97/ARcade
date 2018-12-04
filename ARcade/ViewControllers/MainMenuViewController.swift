@@ -71,10 +71,11 @@ extension MainMenuViewController: MCBrowserViewControllerDelegate {
 
 extension MainMenuViewController: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        print("ARCADE-INFO: Found Peer.")
         browser.invitePeer(peerID, to: netManager!.session, withContext: nil, timeout: 10)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("Lost peer")
+        print("ARCADE-INFO: Lost Peer.")
     }
 }

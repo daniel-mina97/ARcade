@@ -168,13 +168,20 @@ class GameManager{
             let action = sceneManager.getAlienMoveAction(object: alien.node!, to: (city!.node?.position)!, speed: alien.moveSpeed)
             alien.node?.runAction(action)
         case .RemoveAlien:
-            aliens![update.alienID]!.node?.removeFromParentNode()
+            guard let alien = aliens![update.alienID] else {return}
+            alien.node?.removeFromParentNode()
             aliens![update.alienID] = nil
         case .SpawnPickup:
             print("ARCADE-ERROR: No implementation for spawning pickups.")
         case .BulletShot:
             if(update.targetID == -1){
                 AlienShootCity(alienID: update.alienID)
+            }
+        case .PlayerShot:
+            DispatchQueue.main.async {
+                if update.targetID == self.localID {
+                    self.sceneViewDelegate?.playerHealthBar.progress = update.healthProgress
+                }
             }
         case .EndGame:
             endGame()
@@ -203,8 +210,16 @@ class GameManager{
                 networkManager.send(object: sceneUpdate)
             }
         case .alienShootPlayer:
+            guard let player = players![action.targetID] else { return }
+            let health = Float(player.getHealth()) / Float(player.getMaxHealth())
+            if action.targetID == localID {
+                sceneViewDelegate?.playerHealthBar.progress = health
+            } else {
+                let sceneUpdate = SceneUpdate(healthProgress: health, playerID: action.targetID)
+                networkManager.send(object: sceneUpdate)
+            }
             if players![action.targetID]!.takeDamage(from : aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
-                //send scene
+                print("ARCADE-INFO: Player has died.")
             }
         case .alienShootCity:
             
@@ -259,7 +274,6 @@ class GameManager{
             if networkManager.isHost {
                 actionQueue!.enqueue(act: gameAction)
             } else {
-                print("BANANA: \(gameAction.type.rawValue) and also target ID: \(gameAction.targetID)")
                 networkManager.send(object: gameAction)
             }
         }
