@@ -94,7 +94,7 @@ extension NetworkManager: MCSessionDelegate {
                 case let startingState as ScenePeerInitialization:
                     print("ARCADE-INFO: ScenePeerInitialization Detected.")
                     hostID = startingState.hostID
-                    print("ARCADE-ERROR: No implementation written to process startingState received.")
+                    gameManagerDelegate.peerGameSetup(map: startingState.worldMap, cityAnchor: startingState.cityAnchor)
                 default:
                     print("ARCADE-ERROR: Unable to convert unarchived data to relevant data type.")
                 }

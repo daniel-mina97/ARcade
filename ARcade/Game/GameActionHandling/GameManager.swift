@@ -20,17 +20,18 @@ enum GameState{
 class GameManager{
     var sceneManager: SceneManager
     var networkManager: NetworkManager
+    var sceneViewDelegate: GameViewController?
     var players: [Int: Player]?
     var aliens: [Int: Alien]?
     var targetList: [Int]?
     var city: City?
     var actionQueue: Queue<GameAction>?
-    var updateQueue: Queue<SceneUpdate>?
     var sessionState: GameState
     var spawnAlienTimer: Timer?
     var alienShotTimer: Timer?
     var actionTimer: Timer?
     let localID: Int
+    
     
     static let MAX_ALIENS: Int = 15
     
@@ -45,10 +46,6 @@ class GameManager{
             aliens = [:]
             targetList = []
         }
-        else{
-            updateQueue = Queue<SceneUpdate>()
-        }
-        
         sceneManager = SceneManager(scene: scene)
         sceneManager.manager = self
     }
@@ -71,12 +68,13 @@ class GameManager{
 
     }
     
-    func peerGameSetup(anchor: ARAnchor){
-        let cityNode: SCNNode = sceneManager.spawnCity(x: anchor.transform.columns.3.x,
-                                                       y: anchor.transform.columns.3.y,
-                                                       z: anchor.transform.columns.3.z)
-        sceneManager.add(node: cityNode)
-        city = City(node: cityNode)
+    func peerGameSetup(map: ARWorldMap, cityAnchor: ARAnchor){
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        configuration.initialWorldMap = map
+        sceneViewDelegate?.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        sceneViewDelegate?.sceneView.session.add(anchor: cityAnchor)
+        print("ARCADE-INFO: World map recieved and set up locally.")
     }
     
     func endGame() {
