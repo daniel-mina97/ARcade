@@ -127,11 +127,11 @@ class GameManager{
             let spawnCoordinates: SCNVector3 = getSpawnCoordinates().getVector()
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
-            aliens![alien.identifier] = alien
+            aliens![alien.id] = alien
+            let sceneUpdate = SceneUpdate(alienID: alien.id, alienType: alien.type, spawnPoint: Coordinate3D(vector: (alien.node?.position)!))
+            networkManager.send(object: sceneUpdate)
             let action = sceneManager.getAlienMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
-            alien.node?.runAction(action, completionHandler: {self.actionQueue!.enqueue(act: GameAction(type: .alienCrashIntoCity, sourceID: alien.identifier, targetID: 0))})
-            // get coordinates relative to city location, not local coordinates
-            // pass SceneUpdate
+            alien.node?.runAction(action, completionHandler: {self.actionQueue!.enqueue(act: GameAction(type: .alienCrashIntoCity, sourceID: alien.id, targetID: 0))})
         }
     }
     
