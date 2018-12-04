@@ -74,25 +74,33 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
             cancelButton.isHidden = true
             saveButton.isHidden = true
             shareWorldButton.isHidden = false
-            
-            if let cityAnchor = cityAnchor {
-                beginningScene = ScenePeerInitialization(cityAnchor: cityAnchor, hostID: networkManager.session.myPeerID)
-            } else {
-                print("ARCADE-ERROR: Unable to construct beginning scene package. No cityAnchor found.")
-            }
             networkManager.startAdvertising()
         }
     }
     
     @IBAction func shareWorld(_ sender: UIButton) {
         networkManager.stopAdvertising()
-        if let sceneToSend = beginningScene {
-            networkManager.send(object: sceneToSend)
-        } else {
-            print("ARCADE-ERROR: No beginningScene available found to send to peers")
+        guard let currentFrame = sceneView.session.currentFrame else {return}
+        switch currentFrame.worldMappingStatus {
+        case .notAvailable, .limited:
+            print("ARCADE-ERROR: World mapping status insufficient.")
+        case .extending, .mapped:
+            shareWorldButton.isEnabled = true
+            sceneView.session.getCurrentWorldMap { worldMap, error in
+                guard let map = worldMap
+                    else { print("ARCADE-ERROR: No worldMap found. Unable to create beginningScene."); return}
+                guard let cityAnchor = self.cityAnchor
+                    else { print("ARCADE-ERROR: No cityAnchor found. Unable to create beginningScene."); return}
+                self.beginningScene = ScenePeerInitialization(worldMap: map, cityAnchor: cityAnchor, hostID: self.networkManager.session.myPeerID)
+                if let sceneToSend = self.beginningScene {
+                    self.networkManager.send(object: sceneToSend)
+                } else {
+                    print("ARCADE-ERROR: No beginningScene available found to send to peers.")
+                }
+            }
         }
     }
-    
+
     @IBAction func startGame(_ sender: UIButton) {
         state = .gameStarted
         startGameButton.isHidden = true
@@ -127,9 +135,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         //if session state is looking for plane
         if networkManager.isHost{
             if state == .lookingForPlane {
+                print("ARCADE-INFO: Looking for plane.")
                 if let planeAnchor = anchor as? ARPlaneAnchor {
                     state = .cityPlaced
-                    cityAnchor = anchor
+                    cityAnchor = ARAnchor(name: "city", transform: anchor.transform)
+                    sceneView.session.add(anchor: cityAnchor!)
                     DispatchQueue.main.async{
                         self.cancelButton.isHidden = false
                         self.saveButton.isHidden = false
@@ -157,8 +167,33 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
         }
+        else {
+            print("ARCADE-INFO: I am getting called so that's cool")
+            if let name = anchor.name, name.hasPrefix("city") {
+                let cityScene = SCNScene(named: "art.scnassets/City.dae")
+                let cityNode = SCNNode()
+                for childNode in (cityScene?.rootNode.childNodes)! {
+                    cityNode.addChildNode(childNode)
+                }
+                cityNode.scale = SCNVector3(0.03, 0.03, 0.03)
+                //cityNode.position = SCNVector3(anchor.transform.columns.3.x, anchor.transform.columns.3.y, anchor.transform.columns.3.z)
+                cityNode.name = "-1"
+                node.addChildNode(cityNode)
+                manager.sceneManager.setSceneNode(node: node)
+            }
+        }
     }
     
+    /*
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard !networkManager.isHost else {return nil}
+        let node = manager.sceneManager.spawnCity(x: anchor.transform.columns.3.x,
+                                                  y: anchor.transform.columns.3.y,
+                                                  z: anchor.transform.columns.3.z)
+        print("ARCADE-INFO: Node created.")
+        return node
+    }
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         startGameButton.isHidden = true
@@ -179,6 +214,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         playerHealthBar.setProgress(100, animated: false)
         configureSession()
         manager = GameManager(scene: scene, netManager: networkManager)
+        manager.sceneViewDelegate = self
         networkManager.gameManagerDelegate = manager
         networkManager.sceneManagerDelegate = manager.sceneManager
         if networkManager.isHost{
@@ -191,25 +227,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         networkManager.session.disconnect()
     }
-    
-    // MARK: - ARSCNViewDelegate
-    
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
