@@ -56,20 +56,27 @@ class GameManager{
     func startGame(cityNode: SCNNode) {
         sessionState = .ongoing
         city = City(node: cityNode)
-        players![1] = Player(playerType: .balanced)
+        for peer in networkManager.session.connectedPeers{
+            players![peer.hash] = Player(playerType: .balanced)
+        }
+        players![localID] = Player(playerType: .balanced)
         Alien.numOfPlayers = players!.count
         targetList!.append(-1)
         for player in players!.keys{
             targetList!.append(player)
         }
-        if networkManager.isHost{
-            spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnAlien), userInfo: nil, repeats: true)
-            actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(executeNextAction), userInfo: nil, repeats: true)
-            alienShotTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(createAlienShots), userInfo: nil, repeats: true)
-        }
-        else {
-            //make update timer
-        }
+        spawnAlienTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnAlien), userInfo: nil, repeats: true)
+        actionTimer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(executeNextAction), userInfo: nil, repeats: true)
+        alienShotTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(createAlienShots), userInfo: nil, repeats: true)
+
+    }
+    
+    func peerGameSetup(anchor: ARAnchor){
+        let cityNode: SCNNode = sceneManager.spawnCity(x: anchor.transform.columns.3.x,
+                                                       y: anchor.transform.columns.3.y,
+                                                       z: anchor.transform.columns.3.z)
+        sceneManager.add(node: cityNode)
+        city = City(node: cityNode)
     }
     
     func endGame() {
@@ -123,7 +130,7 @@ class GameManager{
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
             aliens![alien.identifier] = alien
-            let action = sceneManager.getMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
+            let action = sceneManager.getAlienMoveAction(object: alien.node!, to: city!.node!.position, speed: alien.moveSpeed)
             alien.node?.runAction(action, completionHandler: {self.actionQueue!.enqueue(act: GameAction(type: .alienCrashIntoCity, sourceID: alien.identifier, targetID: 0))})
             // get coordinates relative to city location, not local coordinates
             // pass SceneUpdate
@@ -136,7 +143,7 @@ class GameManager{
         let cityPostion : SCNVector3 = (city!.node?.position)!
         
         let bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
-        let moveAction : SCNAction = sceneManager.getMoveAction(object: bullet, to: cityPostion, speed: 20)
+        let moveAction : SCNAction = sceneManager.getBulletMoveAction(object: bullet, to: cityPostion, speed: 20)
         
         bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
     }

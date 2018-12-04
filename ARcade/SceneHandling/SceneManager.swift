@@ -63,11 +63,16 @@ class SceneManager {
         return Int(node.name!)!
     }
     
-    func getMoveAction(object: SCNNode, to city: SCNVector3, speed: Int) -> SCNAction{
-        let action =  SCNAction.move(to: city, duration: 30.0/Double(speed))
+    func getAlienMoveAction(object: SCNNode, to city: SCNVector3, speed: Int) -> SCNAction{
+        let newVector: SCNVector3 = SCNVector3(x: city.x, y: city.y + 0.2, z: city.z)
+        let action =  SCNAction.move(to: newVector, duration: 30.0/Double(speed))
         return action
     }
     
+    func getBulletMoveAction(object: SCNNode, to city: SCNVector3, speed: Int) -> SCNAction{
+        let action =  SCNAction.move(to: city, duration: 30.0/Double(speed))
+        return action
+    }
     
     func creatAlienBullet(spawnPosition: SCNVector3) -> SCNNode{
         
