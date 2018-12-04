@@ -15,6 +15,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     enum SessionState{
         case lookingForPlane
         case cityPlaced
+        case waitingForCity
         case waitingForPeers
         case gameStarted
     }
@@ -164,7 +165,12 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         shareWorldButton.isHidden = true
         saveButton.isHidden = true
         cancelButton.isHidden = true
-        state = .lookingForPlane
+        if networkManager.isHost {
+            state = .lookingForPlane
+        }
+        else {
+            state = .waitingForCity
+        }
         let scene = SCNScene()
         sceneView.delegate = self
         sceneView.showsStatistics = true
@@ -177,6 +183,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         networkManager.sceneManagerDelegate = manager.sceneManager
         if networkManager.isHost{
             self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        }
+        else{
+            manager.sceneManager.setSceneNode(node: sceneView.scene.rootNode)
         }
     }
     
