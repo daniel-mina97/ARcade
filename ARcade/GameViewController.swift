@@ -85,7 +85,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         case .notAvailable, .limited:
             print("ARCADE-ERROR: World mapping status insufficient.")
         case .extending, .mapped:
-            shareWorldButton.isEnabled = true
             sceneView.session.getCurrentWorldMap { worldMap, error in
                 guard let map = worldMap
                     else { print("ARCADE-ERROR: No worldMap found. Unable to create beginningScene."); return}
@@ -98,6 +97,8 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     print("ARCADE-ERROR: No beginningScene available found to send to peers.")
                 }
             }
+            shareWorldButton.isHidden = true
+            startGameButton.isHidden = false
         }
     }
 
