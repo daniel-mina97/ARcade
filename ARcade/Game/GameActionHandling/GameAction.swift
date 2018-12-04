@@ -16,7 +16,7 @@ class GameAction: NSObject, NSSecureCoding {
         }
     }
     
-    enum ActionTypes: String {
+    enum ActionTypes: Int, Codable {
         case playerShootAlien
         case playerShootMultiTakedown
         case alienShootPlayer
@@ -48,17 +48,17 @@ class GameAction: NSObject, NSSecureCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        type = aDecoder.decodeObject(forKey: CodingKeys.actionType.rawValue) as! ActionTypes
+        type = ActionTypes(rawValue: aDecoder.decodeInteger(forKey: CodingKeys.actionType.rawValue))!
         actionID = aDecoder.decodeInteger(forKey: CodingKeys.actionID.rawValue)
         sourceID = aDecoder.decodeInteger(forKey: CodingKeys.sourceID.rawValue)
         targetID = aDecoder.decodeInteger(forKey: CodingKeys.targetID.rawValue)
     }
     
     func encode(with encoder: NSCoder) {
-        encoder.encode(type, forKey: CodingKeys.actionType.rawValue)
-        encoder.encode(actionID, forKey: CodingKeys.actionType.rawValue)
-        encoder.encode(sourceID, forKey: CodingKeys.actionType.rawValue)
-        encoder.encode(targetID, forKey: CodingKeys.actionType.rawValue)
+        encoder.encode(type.rawValue, forKey: CodingKeys.actionType.rawValue)
+        encoder.encode(actionID, forKey: CodingKeys.actionID.rawValue)
+        encoder.encode(sourceID, forKey: CodingKeys.sourceID.rawValue)
+        encoder.encode(targetID, forKey: CodingKeys.targetID.rawValue)
     }
 }
 

@@ -27,6 +27,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var playerHealthBar: UIProgressView!
+    @IBOutlet weak var acknowledgementButoon: UIButton!
     
     
     var manager: GameManager!
@@ -50,7 +51,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
     
+    @IBAction func sendAcknowledgement(_ sender: Any) {
+        let message = IntegerAcknowledge(message: 1)
+        networkManager.send(object: message)
+    }
+    
+    
     @IBAction func cancelCityPlane(_ sender: UIButton) {
+        if let anchor = cityAnchor {
+            sceneView.session.remove(anchor: anchor)
+        }
         if let oldGridNode = gridNode {
             oldGridNode.removeFromParentNode()
         }
@@ -79,6 +89,11 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func shareWorld(_ sender: UIButton) {
+        if networkManager.numberOfPeersAcknowledged == networkManager.session.connectedPeers.count {
+            shareWorldButton.isHidden = true
+            startGameButton.isHidden = false
+            return
+        }
         networkManager.stopAdvertising()
         guard let currentFrame = sceneView.session.currentFrame else {return}
         switch currentFrame.worldMappingStatus {
@@ -97,8 +112,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
                     print("ARCADE-ERROR: No beginningScene available found to send to peers.")
                 }
             }
-            shareWorldButton.isHidden = true
-            startGameButton.isHidden = false
         }
     }
 
@@ -203,6 +216,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
         saveButton.isHidden = true
         cancelButton.isHidden = true
         if networkManager.isHost {
+            acknowledgementButoon.isHidden = true
             state = .lookingForPlane
         }
         else {

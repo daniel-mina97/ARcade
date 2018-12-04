@@ -12,11 +12,12 @@ import ARKit
 
 class Alien: GameActor {
     
-    enum AlienType {
+    enum AlienType: Int, Codable {
         case diving
         case shooting
         case boss
         case multiTakedown
+        case filler
     }
     
     static let AlienTypeArray = [AlienType.diving, AlienType.shooting, AlienType.multiTakedown]

@@ -38,6 +38,9 @@ class AlienFactory {
             let health = 1
             let speed = 2
             return Alien(type: t, moveSpeed: speed, health: health, damage: damage, node: n)
+        
+        default:
+            return Alien(type: Alien.AlienType.filler, moveSpeed: 1, health: 1, damage: 1, node: n)
         }
     }
 }
