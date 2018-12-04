@@ -43,9 +43,9 @@ class GameManager{
         if networkManager.isHost{
             actionQueue = Queue<GameAction>()
             players = [:]
-            aliens = [:]
             targetList = []
         }
+        aliens = [:]
         sceneManager = SceneManager(scene: scene)
         sceneManager.manager = self
     }
@@ -153,6 +153,26 @@ class GameManager{
         let yCoordinate: Float = city!.node!.position.y + Float.random(in: 0.2...1.0)
         let zCoordinate: Float = city!.node!.position.z + Float(zSign) * Float.random(in: 2.0...5.0)
         return Coordinate3D(x: xCoordinate, y: yCoordinate, z: zCoordinate)
+    }
+    
+    func apply(this update: SceneUpdate) {
+        switch update.type {
+        case .SpawnAlien:
+            let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: update.alienType!, at: (update.spawnPoint?.getVector())!)
+            let alien: Alien = AlienFactory.createAlien(type: update.alienType!, node: alienNode)
+            aliens![alien.id] = alien
+            let action = sceneManager.getAlienMoveAction(object: alien.node!, to: (city!.node?.position)!, speed: alien.moveSpeed)
+            alien.node?.runAction(action)
+        case .RemoveAlien:
+            sceneManager.remove(node: aliens![update.alienID]!.node!)
+        case .SpawnPickup:
+            print("ARCADE-ERROR: No implementation for spawning pickups.")
+        case .BulletShot:
+            //manager.AlienShootCity(alienID: update.alienID)
+            break
+        case .EndGame:
+            endGame()
+        }
     }
     
     @objc func executeNextAction() {
