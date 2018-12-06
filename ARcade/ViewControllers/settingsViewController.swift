@@ -12,14 +12,12 @@ class settingsViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var colorSelect: UISegmentedControl!
     @IBOutlet weak var shipSelect: UISegmentedControl!
     
     let defaults = UserDefaults.standard
     
     @IBAction func saveSettings(_ sender: Any) {
         defaults.set(nameField.text!, forKey: "name")
-        defaults.set(colorSelect.selectedSegmentIndex, forKey: "color")
         defaults.set(shipSelect.selectedSegmentIndex, forKey: "ship")
     }
     
@@ -34,7 +32,6 @@ class settingsViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         nameField.delegate = self
         nameField.text = (defaults.object(forKey: "name") as! String)
-        colorSelect.selectedSegmentIndex = defaults.integer(forKey: "color")
         shipSelect.selectedSegmentIndex = defaults.integer(forKey: "ship")
     }
     
