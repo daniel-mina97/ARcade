@@ -35,6 +35,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         case spawnPointZ
         case healthProgress
         case alienType
+       
     }
     
     let type: UpdateTypes
@@ -89,6 +90,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         self.healthProgress = healthProgress
         self.alienType = .filler
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         type = UpdateTypes(rawValue: aDecoder.decodeInteger(forKey: CodingKeys.type.rawValue))!
