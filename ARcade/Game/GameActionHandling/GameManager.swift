@@ -225,10 +225,15 @@ class GameManager{
             
             AlienShootCity(alienID: action.sourceID)
             
+           // let health = Float(city!.getHealth()) / Float((city!.getMaxHealth()))
+          //  if action.c
+            
             if city!.takeDamage(from: aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
                 //Game Ends
                 //Players Lose
                 //send end game notification to other players
+                
+                
                 endGame()
             }
         case .alienCrashIntoCity:

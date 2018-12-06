@@ -28,6 +28,9 @@ class GameViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var playerHealthBar: UIProgressView!
     @IBOutlet weak var acknowledgementButoon: UIButton!
+    @IBOutlet weak var CityHealthBar: ARSCNView!
+    
+    
     
     
     var manager: GameManager!
