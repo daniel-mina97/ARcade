@@ -15,7 +15,7 @@ class City: GameActor {
     let id: Int
     
     init(node n: SCNNode) {
-        let h = 10000
+        let h = 200
         id = -1
         super.init(health: h, maxHealth: h, damage: 0, node: n)
     }

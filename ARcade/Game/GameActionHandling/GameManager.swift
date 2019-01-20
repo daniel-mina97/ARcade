@@ -24,6 +24,15 @@ class GameManager{
     var players: [Int: Player]?
     var aliens: [Int: Alien]?
     var targetList: [Int]?
+    var alienSpawnTypeList = [Alien.AlienType.shooting,
+                              Alien.AlienType.shooting,
+                              Alien.AlienType.shooting,
+                              Alien.AlienType.shooting,
+                              Alien.AlienType.shooting,
+                              Alien.AlienType.diving,
+                              Alien.AlienType.diving,
+                              Alien.AlienType.diving,
+                              Alien.AlienType.multiTakedown]
     var city: City?
     var actionQueue: Queue<GameAction>?
     var sessionState: GameState
@@ -126,7 +135,7 @@ class GameManager{
     
     @objc func spawnAlien() {
         if aliens!.count >= GameManager.MAX_ALIENS {return}
-        if let alienType: Alien.AlienType = Alien.AlienTypeArray.randomElement() {
+        if let alienType: Alien.AlienType = alienSpawnTypeList.randomElement() {
             let spawnCoordinates: SCNVector3 = getSpawnCoordinates().getVector()
             let alienNode: SCNNode = sceneManager.makeAlien(id: Alien.numOfAliens, type: alienType, at: spawnCoordinates)
             let alien: Alien = AlienFactory.createAlien(type: alienType, node: alienNode)
@@ -140,13 +149,15 @@ class GameManager{
     
     
     func AlienShootCity(alienID: Int){
-        let alienPostion: SCNVector3 = (aliens![alienID]?.node?.position)!
-        let cityPostion : SCNVector3 = (city!.node?.position)!
+        if let alien = aliens![alienID]{
+            let alienPostion: SCNVector3 = (alien.node?.position)!
+            let cityPostion : SCNVector3 = (city!.node?.position)!
         
-        let bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
-        let moveAction : SCNAction = sceneManager.getBulletMoveAction(object: bullet, to: cityPostion, speed: 20)
+            let bullet: SCNNode = sceneManager.creatAlienBullet(spawnPosition: alienPostion)
+            let moveAction : SCNAction = sceneManager.getBulletMoveAction(object: bullet, to: cityPostion, speed: 20)
         
-        bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
+            bullet.runAction(moveAction, completionHandler: {bullet.removeFromParentNode()})
+        }
     }
     
     func getSpawnCoordinates() -> Coordinate3D {
@@ -182,6 +193,13 @@ class GameManager{
                 if update.targetID == self.localID {
                     self.sceneViewDelegate?.playerHealthBar.progress = update.healthProgress
                 }
+            }
+        case .CityShot:
+            DispatchQueue.main.async {
+                self.sceneViewDelegate?.cityHealthBar.progress = update.healthProgress
+            }
+            if update.healthProgress <= 0 {
+                endGame()
             }
         case .EndGame:
             endGame()
@@ -222,33 +240,28 @@ class GameManager{
                 print("ARCADE-INFO: Player has died.")
             }
         case .alienShootCity:
-            
             AlienShootCity(alienID: action.sourceID)
-            
-           // let health = Float(city!.getHealth()) / Float((city!.getMaxHealth()))
-          //  if action.c
-            
             if city!.takeDamage(from: aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
-                //Game Ends
-                //Players Lose
-                //send end game notification to other players
-                
-                
                 endGame()
             }
+            let health = Float((city?.getHealth())!) / Float((city?.getMaxHealth())!)
+            let sceneUpdate = SceneUpdate(cityHealth: health)
+            networkManager.send(object: sceneUpdate)
+            sceneViewDelegate?.cityHealthBar.progress = health
         case .alienCrashIntoCity:
             let sceneUpdate = SceneUpdate(alienID: action.sourceID)
             networkManager.send(object: sceneUpdate)
             if city!.takeDamage(from: aliens![action.sourceID]!.damage) == GameActor.lifeState.dead {
-                //Game Ends
-                //Players Lose
-                //send end game notification to other players
                 endGame()
             }
             else {
                 aliens![action.sourceID]!.node!.removeFromParentNode()
                 aliens![action.sourceID] = nil
             }
+            let health = Float((city?.getHealth())!) / Float((city?.getMaxHealth())!)
+            let sceneUpdate2 = SceneUpdate(cityHealth: health)
+            networkManager.send(object: sceneUpdate2)
+            sceneViewDelegate?.cityHealthBar.progress = health
         case .pickup:
             // Pick it up
             break

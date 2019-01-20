@@ -23,6 +23,7 @@ class SceneUpdate: NSObject, NSSecureCoding {
         case SpawnPickup
         case BulletShot
         case PlayerShot
+        case CityShot
         case EndGame
     }
     
@@ -35,7 +36,6 @@ class SceneUpdate: NSObject, NSSecureCoding {
         case spawnPointZ
         case healthProgress
         case alienType
-       
     }
     
     let type: UpdateTypes
@@ -77,6 +77,17 @@ class SceneUpdate: NSObject, NSSecureCoding {
         self.spawnPointY = 0.0
         self.spawnPointZ = 0.0
         self.healthProgress = 0.0
+        self.alienType = .filler
+    }
+    
+    init(cityHealth: Float) {
+        self.type = .CityShot
+        self.alienID = 0
+        self.targetID = 0
+        self.spawnPointX = 0.0
+        self.spawnPointY = 0.0
+        self.spawnPointZ = 0.0
+        self.healthProgress = cityHealth
         self.alienType = .filler
     }
     
