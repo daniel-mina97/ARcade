@@ -432,9 +432,9 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
-                        <outlet property="CityHealthBar" destination="BrB-h1-WRS" id="em2-Zz-ZFW"/>
                         <outlet property="acknowledgementButoon" destination="sPj-lT-sYB" id="5fS-bL-pSs"/>
                         <outlet property="cancelButton" destination="COf-U5-1kM" id="9Dw-UJ-Y0f"/>
+                        <outlet property="cityHealthBar" destination="fvh-jE-7VK" id="avb-Rp-yCQ"/>
                         <outlet property="playerHealthBar" destination="Fbd-yW-wwO" id="nFz-7F-tKY"/>
                         <outlet property="saveButton" destination="K7W-cz-U1x" id="xKL-q8-enm"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
